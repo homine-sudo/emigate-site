@@ -95,7 +95,8 @@ hr{border:0;border-top:1px solid var(--line);margin:0}
 .hero .scroll{display:inline-flex;align-items:center;gap:10px}
 .hero .scroll::after{content:"";width:1px;height:38px;background:var(--sun);animation:drop 1.8s var(--ease) infinite;transform-origin:top}
 @keyframes drop{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
-@media(max-width:700px){.hero .sub{grid-template-columns:1fr}.hero .sub .right{flex-direction:row;justify-content:space-between;align-items:end}}
+.ph{display:inline-block}
+@media(max-width:700px){.hero .eyebrow{flex-direction:column;gap:6px}.hero .sub{grid-template-columns:1fr}.hero .sub .right{flex-direction:row;justify-content:space-between;align-items:end}}
 
 /* ---- statement ---- */
 .stmt{padding:clamp(80px,12vw,160px) var(--g);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:32px}
@@ -198,7 +199,7 @@ hr{border:0;border-top:1px solid var(--line);margin:0}
 
 <section class="hero" id="top">
   <div class="eyebrow">
-    <span class="lbl jp">業務のデジタル化サポート ／ フラワーギフト・イベント装花</span>
+    <span class="lbl jp"><span class="ph">業務のデジタル化サポート ／</span> <span class="ph">フラワーギフト・イベント装花</span></span>
     <span class="lbl">Est. 2026 — Okinawa, Japan</span>
   </div>
   <h1><span class="w"><i>技術は、</i></span><span class="w"><i><em>人と人を</em></i></span><span class="w"><i>つなぐ。</i></span></h1>
@@ -223,21 +224,21 @@ hr{border:0;border-top:1px solid var(--line);margin:0}
   <div class="head"><h2>実績</h2><span class="lbl jp">自社で設計し、毎日動いているもの</span></div>
   <a class="row rv" href="#contact">
     <span class="n">01</span>
-    <span class="t">代車レンタカーの<em>運用</em>システム</span>
+    <span class="t"><span class="ph">代車レンタカーの</span><span class="ph"><em>運用</em>システム</span></span>
     <span class="tags"><b>Hari Terrace — 損保代車</b>配車・写真チェック・FAX手配書・LINE連絡・会計連携を一本に</span>
     <span class="yr">2026</span>
     <span class="art a1" aria-hidden="true">1,121件 移行</span>
   </a>
   <a class="row rv" href="#contact">
     <span class="n">02</span>
-    <span class="t">コーティング工程の<em>管理</em></span>
+    <span class="t"><span class="ph">コーティング</span><span class="ph">工程の<em>管理</em></span></span>
     <span class="tags"><b>DETALIA — カーコーティング</b>予約・作業票・施工前後の記録・請求</span>
     <span class="yr">2026</span>
     <span class="art a2" aria-hidden="true">3事業 稼働中</span>
   </a>
   <a class="row rv" href="#contact">
     <span class="n">03</span>
-    <span class="t">3日間の<em>現場</em>診断</span>
+    <span class="t"><span class="ph">3日間の</span><span class="ph"><em>現場</em>診断</span></span>
     <span class="tags"><b>手法 — 現場DX診断</b>貼りつく・数える・聞いて撮る。6項目の報告書を納品</span>
     <span class="yr">2026</span>
     <span class="art a3" aria-hidden="true">3日間</span>
