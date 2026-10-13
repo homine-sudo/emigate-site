@@ -9,290 +9,251 @@
 <meta property="og:description" content="業務のデジタル化サポートと、フラワーギフト・イベント装花。Digital × Flower × People.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emigate.jp/">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#2F2B2A">
 <link rel="canonical" href="https://emigate.jp/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%23F2B705%27/%3E%3Ctext x=%2732%27 y=%2744%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-weight=%27700%27 font-size=%2734%27 fill=%27%23FFFFFF%27%3EE%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Yuji+Syuku&family=JetBrains+Mono:wght@400&family=Quicksand:wght@500;600&display=swap">
 <style>
-/* ==== EMIGATE v7 — 名刺連動 ================================================
-   v6(日本語主体)の構成・文章はそのまま、見た目を名刺(2026-10-13)に合わせる。
-   白地 × ウォームグレーの文字 × ひまわりイエロー。書体は Zen丸ゴシック で統一。
-   名刺の「3つの丸」(黄・淡黄・種の茶)と「下端の黄色い帯」をモチーフに使う。
+/* ==== EMIGATE v8 — 分割スクリーン（前衛案C） ================================
+   Digital（濃いグレー）と Flower（クリーム×ひまわり）を左右に対置。
+   名刺の3つの丸・下端の黄色い帯・Zen丸ゴシックを継承。
+   キャッチコピー「笑う門には福来る」は落款と EMI（笑み）+ GATE（門）でさりげなく。
    TODO:MAIL  mayu@emigate.jp の受信箱を設定してから案内に使う
-   TODO:FOUNDED 登記後にフッターへ設立日
    ========================================================================= */
 :root{
-  --bg:#FFFFFF;
-  --ink:#4A4543;
-  --ink2:#6B6563;
-  --mute:#8A8481;
-  --line:rgba(74,69,67,.14);
-  --line-strong:rgba(74,69,67,.45);
-  --soft:#F4F2EF;
-  --sun:#F2B705;
-  --sun2:#F6C445;
-  --seed:#8B6A3E;
-  --inv-bg:#F4F2EF;
-  --inv-ink:#4A4543;
-  --inv-line:rgba(74,69,67,.12);
-  --serif:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
-  --grot:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
-  --jp:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
-  --mincho:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
-  --g:clamp(20px,4.5vw,64px);
-  --ease:cubic-bezier(.16,1,.3,1);
+  --ink:#2F2B2A;--ink2:#4A4543;--mute:#8A8481;--line:rgba(74,69,67,.14);
+  --cream:#FFF9E8;--paper:#FFFFFF;--soft:#F4F2EF;
+  --sun:#F2B705;--sun2:#F6C445;--seed:#8B6A3E;--seal:#C9452E;
+  --jp:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  --brush:"Yuji Syuku","Hiragino Mincho ProN",serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --en:"Quicksand","Zen Maru Gothic",sans-serif;
+  --g:clamp(20px,4vw,56px);--ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--jp);font-weight:400;font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body :focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+body{margin:0;background:var(--paper);color:var(--ink2);font-family:var(--jp);font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-.en{font-family:var(--grot)}
-.lbl{font-family:var(--grot);font-weight:500;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.lbl.jp{font-family:var(--jp);text-transform:none;letter-spacing:.1em;font-size:.74rem}
-em{font-family:var(--mincho);font-style:normal;font-weight:700;background:linear-gradient(transparent 68%,rgba(246,196,69,.45) 68%)}
-hr{border:0;border-top:1px solid var(--line);margin:0}
-
-/* ---- 名刺の3つの丸 ---- */
-.dots{display:inline-flex;align-items:center;gap:.32em;vertical-align:middle}
+em{font-style:normal}
+.ph{display:inline-block}
+.lbl{font-family:var(--en);font-weight:600;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mute)}
+.dots{display:inline-flex;align-items:center;gap:.35em;vertical-align:middle}
 .dots i{display:block;border-radius:50%}
-.dots i:nth-child(1){width:.5em;height:.5em;background:var(--sun)}
-.dots i:nth-child(2){width:.4em;height:.4em;background:var(--sun2);opacity:.55}
-.dots i:nth-child(3){width:.26em;height:.26em;background:var(--seed);opacity:.7}
+.dots i:nth-child(1){width:10px;height:10px;background:var(--sun)}
+.dots i:nth-child(2){width:8px;height:8px;background:var(--sun2);opacity:.6}
+.dots i:nth-child(3){width:5px;height:5px;background:var(--seed);opacity:.8}
+.band{position:fixed;left:0;right:0;bottom:0;height:8px;background:var(--sun);z-index:30}
 
-/* ---- cursor ---- */
-.cur{display:none}
-@media(hover:hover){
-  body,a,button{cursor:none}
-  .cur{display:block;position:fixed;left:0;top:0;width:10px;height:10px;margin:-5px;border-radius:50%;background:var(--sun);opacity:.85;pointer-events:none;z-index:99;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),opacity .35s}
-  .cur.big{width:56px;height:56px;margin:-28px;opacity:.35}
-}
+/* ---- 落款 ---- */
+.seal{writing-mode:vertical-rl;font-family:var(--brush);font-size:13px;letter-spacing:.45em;color:var(--mute);display:flex;align-items:center;gap:10px}
+.seal b{writing-mode:horizontal-tb;width:22px;height:22px;border:1.5px solid var(--seal);color:var(--seal);font-size:12px;font-weight:400;letter-spacing:0;display:flex;align-items:center;justify-content:center;border-radius:3px}
+.gate{font-family:var(--en);font-size:11px;letter-spacing:.25em;color:var(--mute)}
+.gate span{color:var(--sun)}
 
 /* ---- nav ---- */
-.nav{position:fixed;inset:0 0 auto 0;z-index:40;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px var(--g);background:rgba(255,255,255,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--ink);font-size:.8rem;font-weight:500;letter-spacing:.06em}
-.nav .m{font-family:var(--serif);font-size:1.15rem;font-weight:500;letter-spacing:.06em;display:inline-flex;align-items:center;gap:.5em}
-.nav .links{display:flex;gap:26px;justify-content:center}
-.nav .links a{position:relative}
-.nav .links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.nav .links a:hover::after{transform:scaleX(1)}
-.nav .clock{text-align:right;font-family:var(--grot);font-variant-numeric:tabular-nums;opacity:.85;letter-spacing:.02em}
-@media(max-width:700px){.nav{grid-template-columns:1fr auto}.nav .links{display:none}}
+.nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px var(--g);color:#fff;mix-blend-mode:difference;font-size:.78rem;letter-spacing:.2em}
+.nav .m{font-family:var(--en);font-weight:600;font-size:1rem;letter-spacing:.2em;display:inline-flex;gap:.6em;align-items:center}
+.nav .m .dots i{background:#fff!important;opacity:1!important}
+.nav .links{display:flex;gap:28px}
+@media(max-width:760px){.nav .links{display:none}}
 
 /* ---- hero ---- */
-.hero{min-height:92svh;display:flex;flex-direction:column;justify-content:flex-end;padding:calc(20px + 6rem) var(--g) 28px;position:relative}
-.hero .eyebrow{display:flex;justify-content:space-between;gap:20px;margin-bottom:auto}
-.hero h1{margin:0;font-family:var(--jp);font-weight:700;font-size:clamp(2.5rem,8.4vw,8.8rem);line-height:1.12;letter-spacing:-.03em;text-wrap:balance;max-width:12em}
-.hero h1 em{font-size:1.02em}
-.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
-.hero h1 .w i{display:inline-block;font-style:inherit;transform:translateY(110%);animation:rise 1.2s var(--ease) forwards}
-.hero h1 .w:nth-child(1) i{animation-delay:.05s}.hero h1 .w:nth-child(2) i{animation-delay:.15s}.hero h1 .w:nth-child(3) i{animation-delay:.25s}
-@keyframes rise{to{transform:none}}
-.hero .sub{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end;margin-top:40px;padding-top:22px;border-top:1px solid var(--line-strong)}
-.hero .sub p{margin:0;font-size:.95rem;color:var(--ink2);max-width:30em;line-height:2}
-.hero .sub .right{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
-.hero .sub .tag{font-family:var(--serif);font-size:1.05rem;color:var(--ink2)}
-.hero .scroll{display:inline-flex;align-items:center;gap:10px}
-.hero .scroll::after{content:"";width:1px;height:38px;background:var(--sun);animation:drop 1.8s var(--ease) infinite;transform-origin:top}
-@keyframes drop{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
-.ph{display:inline-block}
-@media(max-width:700px){.hero .eyebrow{flex-direction:column;gap:6px}.hero .sub{grid-template-columns:1fr}.hero .sub .right{flex-direction:row;justify-content:space-between;align-items:end}}
+.hero{display:grid;grid-template-columns:1fr 1fr;height:100svh;min-height:620px;position:relative}
+.hero .l{background:var(--ink);color:#EDEAE6;position:relative;overflow:hidden;padding:84px var(--g) 64px}
+.hero .l::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:40px 40px}
+.hero pre{position:relative;margin:0;font-family:var(--mono);font-size:13px;line-height:1.9;opacity:.38;white-space:pre-wrap}
+.hero pre .c{opacity:.55}
+.hero h2{position:absolute;margin:0;font-weight:900;font-size:clamp(3rem,7vw,7rem);letter-spacing:-.04em;line-height:.9}
+.hero .l h2{left:var(--g);bottom:56px}
+.hero .r{background:var(--cream);position:relative;overflow:hidden}
+.hero .r h2{right:var(--g);bottom:56px;color:var(--ink)}
+.flower{position:absolute;left:50%;top:46%;width:min(40vw,62vh);aspect-ratio:1;transform:translate(-50%,-50%);animation:spin 80s linear infinite}
+.flower i{position:absolute;left:50%;top:0;width:24%;height:50%;margin-left:-12%;border-radius:50%;background:var(--sun2);opacity:.55;transform-origin:50% 100%}
+.flower b{position:absolute;left:50%;top:50%;width:32%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:var(--seed)}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero .card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;background:#fff;padding:34px 44px 26px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.25);max-width:calc(100% - 40px)}
+.hero h1{margin:0;font-family:var(--brush);font-weight:400;font-size:clamp(1.6rem,3vw,2.9rem);letter-spacing:.16em;color:var(--ink);line-height:1.5}
+.hero h1 em{color:var(--sun)}
+.hero .card .lbl{display:block;margin-top:12px}
+.hero .card .dots{margin-top:14px}
+.hero .card .gate{margin-top:12px}
+.hero .seal{position:absolute;right:var(--g);top:50%;transform:translateY(-50%);z-index:4}
+.scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:6;width:1px;height:40px;background:var(--sun);animation:drop 1.8s var(--ease) infinite;transform-origin:top}
+@keyframes drop{0%{transform:translateX(-50%) scaleY(0)}50%{transform:translateX(-50%) scaleY(1)}100%{transform:translateX(-50%) scaleY(0);transform-origin:bottom}}
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+  .hero .l{padding-top:70px}
+  .hero pre{font-size:11px}
+  .hero .l h2,.hero .r h2{bottom:24px}
+  .hero .r h2{top:24px;bottom:auto}
+  .flower{width:72vw;top:58%}
+  .hero .card{padding:24px 22px 20px;width:calc(100% - 40px)}
+  .hero h1{font-size:1.3rem;letter-spacing:.1em}
+  .hero .card .lbl{letter-spacing:.18em;font-size:.62rem}
+  .hero .seal{display:none}
+}
 
-/* ---- statement ---- */
-.stmt{padding:clamp(80px,12vw,160px) var(--g);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:32px}
-.stmt .idx{align-self:start;position:sticky;top:96px}
-.stmt p.big{margin:0;font-size:clamp(1.4rem,3.1vw,2.9rem);line-height:1.6;letter-spacing:-.01em;font-weight:400;text-wrap:balance;max-width:24em}
-.stmt p.big .w{display:inline-block;opacity:.18;transition:opacity .6s ease}
-.stmt p.big .w.on{opacity:1}
-.stmt .en{margin:28px 0 0;max-width:40em;color:var(--mute);font-size:.86rem;line-height:1.7}
-@media(max-width:760px){.stmt{grid-template-columns:1fr;gap:18px}.stmt .idx{position:static}}
+/* ---- about（立ち位置＋社名の由来） ---- */
+.about{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(32px,6vw,96px);padding:clamp(80px,12vw,160px) var(--g)}
+.about .big{margin:0;font-size:clamp(1.3rem,2.6vw,2.4rem);line-height:1.75;color:var(--ink);font-weight:500;text-wrap:pretty}
+.about .big em{background:linear-gradient(transparent 62%,rgba(246,196,69,.55) 62%);font-weight:700}
+.about .en{margin:24px 0 0;color:var(--mute);font-size:.86rem;font-family:var(--en);letter-spacing:.04em}
+.origin{align-self:end;border-left:1px solid var(--line);padding-left:clamp(20px,3vw,40px)}
+.origin .word{font-family:var(--en);font-weight:600;font-size:clamp(2.2rem,4.6vw,4rem);letter-spacing:.06em;line-height:1;color:var(--ink)}
+.origin .word span{color:var(--sun)}
+.origin dl{margin:22px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:.92rem}
+.origin dt{font-family:var(--en);font-weight:600;letter-spacing:.15em;color:var(--ink)}
+.origin dd{margin:0;color:var(--mute)}
+.origin p{margin:24px 0 0;font-family:var(--brush);font-size:1.15rem;letter-spacing:.3em;color:var(--ink2)}
+@media(max-width:760px){.about{grid-template-columns:1fr}.origin{border-left:0;border-top:1px solid var(--line);padding:28px 0 0}}
 
-/* ---- work ---- */
-.work{border-top:1px solid var(--line-strong)}
-.work .head{display:flex;justify-content:space-between;align-items:baseline;padding:22px var(--g)}
-.work .head h2{margin:0;font-size:.95rem;font-weight:500;letter-spacing:.06em}
-.row{display:grid;grid-template-columns:3rem minmax(0,1.4fr) minmax(0,1fr) 5rem;gap:20px;align-items:center;padding:clamp(22px,3vw,40px) var(--g);border-top:1px solid var(--line);position:relative;overflow:hidden;transition:background .5s var(--ease)}
-.row:hover{background:var(--soft)}
-.row .n{font-family:var(--grot);font-size:.72rem;color:var(--mute);font-variant-numeric:tabular-nums}
-.row:hover .n{color:var(--sun)}
-.row .t{font-size:clamp(1.35rem,3vw,2.9rem);letter-spacing:-.01em;line-height:1.3;font-weight:700;transition:transform .6s var(--ease)}
-.row:hover .t{transform:translateX(.25em)}
-.row .tags{font-size:.8rem;color:var(--ink2);line-height:1.6}
-.row .tags b{display:block;font-weight:500;color:inherit}
-.row .yr{text-align:right;font-family:var(--grot);font-size:.78rem;font-variant-numeric:tabular-nums;color:var(--mute)}
-.row .art{position:absolute;right:8rem;top:50%;width:150px;aspect-ratio:4/5;transform:translateY(-50%) rotate(-6deg) scale(.85);opacity:0;transition:opacity .5s var(--ease),transform .7s var(--ease);pointer-events:none;background:#fff;color:var(--ink);display:flex;align-items:flex-end;padding:10px;font-size:.64rem;letter-spacing:.08em;border-radius:10px;box-shadow:0 10px 30px rgba(74,69,67,.12)}
-.row .art::before{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--sun);border-radius:0 0 10px 10px}
-.row .art.a1::after{content:"";position:absolute;inset:14px 14px 30px;background:repeating-linear-gradient(0deg,transparent 0 9px,rgba(74,69,67,.25) 9px 10px)}
-.row .art.a2::after{content:"";position:absolute;left:50%;top:44%;width:60%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,var(--seed) 0 18%,var(--sun2) 19% 100%);opacity:.6}
-.row .art.a3::after{content:"";position:absolute;left:18px;top:24px;width:16px;height:16px;border-radius:50%;background:var(--sun);box-shadow:24px 2px 0 -3px var(--sun2),44px 5px 0 -5px var(--seed)}
-.row:hover .art{opacity:1;transform:translateY(-50%) rotate(-3deg) scale(1)}
-@media(max-width:760px){.row{grid-template-columns:2rem 1fr 4rem}.row .tags{grid-column:2;grid-row:2}.row .art{display:none}}
+/* ---- services（左右対置） ---- */
+.svc{display:grid;grid-template-columns:1fr 1fr}
+.svc section{padding:clamp(64px,9vw,120px) var(--g)}
+.svc .dg{background:var(--ink);color:#EDEAE6}
+.svc .fl{background:var(--cream);color:var(--ink)}
+.svc .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px}
+.svc h3{margin:0;font-weight:900;font-size:clamp(2.2rem,4.6vw,4rem);letter-spacing:-.03em;line-height:1}
+.svc .dg h3{color:#fff}.svc .fl h3 em{color:var(--sun)}
+.svc .sub{margin:0 0 30px;font-size:.92rem;opacity:.75}
+.item{display:grid;grid-template-columns:2.4rem 1fr;gap:4px 14px;padding:22px 0;border-top:1px solid rgba(255,255,255,.14);transition:padding .5s var(--ease)}
+.fl .item{border-top-color:rgba(74,69,67,.14)}
+.item:hover{padding-left:10px}
+.item .n{font-family:var(--en);font-weight:600;font-size:.75rem;color:var(--sun);padding-top:.5em}
+.item .t{font-weight:700;font-size:clamp(1.15rem,2vw,1.6rem);line-height:1.4}
+.item .t em{color:var(--sun)}
+.item .d{grid-column:2;font-size:.86rem;line-height:1.8;opacity:.72}
+.item .d b{display:block;font-weight:500;opacity:.9}
+.dg .item:last-child,.fl .item:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.fl .item:last-child{border-bottom-color:rgba(74,69,67,.14)}
+@media(max-width:760px){.svc{grid-template-columns:1fr}}
 
-/* ---- studio ---- */
-.studio{background:var(--inv-bg);color:var(--inv-ink);padding:clamp(80px,12vw,160px) var(--g)}
-.studio .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:clamp(40px,6vw,80px)}
-.studio .head .lbl{color:var(--mute)}
-.studio h2{margin:0;font-size:clamp(1.8rem,4.8vw,4.8rem);letter-spacing:-.01em;line-height:1.3;font-weight:700;max-width:12em;text-wrap:balance}
+/* ---- values ---- */
+.values{background:var(--soft);padding:clamp(80px,11vw,150px) var(--g)}
+.values .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:clamp(32px,5vw,64px);gap:16px}
+.values h3{margin:0;font-size:clamp(1.7rem,4vw,3.6rem);font-weight:900;line-height:1.3;color:var(--ink)}
+.values h3 em{background:linear-gradient(transparent 62%,rgba(246,196,69,.55) 62%)}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.col{background:#fff;border-radius:14px;padding:clamp(24px,3vw,40px);min-height:300px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .5s var(--ease),box-shadow .5s var(--ease);position:relative;overflow:hidden}
+.col{background:#fff;border-radius:14px;padding:clamp(24px,3vw,40px);position:relative;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
 .col::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--sun);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
-.col:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(74,69,67,.1)}
-.col:hover::after{transform:scaleX(1)}
-.col .k{font-family:var(--grot);font-size:.7rem;letter-spacing:.14em;color:var(--sun);font-weight:700}
-.col h3{margin:40px 0 0;font-family:var(--grot);font-size:clamp(2rem,4vw,3.4rem);letter-spacing:-.02em;line-height:1;font-weight:700}
-.col .jt{margin:10px 0 0;font-size:1.05rem;font-weight:500}
-.col p{margin:14px 0 0;font-size:.88rem;line-height:1.9;opacity:.8;max-width:22em}
-.col p.en{font-size:.76rem;opacity:.55;line-height:1.6}
-@media(max-width:760px){.cols{grid-template-columns:1fr}.col{min-height:0}}
+.col:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(74,69,67,.1)}.col:hover::after{transform:scaleX(1)}
+.col .k{font-family:var(--en);font-weight:600;font-size:.72rem;letter-spacing:.2em;color:var(--sun)}
+.col h4{margin:32px 0 0;font-family:var(--en);font-weight:600;font-size:clamp(1.9rem,3.4vw,3rem);letter-spacing:-.01em;line-height:1;color:var(--ink)}
+.col .jt{margin:10px 0 0;font-weight:700;font-size:1.02rem;color:var(--ink)}
+.col p{margin:12px 0 0;font-size:.88rem;line-height:1.9}
+.col .en{font-family:var(--en);font-size:.76rem;color:var(--mute)}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
 
 /* ---- marquee ---- */
-.mq{overflow:hidden;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:clamp(18px,3vw,36px) 0;white-space:nowrap}
-.mq .in{display:inline-flex;animation:mq 28s linear infinite}
-.mq span{font-family:var(--grot);font-size:clamp(3rem,10vw,10rem);letter-spacing:-.03em;line-height:1.1;font-weight:700;padding-right:.5em;color:var(--ink)}
-.mq span em{font-family:var(--serif);font-weight:700;letter-spacing:0;color:var(--sun);background:none}
-.mq span i{font-style:normal;display:inline-block;width:.3em;height:.3em;border-radius:50%;background:var(--sun);vertical-align:middle;margin:0 .35em 0 0}
+.mq{overflow:hidden;padding:clamp(18px,3vw,32px) 0;white-space:nowrap;background:var(--ink)}
+.mq .in{display:inline-flex;animation:mq 30s linear infinite}
+.mq span{font-family:var(--en);font-weight:600;font-size:clamp(2.6rem,8vw,8rem);letter-spacing:-.02em;line-height:1.1;color:#EDEAE6;padding-right:.5em}
+.mq span em{color:var(--sun)}
+.mq span i{display:inline-block;width:.28em;height:.28em;border-radius:50%;background:var(--sun);vertical-align:middle;margin-right:.35em}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* ---- contact ---- */
-.contact{padding:clamp(90px,14vw,190px) var(--g) clamp(60px,8vw,110px)}
+.contact{padding:clamp(90px,13vw,180px) var(--g) clamp(60px,8vw,110px);position:relative}
 .contact .lbl{display:block;margin-bottom:22px}
-.contact a.big{display:block;font-family:var(--grot);font-size:clamp(2rem,7.6vw,8rem);letter-spacing:-.03em;line-height:1.05;font-weight:700;width:fit-content;max-width:100%;word-break:break-all}
-.contact a.big em{font-family:var(--serif);font-weight:700;letter-spacing:0;color:var(--sun);background:none}
-.contact a.big span{display:inline-block;transition:transform .6s var(--ease)}
-.contact a.big:hover span{transform:translateX(.15em)}
-.contact .note{margin:18px 0 0;font-size:.9rem;color:var(--ink2)}
-.contact .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px;margin-top:clamp(40px,6vw,80px);padding-top:22px;border-top:1px solid var(--line);font-size:.88rem;color:var(--ink2);line-height:1.8}
+.contact a.big{display:block;font-family:var(--en);font-weight:600;font-size:clamp(2rem,7.4vw,7.4rem);letter-spacing:-.02em;line-height:1.05;color:var(--ink);width:fit-content;max-width:100%;word-break:break-all}
+.contact a.big em{color:var(--sun)}
+.contact .note{margin:18px 0 0;font-size:.95rem;color:var(--ink2);max-width:40em}
+.contact .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px;margin-top:clamp(40px,6vw,80px);padding-top:22px;border-top:1px solid var(--line);font-size:.88rem;line-height:1.8}
 .contact .meta b{display:block;font-weight:500;font-size:.72rem;letter-spacing:.1em;color:var(--mute);margin-bottom:6px}
-.contact .meta small{display:block;font-family:var(--grot);font-size:.72rem;color:var(--mute);letter-spacing:.02em}
+.contact .meta small{display:block;font-family:var(--en);font-size:.72rem;color:var(--mute)}
+.contact .seal{position:absolute;right:var(--g);top:clamp(90px,13vw,180px)}
+@media(max-width:760px){.contact .seal{display:none}}
 
 /* ---- footer ---- */
-.ft{padding:0 var(--g) 34px;position:relative}
-.ft::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:var(--sun);opacity:.85}
-.ft .word{font-family:var(--serif);font-size:clamp(4rem,19.4vw,20rem);font-weight:700;color:var(--soft);line-height:.9;letter-spacing:.02em;display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:.12em;user-select:none}
+.ft{padding:0 var(--g) 40px}
+.ft .word{font-family:var(--en);font-weight:600;font-size:clamp(3.6rem,18vw,18rem);color:var(--soft);line-height:.9;letter-spacing:.02em;display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:.12em;user-select:none}
 .ft .bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;margin-top:22px;font-size:.72rem;color:var(--mute);letter-spacing:.06em}
 
 /* ---- reveal ---- */
 .rv{opacity:.001;transform:translateY(22px);transition:opacity 1s ease,transform 1.1s var(--ease)}
 .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  .hero h1 .w i{animation:none;transform:none}
-  .hero .scroll::after,.mq .in{animation:none}
-  .rv{opacity:1;transform:none;transition:none}
-  .stmt p.big .w{opacity:1}
-  body,a,button{cursor:auto}.cur{display:none}
-}
+@media (prefers-reduced-motion:reduce){.flower,.mq .in,.scroll{animation:none}.rv{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
 
-<div class="cur" id="cur" aria-hidden="true"></div>
-
 <header class="nav">
   <a class="m" href="#top">EMIGATE<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></a>
-  <nav class="links">
-    <a href="#work">デジタル</a>
-    <a href="#flower">お花</a>
-    <a href="#studio">私たちについて</a>
-    <a href="#contact">お問い合わせ</a>
-  </nav>
-  <div class="clock">沖縄 — <span id="clock">--:--</span></div>
+  <nav class="links"><a href="#digital">Digital</a><a href="#flower">Flower</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
 </header>
 
 <section class="hero" id="top">
-  <div class="eyebrow">
-    <span class="lbl jp"><span class="ph">業務のデジタル化サポート ／</span> <span class="ph">フラワーギフト・イベント装花</span></span>
-    <span class="lbl">Est. 2026 — Okinawa, Japan</span>
+  <div class="l">
+<pre aria-hidden="true">const day = observe(worker);
+count(what_nobody_counts);
+build(one_tool, { for: day });
+<span class="c">// 業務のデジタル化サポート</span>
+deploy("毎朝いちばんに触るもの");</pre>
+    <h2>Digital</h2>
   </div>
-  <h1><span class="w"><i>毎日に、</i></span><span class="w"><i><em>笑顔</em>を</i></span><span class="w"><i>ひとつ。</i></span></h1>
-  <div class="sub">
-    <p>仕事を軽くするデジタルの道具と、気持ちを届ける花。かたちは違っても、目指すのは目の前の人の笑顔です。沖縄・豊見城の小さな会社です。</p>
-    <div class="right">
-      <span class="tag">A smile, every day.</span>
-      <span class="lbl scroll">Scroll</span>
-    </div>
+  <div class="r">
+    <div class="flower" aria-hidden="true"><i style="transform:rotate(0deg)"></i><i style="transform:rotate(30deg)"></i><i style="transform:rotate(60deg)"></i><i style="transform:rotate(90deg)"></i><i style="transform:rotate(120deg)"></i><i style="transform:rotate(150deg)"></i><i style="transform:rotate(180deg)"></i><i style="transform:rotate(210deg)"></i><i style="transform:rotate(240deg)"></i><i style="transform:rotate(270deg)"></i><i style="transform:rotate(300deg)"></i><i style="transform:rotate(330deg)"></i><b></b></div>
+    <h2>Flower</h2>
+    <div class="seal" aria-label="笑う門には福来る"><b>福</b>笑う門には福来る</div>
   </div>
+  <div class="card">
+    <h1><span class="ph">毎日に、</span><span class="ph"><em>笑顔</em>をひとつ。</span></h1>
+    <span class="lbl">Digital × Flower — Okinawa</span>
+    <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div class="gate">EMI<span>（笑み）</span> + GATE<span>（門）</span></div>
+  </div>
+  <span class="scroll" aria-hidden="true"></span>
 </section>
 
-<section class="stmt" id="about">
-  <div class="idx lbl jp">01 — 私たちの立ち位置</div>
+<section class="about" id="about">
   <div>
-    <p class="big" id="stmt">私たちには、二つの仕事があります。働く人の横に立ち、その人が本当に使う<em>一本の道具</em>をつくること。そして、大切な日に寄り添う<em>一輪の花</em>を届けること。どちらも、相手の毎日をよく見るところから始まります。</p>
+    <p class="big rv">私たちには、二つの仕事があります。働く人の横に立ち、その人が本当に使う<em>一本の道具</em>をつくること。そして、大切な日に寄り添う<em>一輪の花</em>を届けること。どちらも、相手の毎日をよく見るところから始まります。</p>
     <p class="en rv">Two crafts, one purpose: tools that lighten the work, and flowers that brighten the day.</p>
   </div>
-</section>
-
-<section class="work" id="work">
-  <div class="head"><h2>デジタル</h2><span class="lbl jp">業務のデジタル化サポート — 自社で設計し、毎日動いているもの</span></div>
-  <a class="row rv" href="#contact">
-    <span class="n">01</span>
-    <span class="t"><span class="ph">代車レンタカーの</span><span class="ph"><em>運用</em>システム</span></span>
-    <span class="tags"><b>Hari Terrace — 損保代車</b>配車・写真チェック・FAX手配書・LINE連絡・会計連携を一本に</span>
-    <span class="yr">2026</span>
-    <span class="art a1" aria-hidden="true">1,121件 移行</span>
-  </a>
-  <a class="row rv" href="#contact">
-    <span class="n">02</span>
-    <span class="t"><span class="ph">コーティング</span><span class="ph">工程の<em>管理</em></span></span>
-    <span class="tags"><b>DETALIA — カーコーティング</b>予約・作業票・施工前後の記録・請求</span>
-    <span class="yr">2026</span>
-    <span class="art a2" aria-hidden="true">3事業 稼働中</span>
-  </a>
-  <a class="row rv" href="#contact">
-    <span class="n">03</span>
-    <span class="t"><span class="ph">3日間の</span><span class="ph"><em>現場</em>診断</span></span>
-    <span class="tags"><b>手法 — 現場DX診断</b>貼りつく・数える・聞いて撮る。6項目の報告書を納品</span>
-    <span class="yr">2026</span>
-    <span class="art a3" aria-hidden="true">3日間</span>
-  </a>
-  <hr>
-</section>
-
-<section class="work flower" id="flower">
-  <div class="head"><h2>お花</h2><span class="lbl jp">フラワーギフト・イベント装花 — ご用途に合わせてお仕立てします</span></div>
-  <a class="row rv" href="#contact">
-    <span class="n">01</span>
-    <span class="t"><span class="ph">お祝いの</span><span class="ph"><em>スタンド花</em></span></span>
-    <span class="tags"><b>開店・開業・公演・周年</b>スタンド花・胡蝶蘭・アレンジメント</span>
-    <span class="yr">ご相談</span>
-    <span class="art a2" aria-hidden="true">Celebration</span>
-  </a>
-  <a class="row rv" href="#contact">
-    <span class="n">02</span>
-    <span class="t"><span class="ph">イベント</span><span class="ph"><em>装花</em></span></span>
-    <span class="tags"><b>式典・パーティー・展示会</b>会場の装飾・テーブル装花・受付まわり</span>
-    <span class="yr">ご相談</span>
-    <span class="art a2" aria-hidden="true">Event</span>
-  </a>
-  <a class="row rv" href="#contact">
-    <span class="n">03</span>
-    <span class="t"><span class="ph">フラワー</span><span class="ph"><em>ギフト</em></span></span>
-    <span class="tags"><b>誕生日・記念日・お礼</b>ブーケ・アレンジメント・季節のお花</span>
-    <span class="yr">ご相談</span>
-    <span class="art a2" aria-hidden="true">Gift</span>
-  </a>
-  <hr>
-</section>
-
-<section class="studio" id="studio">
-  <div class="head rv"><h2><span class="ph">小さな会社。</span><span class="ph"><em>毎日</em>のすぐ隣に。</span></h2><span class="lbl">02 — Studio</span></div>
-  <div class="cols">
-    <div class="col rv"><span class="k">01</span><div><h3>Digital</h3><p class="jt">道具は、静かであるほどいい。</p><p>使っていることを忘れるほど手に馴染んだとき、はじめて仕事は速くなる。私たちがつくるのは、そういう道具です。</p><p class="en">Tools should be quiet.</p></div></div>
-    <div class="col rv"><span class="k">02</span><div><h3>Flower</h3><p class="jt">花は、言葉より先に届く。</p><p>おめでとう、ありがとう、おつかれさま。言葉にしにくい気持ちを、その場にふさわしい花のかたちにしてお届けします。</p><p class="en">Flowers arrive before words.</p></div></div>
-    <div class="col rv"><span class="k">03</span><div><h3>People</h3><p class="jt">相手の一日から、考える。</p><p>道具も花も、使う人・受け取る人の一日を思い浮かべるところから。それが私たちのものづくりの起点です。</p><p class="en">Designed from someone's real day.</p></div></div>
+  <div class="origin rv">
+    <div class="lbl">Our name</div>
+    <div class="word">EMI<span>·</span>GATE</div>
+    <dl><dt>EMI</dt><dd>笑み</dd><dt>GATE</dt><dd>門</dd></dl>
+    <p>笑う門には、福来る。</p>
   </div>
 </section>
 
-<div class="mq" aria-hidden="true">
-  <div class="in">
-    <span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span>
-    <span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span>
-  </div>
+<div class="svc">
+  <section class="dg" id="digital">
+    <div class="head"><h3>Digital</h3><span class="lbl">01</span></div>
+    <p class="sub">業務のデジタル化サポート — 自社で設計し、毎日動いているもの</p>
+    <div class="item rv"><span class="n">01</span><span class="t"><span class="ph">代車レンタカーの</span><span class="ph"><em>運用</em>システム</span></span><span class="d"><b>Hari Terrace — 損保代車</b>配車・写真チェック・FAX手配書・LINE連絡・会計連携を一本に</span></div>
+    <div class="item rv"><span class="n">02</span><span class="t"><span class="ph">コーティング</span><span class="ph">工程の<em>管理</em></span></span><span class="d"><b>DETALIA — カーコーティング</b>予約・作業票・施工前後の記録・請求</span></div>
+    <div class="item rv"><span class="n">03</span><span class="t"><span class="ph">3日間の</span><span class="ph"><em>現場</em>診断</span></span><span class="d"><b>手法 — 現場DX診断</b>貼りつく・数える・聞いて撮る。6項目の報告書を納品</span></div>
+  </section>
+  <section class="fl" id="flower">
+    <div class="head"><h3><em>Flower</em></h3><span class="lbl">02</span></div>
+    <p class="sub">フラワーギフト・イベント装花 — ご用途に合わせてお仕立てします</p>
+    <div class="item rv"><span class="n">01</span><span class="t"><span class="ph">お祝いの</span><span class="ph"><em>スタンド花</em></span></span><span class="d"><b>開店・開業・公演・周年</b>スタンド花・胡蝶蘭・アレンジメント</span></div>
+    <div class="item rv"><span class="n">02</span><span class="t"><span class="ph">イベント</span><span class="ph"><em>装花</em></span></span><span class="d"><b>式典・パーティー・展示会</b>会場の装飾・テーブル装花・受付まわり</span></div>
+    <div class="item rv"><span class="n">03</span><span class="t"><span class="ph">フラワー</span><span class="ph"><em>ギフト</em></span></span><span class="d"><b>誕生日・記念日・お礼</b>ブーケ・アレンジメント・季節のお花</span></div>
+  </section>
 </div>
 
+<section class="values">
+  <div class="head rv"><h3><span class="ph">小さな会社。</span><span class="ph"><em>毎日</em>のすぐ隣に。</span></h3><span class="lbl">03 — Values</span></div>
+  <div class="cols">
+    <div class="col rv"><span class="k">01</span><h4>Digital</h4><p class="jt">道具は、静かであるほどいい。</p><p>使っていることを忘れるほど手に馴染んだとき、はじめて仕事は速くなる。私たちがつくるのは、そういう道具です。</p><p class="en">Tools should be quiet.</p></div>
+    <div class="col rv"><span class="k">02</span><h4>Flower</h4><p class="jt">花は、言葉より先に届く。</p><p>おめでとう、ありがとう、おつかれさま。言葉にしにくい気持ちを、その場にふさわしい花のかたちにしてお届けします。</p><p class="en">Flowers arrive before words.</p></div>
+    <div class="col rv"><span class="k">03</span><h4>People</h4><p class="jt">相手の一日から、考える。</p><p>道具も花も、使う人・受け取る人の一日を思い浮かべるところから。それが私たちのものづくりの起点です。</p><p class="en">Designed from someone's real day.</p></div>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true"><div class="in">
+  <span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span>
+  <span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span><span><i></i>Smile <em>every day</em></span>
+</div></div>
+
 <section class="contact" id="contact">
-  <span class="lbl jp rv">03 — お問い合わせ</span>
+  <span class="lbl rv">04 — Contact</span>
   <!-- TODO:MAIL 受信箱の設定後に案内に使う -->
-  <a class="big rv" href="mailto:mayu@emigate.jp"><span>mayu@<em>emigate</em>.jp</span></a>
+  <a class="big rv" href="mailto:mayu@emigate.jp">mayu@<em>emigate</em>.jp</a>
   <p class="note rv">「何から始めればいいか分からない」段階でも大丈夫です。業務のご相談も、お花のご注文も、お気軽にお聞かせください。</p>
   <div class="meta rv">
     <div><b>会社</b>株式会社EMIGATE<small>EMIGATE Inc.</small></div>
@@ -301,48 +262,17 @@ hr{border:0;border-top:1px solid var(--line);margin:0}
     <div><b>電話</b>080-1709-6990<small>+81 80-1709-6990</small></div>
     <div><b>事業</b>業務のデジタル化サポート<br>フラワーギフト・イベント装花</div>
   </div>
+  <div class="seal" aria-hidden="true"><b>福</b>笑う門には福来る</div>
 </section>
 
 <footer class="ft">
   <div class="word" aria-hidden="true"><span>E</span><span>M</span><span>I</span><span>G</span><span>A</span><span>T</span><span>E</span></div>
-  <div class="bar"><span>© 2026 株式会社EMIGATE</span><span class="en">Digital × Flower × People</span><span class="en">emigate.jp</span></div>
+  <div class="bar"><span>© 2026 株式会社EMIGATE</span><span>Digital × Flower × People</span><span>emigate.jp</span></div>
 </footer>
+<div class="band" aria-hidden="true"></div>
 
 <script>
 (function(){
-  /* 沖縄の現在時刻 */
-  const c=document.getElementById('clock');
-  function tick(){c.textContent=new Intl.DateTimeFormat('ja-JP',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tokyo'}).format(new Date());}
-  tick(); setInterval(tick,15000);
-
-  /* カーソル */
-  const cur=document.getElementById('cur');
-  if(matchMedia('(hover:hover)').matches){
-    addEventListener('pointermove',e=>{cur.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;},{passive:true});
-    document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'));});
-  }
-
-  /* ステートメントを語ごとに点灯(日本語は分かち書きで区切る) */
-  const st=document.getElementById('stmt');
-  if(st){
-    const seg=('Segmenter' in Intl)?new Intl.Segmenter('ja',{granularity:'word'}):null;
-    const wrap=node=>{
-      const parts=seg?[...seg.segment(node.textContent)].map(s=>s.segment):node.textContent.split('');
-      const frag=document.createDocumentFragment();
-      parts.forEach(t=>{const s=document.createElement('span');s.className='w';s.textContent=t;frag.appendChild(s);});
-      node.replaceWith(frag);
-    };
-    [...st.childNodes].forEach(n=>{ if(n.nodeType===3) wrap(n); else [...n.childNodes].forEach(m=>{if(m.nodeType===3)wrap(m);}); });
-    const words=[...st.querySelectorAll('.w')];
-    const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-    function light(){
-      const r=st.getBoundingClientRect(); const p=Math.min(1,Math.max(0,(innerHeight*.8-r.top)/(r.height+innerHeight*.3)));
-      const n=Math.round(p*words.length); words.forEach((w,i)=>w.classList.toggle('on',i<n));
-    }
-    if(reduce) words.forEach(w=>w.classList.add('on')); else {addEventListener('scroll',light,{passive:true}); light();}
-  }
-
-  /* 出現 */
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
   requestAnimationFrame(()=>document.querySelectorAll('.rv').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');}));
