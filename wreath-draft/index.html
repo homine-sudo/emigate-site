@@ -3,492 +3,897 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>リース販売サイト案（下書き）</title>
+<title>EMIGATE — Dry Flower Wreath（案 v4）</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
 :root{
-  --ink:#2b2a28; --ink2:#5d5a55; --ivory:#f2ede4; --paper:#e8e1d5; --sand:#cdbb9f;
-  --wall:#7c807f; --wall-d:#565a5a; --smoke:#56606b; --line:rgba(43,42,40,.16);
+  --ink:#191817;--ink2:#5b5852;--bone:#ebe5d9;--paper:#ddd6c8;--wall:#7d8789;--rust:#b8602c;
+  --line:rgba(25,24,23,.18);--lineL:rgba(235,229,217,.22);
   --en:"Cormorant Garamond","Times New Roman",serif;
   --jp:"Shippori Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --pad:clamp(20px,4.2vw,64px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--jp);color:var(--ink);background:var(--ivory);line-height:1.9;font-size:15px;letter-spacing:.04em}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--jp);color:var(--ink);background:var(--bone);line-height:1.9;font-size:15px;letter-spacing:.04em;overflow-x:hidden}
+img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-.en{font-family:var(--en);letter-spacing:.14em}
-.concrete{
-  background-color:var(--wall);
-  background-image:
-    radial-gradient(ellipse at 18% 22%,rgba(255,255,255,.13),transparent 46%),
-    radial-gradient(ellipse at 82% 68%,rgba(0,0,0,.20),transparent 52%),
-    radial-gradient(ellipse at 60% 10%,rgba(0,0,0,.10),transparent 40%),
-    radial-gradient(ellipse at 30% 90%,rgba(255,255,255,.07),transparent 40%);
-}
-.note-bar{background:#2b2a28;color:#e8e1d5;font-size:12px;text-align:center;padding:6px 12px;letter-spacing:.08em}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--rust);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.en{font-family:var(--en)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;background:var(--ink);color:var(--bone);padding:10px 16px}
+.skip:focus{top:12px}
+.wrap{padding:0 var(--pad);max-width:1440px;margin:0 auto}
+section{padding:clamp(72px,11vw,150px) 0;position:relative}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border:1px solid currentColor;font-size:13px;letter-spacing:.16em;transition:background .25s,color .25s}
+.btn:hover{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.btn.solid{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.btn.solid:hover{background:var(--rust);border-color:var(--rust)}
+.btn.light{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.btn.light:hover{background:var(--rust);color:var(--bone);border-color:var(--rust)}
+.btn.ghostL:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.chip{min-height:44px;padding:0 16px;border:1px solid var(--line);font-size:13px;display:inline-flex;align-items:center;gap:8px;letter-spacing:.06em;transition:.2s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.chip i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.2);flex:none}
 
 /* header */
-header{position:absolute;left:0;right:0;z-index:5;color:#f2ede4}
-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:22px;padding-bottom:22px}
-.logo{font-family:var(--en);font-size:22px;letter-spacing:.3em}
-.logo small{display:block;font-family:var(--jp);font-size:10px;letter-spacing:.3em;opacity:.75;margin-top:-4px}
-nav{display:flex;gap:28px;font-size:13px}
-nav a{opacity:.85}
-nav a:hover{opacity:1;border-bottom:1px solid currentColor}
-@media(max-width:760px){nav{display:none}}
+.hd{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:12px var(--pad);color:var(--bone);transition:background .3s,color .3s}
+.hd.on{background:rgba(235,229,217,.92);backdrop-filter:blur(10px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+.logo{font-family:var(--en);font-size:21px;letter-spacing:.32em;line-height:1.2}
+.logo small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.2em;opacity:.75}
+.hd-r{display:flex;gap:6px;align-items:center}
+.hd-b{min-height:44px;padding:0 14px;display:inline-flex;align-items:center;gap:8px}
+.hd-b:hover{color:var(--rust)}
+.count{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:10px;background:var(--rust);color:#fff;font-size:10px;padding:0 5px}
+.burger{width:22px;height:10px;position:relative}
+.burger:before,.burger:after{content:"";position:absolute;left:0;right:0;height:1px;background:currentColor}
+.burger:before{top:0}.burger:after{bottom:0}
+
+/* menu overlay */
+.ov{position:fixed;inset:0;z-index:80;background:var(--ink);color:var(--bone);display:flex;flex-direction:column;padding:16px var(--pad) 40px;overflow:auto}
+.ov[hidden]{display:none}
+.ov-top{display:flex;justify-content:space-between;align-items:center}
+.ov nav{margin:auto 0;padding:30px 0}
+.ov nav a{display:flex;align-items:baseline;gap:22px;font-family:var(--en);font-style:italic;font-size:clamp(34px,7.4vw,84px);line-height:1.18;border-bottom:1px solid var(--lineL);padding:6px 0;transition:padding .3s,color .3s}
+.ov nav a:hover{padding-left:24px;color:var(--rust)}
+.ov nav a span{font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.14em;opacity:.6;min-width:2.4em}
+.ov nav a em{font-family:var(--jp);font-style:normal;font-size:13px;letter-spacing:.2em;opacity:.7;margin-left:auto}
 
 /* hero */
-.hero{color:#f2ede4;min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:center;width:100%;padding-top:96px;padding-bottom:56px}
-.hero h1{font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.5;letter-spacing:.12em}
-.hero .lead{margin-top:22px;max-width:26em;opacity:.9}
-.hero .sub{font-family:var(--en);font-style:italic;font-size:19px;opacity:.8;margin-bottom:14px;letter-spacing:.08em}
-.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
-.btn{display:inline-block;padding:13px 28px;border:1px solid currentColor;font-size:13px;letter-spacing:.16em;transition:.25s;cursor:pointer;background:none;color:inherit;font-family:inherit}
-.btn.fill{background:#f2ede4;color:#2b2a28;border-color:#f2ede4}
-.btn:hover{opacity:.75}
-.btn.dark{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
-.hero-art svg{width:100%;max-width:560px;display:block;margin:0 auto}
-svg.w{filter:drop-shadow(8px 14px 10px rgba(0,0,0,.35))}
-@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero-art{order:-1}.hero-art svg{max-width:340px}}
+.hero{position:relative;min-height:100svh;background:linear-gradient(100deg,#474d55 0%,#30353c 46%,#1f2328 100%);color:var(--bone);overflow:hidden}
+.hero-img{position:absolute;right:3vw;top:50%;width:min(88svh,58vw);aspect-ratio:1;transform:translateY(-50%)}
+.hero-img img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:radial-gradient(closest-side,#000 70%,transparent 100%);mask-image:radial-gradient(closest-side,#000 70%,transparent 100%);filter:contrast(1.06) saturate(.94)}
+.ghost{position:absolute;left:-1.5vw;bottom:-7vw;font-family:var(--en);font-style:italic;font-size:33vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(235,229,217,.34);white-space:nowrap;pointer-events:none;user-select:none}
+.hero{--h1:clamp(30px,min(5vw,6.6svh),78px)}
+.hero h1{position:absolute;left:var(--pad);top:13svh;writing-mode:vertical-rl;font-weight:500;font-size:var(--h1);letter-spacing:.2em;line-height:1.55;text-shadow:0 2px 30px rgba(40,48,50,.35);z-index:2}
+.hero-copy{position:absolute;left:calc(var(--pad) + var(--h1)*4.1);bottom:9svh;max-width:24em;z-index:2}
+.hero-copy p{margin-bottom:22px;text-shadow:0 1px 18px rgba(40,48,50,.5)}
+.hero-copy .row{display:flex;gap:10px;flex-wrap:wrap}
+.hero-meta{position:absolute;right:var(--pad);top:84px;text-align:right;opacity:.85}
+.hero-scroll{position:absolute;right:var(--pad);bottom:28px;writing-mode:vertical-rl;opacity:.8}
+.hero-scroll:after{content:"";display:inline-block;width:1px;height:46px;background:currentColor;margin-top:10px;animation:drop 2.2s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:760px){
+  .hero-img{right:-24vw;top:11svh;width:112vw;transform:none}
+  .ghost{font-size:58vw;bottom:24svh}
+  .hero{--h1:min(8.6vw,5.4svh)}
+  .hero h1{top:14svh}
+  .hero-copy{left:var(--pad);right:var(--pad);bottom:5svh}
+  .hero-copy p{font-size:14px}
+  .hero-meta{display:none}.hero-scroll{display:none}
+}
 
-/* sections */
-section{padding:96px 0}
-.head{text-align:center;margin-bottom:52px}
-.head .en{font-size:34px;font-weight:400}
-.head p{color:var(--ink2);font-size:13px;letter-spacing:.2em;margin-top:2px}
-.head .desc{max-width:36em;margin:18px auto 0;letter-spacing:.04em;font-size:14.5px}
+/* marquee */
+.mq{background:var(--ink);color:var(--bone);overflow:hidden;white-space:nowrap;padding:13px 0;font-family:var(--en);font-style:italic;font-size:22px;letter-spacing:.04em}
+.mq div{display:inline-block;animation:mq 36s linear infinite;padding-right:0}
+.mq:hover div{animation-play-state:paused}
+.mq b{font-family:var(--jp);font-style:normal;font-weight:500;font-size:14px;letter-spacing:.2em;margin:0 26px}
+.mq i{color:var(--rust);margin:0 26px;font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+.release{display:flex;align-items:center;justify-content:space-between;gap:16px 30px;flex-wrap:wrap;padding:22px var(--pad);border-bottom:1px solid var(--line)}
+.release strong{font-weight:500;font-size:17px;letter-spacing:.12em}
 
-/* three doors */
-.doors{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.door{padding:44px 30px;border-right:1px solid var(--line);transition:.25s}
-.door:last-child{border-right:0}
-.door:hover{background:var(--paper)}
-.door .n{font-family:var(--en);font-style:italic;color:var(--ink2);font-size:15px}
-.door h3{font-weight:500;font-size:21px;margin:6px 0 10px;letter-spacing:.1em}
-.door p{font-size:14px;color:var(--ink2)}
-.door .more{display:inline-block;margin-top:16px;font-family:var(--en);font-size:15px;border-bottom:1px solid currentColor}
-@media(max-width:760px){.doors{grid-template-columns:1fr}.door{border-right:0;border-bottom:1px solid var(--line)}}
+/* section head */
+.sh{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:0 clamp(14px,2.4vw,34px);margin-bottom:clamp(36px,5vw,70px);border-bottom:1px solid currentColor;padding-bottom:16px}
+.sh .num{font-family:var(--en);font-size:clamp(76px,13vw,200px);line-height:.78;color:transparent;-webkit-text-stroke:1px currentColor;opacity:.5}
+.sh h2{font-family:var(--en);font-style:italic;font-weight:400;font-size:clamp(42px,7.6vw,112px);line-height:.95;letter-spacing:0}
+.sh p{grid-column:2;margin-top:8px;opacity:.75}
+.lede{max-width:34em;margin:-18px 0 44px;color:var(--ink2)}
+.side{position:absolute;right:10px;top:160px;writing-mode:vertical-rl;opacity:.4}
+@media(max-width:900px){.side{display:none}}
+
+/* ways */
+.ways a{display:grid;grid-template-columns:clamp(54px,8vw,120px) 1fr auto;align-items:center;gap:8px 20px;padding:clamp(22px,3vw,40px) 0;border-bottom:1px solid var(--line);transition:padding .35s,background .35s}
+.ways a:first-child{border-top:1px solid var(--line)}
+.ways a:hover{padding-left:22px;padding-right:22px;background:var(--paper)}
+.ways .n{font-family:var(--en);font-style:italic;font-size:clamp(28px,4vw,56px);color:var(--rust);line-height:1}
+.ways h3{font-weight:500;font-size:clamp(21px,3.2vw,44px);letter-spacing:.1em;line-height:1.4}
+.ways p{color:var(--ink2);font-size:14px;max-width:38em}
+.ways .ar{font-family:var(--en);font-size:34px;transition:transform .35s}
+.ways a:hover .ar{transform:translateX(8px)}
 
 /* collection */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 28px}
-@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.grid{grid-template-columns:1fr}}
-.card .ph{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.card .ph svg{width:82%;transition:transform .6s}
-.card:hover .ph svg{transform:scale(1.04)}
-.tag{position:absolute;top:12px;left:12px;background:rgba(242,237,228,.92);font-size:11px;padding:2px 10px;letter-spacing:.14em}
-.card h4{font-weight:500;font-size:16px;margin-top:14px;letter-spacing:.08em}
-.card .meta{font-size:12.5px;color:var(--ink2)}
-.card .price{font-family:var(--en);font-size:19px;letter-spacing:.06em;margin-top:2px}
-.card .price small{font-family:var(--jp);font-size:11px;color:var(--ink2)}
+.filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:44px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,6vw,90px) clamp(16px,2.4vw,36px);align-items:start}
+.card{grid-column:span 4}
+.card:nth-child(6n+1){grid-column:span 5}
+.card:nth-child(6n+2){grid-column:span 4;margin-top:110px}
+.card:nth-child(6n+3){grid-column:span 3;margin-top:30px}
+.card:nth-child(6n+4){grid-column:2/span 3;margin-top:-40px}
+.card:nth-child(6n+5){grid-column:span 5;margin-top:60px}
+.card:nth-child(6n+6){grid-column:span 3}
+.grid.flat .card{grid-column:span 4!important;margin-top:0!important}
+@media(max-width:900px){.grid .card{grid-column:span 6!important;margin-top:0!important}.grid .card:nth-child(even){margin-top:46px!important}.grid.flat .card{margin-top:0!important}}
+@media(max-width:520px){.grid .card{grid-column:span 12!important;margin-top:0!important}.grid .card:nth-child(even){margin-top:0!important}}
+.card[hidden]{display:none}
+.ph{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--wall)}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .5s}
+.card:hover .ph img{transform:scale(1.05)}
+.tag{position:absolute;left:0;top:14px;background:var(--bone);padding:3px 12px 3px 10px}
+.idx{position:absolute;right:10px;bottom:6px;font-family:var(--en);font-style:italic;font-size:46px;line-height:1;color:var(--bone);mix-blend-mode:difference;opacity:.9}
+.card h3{font-family:var(--en);font-style:italic;font-weight:400;font-size:clamp(26px,2.6vw,38px);line-height:1.1;margin-top:14px;letter-spacing:.01em}
+.card .jp{font-size:13.5px}
+.card .meta{color:var(--ink2);margin-top:2px}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.price{font-family:var(--en);font-size:22px}
+.price small{font-family:var(--jp);font-size:11px;color:var(--ink2)}
+.add{min-height:44px;padding:0 14px;border:1px solid var(--ink);font-size:12px;letter-spacing:.12em;transition:.2s}
+.add:hover{background:var(--ink);color:var(--bone)}
+.card.sold .ph img{filter:grayscale(.7);opacity:.55}
+.card.sold .price{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--ink2)}
 
-/* fit / simulator */
+/* styling simulator */
 .fit{background:var(--paper)}
-.sim{display:grid;grid-template-columns:1.15fr 1fr;gap:44px;align-items:center}
-@media(max-width:860px){.sim{grid-template-columns:1fr}}
-.stage{aspect-ratio:5/4;position:relative;display:flex;align-items:flex-start;justify-content:center;transition:background-color .5s;overflow:hidden}
-.stage svg{width:46%;margin-top:7%}
-.stage .shelf{position:absolute;left:14%;right:14%;bottom:0;height:17%;background:linear-gradient(#8b7257,#6f5a45);box-shadow:0 -6px 18px rgba(0,0,0,.22)}
-.stage .shelf:before{content:"";position:absolute;left:-3%;right:-3%;top:-9px;height:9px;background:#a08566}
-.opt h5{font-weight:500;font-size:13px;letter-spacing:.2em;color:var(--ink2);margin:22px 0 10px}
-.opt h5:first-child{margin-top:0}
+.sim{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.85fr);gap:clamp(22px,3vw,48px);align-items:start}
+.stage-w{position:sticky;top:84px}
+.stage{position:relative;background:#7d8789;overflow:hidden;box-shadow:0 30px 60px -30px rgba(25,24,23,.5)}
+.stage svg{display:block;width:100%;height:auto}
+#wg{cursor:grab;touch-action:none}
+#wg:active{cursor:grabbing}
+.stage-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;color:var(--ink2)}
+.link{min-height:44px;padding:0 4px;border-bottom:1px solid currentColor;font-size:12.5px;letter-spacing:.08em}
+.link:hover{color:var(--rust)}
+.ctl fieldset{border:0;border-top:1px solid var(--line);padding:16px 0 18px}
+.ctl legend{float:left;width:100%;margin-bottom:10px;display:flex;justify-content:space-between;color:var(--ink2)}
+.ctl legend+*{clear:both}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-family:inherit;font-size:13px;padding:7px 16px;border:1px solid var(--line);background:transparent;cursor:pointer;color:var(--ink);display:flex;align-items:center;gap:8px;letter-spacing:.06em}
-.chip i{width:14px;height:14px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.15)}
-.chip.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
-.reco{margin-top:26px;padding:20px 22px;background:var(--ivory);border-left:2px solid var(--ink)}
-.reco b{font-weight:600;display:block;margin-bottom:4px;letter-spacing:.1em}
-.reco p{font-size:14px;color:var(--ink2)}
+.swatch{width:44px;height:44px;border:1px solid var(--line);padding:0;background:none;cursor:pointer}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink)}
+.seg button{min-height:48px;border-right:1px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;transition:.2s}
+.seg button:last-child{border-right:0}
+.seg button b{font-family:var(--en);font-size:20px;font-weight:500}
+.seg button span{font-size:10.5px;color:var(--ink2)}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bone)}
+.seg button[aria-pressed=true] span{color:var(--paper)}
+.res{background:var(--ink);color:var(--bone);padding:24px 24px 26px;margin-top:6px}
+.res h3{font-weight:500;font-size:17px;letter-spacing:.08em;line-height:1.6;margin:6px 0 10px}
+.dots{display:flex;gap:5px;align-items:center;margin-bottom:12px}
+.dots i{width:22px;height:4px;background:rgba(235,229,217,.25)}
+.dots i.f{background:var(--rust)}
+.dots span{margin-left:8px;opacity:.8}
+.res ul{list-style:none;font-size:13.5px;opacity:.92}
+.res li{padding-left:16px;position:relative;margin-bottom:4px}
+.res li:before{content:"";position:absolute;left:0;top:.85em;width:8px;height:1px;background:var(--rust)}
+.res .est{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--lineL);margin-top:14px;padding-top:12px}
+.res .est b{font-family:var(--en);font-size:28px;font-weight:400}
+.res .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.res .btn{flex:1 1 150px}
+@media(max-width:960px){
+  .sim{grid-template-columns:1fr}
+  .stage-w{top:68px;z-index:5;background:var(--paper);padding-bottom:6px;margin:0 calc(var(--pad)*-1);padding-left:var(--pad);padding-right:var(--pad)}
+  .stage-bar{font-size:12px}
+}
 
 /* subscription */
-.subsc{color:#f2ede4}
-.subsc .head p,.subsc .desc{color:rgba(242,237,228,.8)}
-.seasons{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-@media(max-width:860px){.seasons{grid-template-columns:repeat(2,1fr)}}
-.season{text-align:center}
-.season svg{width:78%}
-.season .m{font-family:var(--en);font-style:italic;font-size:15px;opacity:.75;margin-top:6px}
-.season h4{font-weight:500;font-size:19px;letter-spacing:.3em}
+.subsc{background:var(--ink);color:var(--bone)}
+.subsc .lede{color:rgba(235,229,217,.75)}
+.seasons{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--lineL)}
+.season{position:relative;padding:22px clamp(10px,1.6vw,24px) 26px;border-right:1px solid var(--lineL)}
+.season:last-child{border-right:0}
+.season .k{font-size:clamp(64px,9vw,140px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(235,229,217,.6);font-weight:400}
+.season img{width:100%;aspect-ratio:1;object-fit:cover;margin:14px 0 12px;filter:grayscale(.85) contrast(1.05);transition:filter .6s}
+.season:hover img{filter:none}
 .season p{font-size:13px;opacity:.85}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px}
+@media(max-width:760px){.seasons{grid-template-columns:repeat(2,1fr)}.season:nth-child(2){border-right:0}.season:nth-child(-n+2){border-bottom:1px solid var(--lineL)}}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:56px}
 @media(max-width:760px){.plans{grid-template-columns:1fr}}
-.plan{background:rgba(242,237,228,.95);color:var(--ink);padding:30px 26px;text-align:center}
-.plan .s{font-family:var(--en);font-size:26px;letter-spacing:.2em}
-.plan .d{font-size:12.5px;color:var(--ink2)}
-.plan .y{font-family:var(--en);font-size:30px;margin-top:12px}
-.plan .y small{font-family:var(--jp);font-size:12px}
-.plan .per{font-size:12px;color:var(--ink2);margin-bottom:16px}
-.terms{margin-top:26px;font-size:12.5px;opacity:.85;text-align:center}
+.plan{position:relative;border:1px solid var(--lineL);padding:22px 22px 20px;cursor:pointer;display:block;transition:.25s}
+.plan input{position:absolute;opacity:0}
+.plan:hover{border-color:var(--bone)}
+.plan:has(input:checked){background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.plan:has(input:focus-visible){outline:2px solid var(--rust);outline-offset:3px}
+.plan .s{font-family:var(--en);font-style:italic;font-size:54px;line-height:1}
+.plan .y{font-family:var(--en);font-size:30px;margin-top:8px}
+.plan .d,.plan .per{font-size:12.5px;opacity:.8}
+.aroma{display:grid;grid-template-columns:minmax(220px,.8fr) 1.2fr;gap:clamp(20px,4vw,60px);align-items:center;margin-top:56px;border-top:1px solid var(--lineL);padding-top:40px}
+@media(max-width:760px){.aroma{grid-template-columns:1fr}.aroma svg{max-width:320px}}
+.aroma svg{width:100%;height:auto}
+.aroma h3{font-weight:500;font-size:clamp(22px,2.6vw,34px);letter-spacing:.12em;margin:6px 0 10px}
+.aroma p,.aroma li{font-size:14px;opacity:.88}
+.aroma ul{list-style:none;margin:12px 0 18px}
+.aroma li{padding-left:16px;position:relative;margin-bottom:4px}
+.aroma li:before{content:"";position:absolute;left:0;top:.85em;width:8px;height:1px;background:var(--rust)}
+.tog{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 16px;border:1px solid var(--lineL);cursor:pointer;font-size:14px}
+.tog:hover{border-color:var(--bone)}
+.tog input{width:20px;height:20px;accent-color:var(--rust);flex:none}
+.tog:has(input:checked){border-color:var(--rust);background:rgba(184,96,44,.16)}
+.subsc .chip{border-color:var(--lineL)}
+.subsc .chip:hover{border-color:var(--bone)}
+.subsc .chip[aria-pressed=true]{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.drawer .tog{border-color:var(--line);margin-bottom:14px;font-size:13px}
+.sum{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px;border:1px solid var(--lineL);padding:18px 22px}
+.sum p{font-size:14px}
+.terms{margin-top:16px;font-size:12.5px;opacity:.7}
 
-/* order flow */
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
-@media(max-width:860px){.flow{grid-template-columns:repeat(2,1fr)}}
-.step{padding:30px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.step:last-child{border-right:0}
-.step .n{font-family:var(--en);font-size:34px;color:var(--sand);line-height:1}
-.step h4{font-weight:500;font-size:16px;margin:8px 0 6px;letter-spacing:.1em}
-.step p{font-size:13.5px;color:var(--ink2)}
-.center{text-align:center;margin-top:40px}
+/* order */
+.order{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px)}
+@media(max-width:900px){.order{grid-template-columns:1fr}}
+.steps{list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:70px 1fr;gap:6px 14px;padding:22px 0;border-bottom:1px solid var(--line)}
+.steps li:before{content:"0" counter(s);font-family:var(--en);font-style:italic;font-size:40px;line-height:1;color:var(--rust)}
+.steps h3{font-weight:500;font-size:18px;letter-spacing:.1em}
+.steps p{grid-column:2;color:var(--ink2);font-size:14px}
+form .f{margin-bottom:16px}
+form label{display:block;margin-bottom:5px;color:var(--ink2)}
+form input,form select,form textarea{width:100%;min-height:48px;padding:10px 14px;border:1px solid var(--line);background:rgba(255,255,255,.35);border-radius:0}
+form textarea{min-height:130px;resize:vertical;line-height:1.7}
+form input:focus,form select:focus,form textarea:focus{outline:2px solid var(--rust);outline-offset:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.two{grid-template-columns:1fr}}
+.hint{font-size:12px;color:var(--ink2);margin-top:8px}
 
-/* office */
-.office{background:var(--paper)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-@media(max-width:860px){.two{grid-template-columns:1fr}}
-.office ul{list-style:none;margin-top:18px}
-.office li{padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
-.office li b{font-weight:600;margin-right:10px;letter-spacing:.08em}
-.office .ph{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
-.office .ph svg{width:58%}
-h2.t{font-weight:500;font-size:26px;letter-spacing:.14em;line-height:1.7}
+/* office / about */
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,90px);align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+.big{font-weight:500;font-size:clamp(26px,3.8vw,54px);line-height:1.6;letter-spacing:.12em}
+.defs{margin-top:26px;border-top:1px solid var(--line)}
+.defs div{display:grid;grid-template-columns:9.5em 1fr;gap:10px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.defs dt{font-weight:600;letter-spacing:.08em}
+.defs dd{color:var(--ink2)}
+@media(max-width:520px){.defs div{grid-template-columns:1fr;gap:0}}
+.office .pic{aspect-ratio:4/5;overflow:hidden}
+.office .pic img{width:100%;height:100%;object-fit:cover}
+.about{background:var(--paper)}
+.about p{margin-top:16px;color:var(--ink2);max-width:32em}
+.sign{font-family:var(--en);font-style:italic;font-size:26px;color:var(--ink)!important}
+.holder{aspect-ratio:4/5;background:var(--wall);display:grid;place-items:center;color:var(--bone)}
 
-/* faq */
-details{border-bottom:1px solid var(--line);padding:18px 4px}
-summary{cursor:pointer;font-size:15.5px;letter-spacing:.06em;list-style:none}
-summary:before{content:"Q.";font-family:var(--en);margin-right:12px;color:var(--ink2)}
-details p{margin-top:10px;font-size:14px;color:var(--ink2);padding-left:30px}
-.faq{max-width:760px;margin:0 auto}
+/* notes + faq */
+.nf{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px)}
+@media(max-width:900px){.nf{grid-template-columns:1fr}}
+.nf h3{font-family:var(--en);font-style:italic;font-weight:400;font-size:34px;margin-bottom:12px}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:15px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font-family:var(--en);font-size:26px;transition:transform .3s}
+details[open] summary:after{transform:rotate(45deg)}
+details p{padding:0 0 18px;color:var(--ink2);font-size:14px}
 
-footer{background:#2b2a28;color:#cfc8bb;padding:56px 0 34px;font-size:13px}
-footer .cols{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
-footer .links{display:flex;gap:22px;flex-wrap:wrap}
-footer .c{margin-top:34px;opacity:.6;font-size:11.5px}
-/* 写真 */
-.hero-art img{display:block;width:100%;max-width:500px;aspect-ratio:4/5;object-fit:cover;margin:0 auto;box-shadow:14px 22px 40px rgba(0,0,0,.4)}
-.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.card:hover .ph img{transform:scale(1.04)}
-.season img{width:82%;aspect-ratio:1;object-fit:cover;box-shadow:8px 12px 24px rgba(0,0,0,.35)}
-.office .ph img{width:100%;height:100%;object-fit:cover}
-/* v3 追加 */
-.news{background:var(--ink);color:var(--ivory);padding:18px 0}
-.news .wrap{display:flex;align-items:center;justify-content:center;gap:10px 28px;flex-wrap:wrap;font-size:13.5px}
-.news .lbl{font-family:var(--en);font-style:italic;font-size:16px;color:var(--sand)}
-.news b{font-weight:500;letter-spacing:.12em}
-.news a{border-bottom:1px solid currentColor;font-size:12.5px}
-.filter{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:-22px 0 40px}
-.card h4{font-family:var(--en);font-size:21px;font-weight:500;letter-spacing:.06em;line-height:1.3}
-.card .jp{font-size:13.5px}
-.card.sold .ph img{opacity:.5;filter:grayscale(.5)}
-.card.sold .price{color:var(--ink2);font-size:15px;letter-spacing:.2em}
-.about .two p{margin-top:16px;font-size:14.5px;color:var(--ink2)}
-.sign{font-family:var(--en);font-style:italic;font-size:18px;margin-top:22px!important;color:var(--ink)!important}
-.before{background:var(--paper)}
-.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-@media(max-width:860px){.notes{grid-template-columns:1fr}}
-.notes div{background:var(--ivory);padding:26px 24px}
-.notes h4{font-weight:500;font-size:15px;letter-spacing:.1em;margin-bottom:6px}
-.notes p{font-size:13.5px;color:var(--ink2)}
-/* スマホ：メニューを横スクロールで出す */
-@media(max-width:760px){
-  header .wrap{flex-direction:column;align-items:flex-start;gap:12px;padding-top:16px;padding-bottom:0}
-  nav{display:flex;gap:20px;width:100%;overflow-x:auto;white-space:nowrap;font-size:14px;padding-bottom:8px;scrollbar-width:none}
-  nav::-webkit-scrollbar{display:none}
-  .hero .wrap{padding-top:128px}
-  .door{padding:34px 8px}
-  .door h3{font-size:19px;letter-spacing:.06em}
-  section{padding:72px 0}
+/* footer */
+footer{background:var(--ink);color:var(--bone);padding:70px 0 26px;overflow:hidden}
+.fbig{font-family:var(--en);font-size:21vw;line-height:.8;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(235,229,217,.4);white-space:nowrap;margin:30px 0 26px -1vw}
+.fl{display:flex;gap:10px 26px;flex-wrap:wrap;font-size:13px}
+.fl a{min-height:44px;display:inline-flex;align-items:center}
+.fl a:hover{color:var(--rust)}
+
+/* drawer / toast / draft */
+.bd{position:fixed;inset:0;background:rgba(25,24,23,.5);z-index:90}
+.bd[hidden]{display:none}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bone);z-index:95;display:flex;flex-direction:column;transform:translateX(102%);transition:transform .4s cubic-bezier(.2,.7,.2,1);visibility:hidden}
+.drawer.open{transform:none;visibility:visible}
+.dr-h{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1px solid var(--line)}
+.dr-h h2{font-family:var(--en);font-style:italic;font-weight:400;font-size:30px}
+.dr-b{flex:1;overflow:auto;padding:8px 22px}
+.dr-b li{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);list-style:none;font-size:14px}
+.dr-b .rm{min-width:44px;min-height:44px;font-size:12px;color:var(--ink2);text-decoration:underline}
+.dr-f{padding:18px 22px 24px;border-top:1px solid var(--line)}
+.dr-f .t{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.dr-f .t b{font-family:var(--en);font-size:28px;font-weight:400}
+.dr-f .btn{width:100%}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);background:var(--ink);color:var(--bone);padding:13px 22px;font-size:13.5px;z-index:120;opacity:0;pointer-events:none;transition:.35s;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.draft{position:fixed;left:10px;bottom:10px;z-index:55;background:var(--rust);color:#fff;padding:7px 8px 7px 12px;display:flex;align-items:center;gap:8px;max-width:calc(100% - 20px);font-size:11.5px;line-height:1.4;letter-spacing:.04em}
+.draft button{min-width:32px;min-height:32px;font-size:16px}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none;transition:none}
 }
-.credit{font-size:11px;opacity:.6;margin-top:10px}
-@media(max-width:760px){.hero-art img{max-width:320px}}
 </style>
 </head>
 <body>
-<div class="note-bar">案 v3 ｜ 販売日・作品名も仮です ｜ 写真はフリー素材（Unsplash）のイメージで、実際の商品ではありません。店名・価格・サイズも仮置きです</div>
+<a class="skip" href="#main">本文へ移動</a>
 
-<header>
-  <div class="wrap">
-    <a class="logo" href="#">EMIGATE<small>DRY FLOWER WREATH（仮称）</small></a>
-    <nav class="en">
-      <a href="#collection">Collection</a>
-      <a href="#fit">Styling</a>
-      <a href="#subscription">Subscription</a>
-      <a href="#order">Order made</a>
-      <a href="#office">For Office</a>
-      <a href="#about">About</a>
-    </nav>
+<header class="hd" id="hd">
+  <a class="logo" href="#top" aria-label="EMIGATE トップへ">EMIGATE<small>DRY FLOWER WREATH</small></a>
+  <div class="hd-r">
+    <button class="hd-b mono" id="cartBtn" aria-haspopup="dialog" aria-controls="cart">Cart <span class="count" id="count" aria-label="カートの点数">0</span></button>
+    <button class="hd-b mono" id="menuBtn" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false"><span class="burger" aria-hidden="true"></span>Menu</button>
   </div>
 </header>
 
-<div class="hero concrete">
-  <div class="wrap">
-    <div>
-      <div class="sub">Dried flowers for your wall</div>
-      <h1>時を重ねる花を、<br>壁にひとつ。</h1>
-      <p class="lead">水やりのいらないドライフラワーのリースとスワッグ。<br>オフィスにも、自宅にも。その壁の色と光にあわせて、一点ずつ束ねます。</p>
-      <div class="btns">
-        <a class="btn fill" href="#collection">リースを見る</a>
-        <a class="btn" href="#subscription">年4回の定期便</a>
-      </div>
+<div class="ov" id="menu" role="dialog" aria-modal="true" aria-label="メニュー" hidden>
+  <div class="ov-top">
+    <span class="logo">EMIGATE</span>
+    <button class="hd-b mono" id="menuClose">Close ✕</button>
+  </div>
+  <nav aria-label="サイト内">
+    <a href="#collection"><span>01</span>Collection<em>既製品</em></a>
+    <a href="#fit"><span>02</span>Styling<em>空間にあわせる</em></a>
+    <a href="#subscription"><span>03</span>Subscription<em>年4回の定期便</em></a>
+    <a href="#order"><span>04</span>Order made<em>オーダーメイド</em></a>
+    <a href="#office"><span>05</span>For Office<em>法人のお客さま</em></a>
+    <a href="#about"><span>06</span>About<em>作り手のこと</em></a>
+    <a href="#guide"><span>07</span>Guide<em>ご購入の前に</em></a>
+  </nav>
+  <p class="mono" style="opacity:.6">Instagram ／ LINE ／ Contact</p>
+</div>
+
+<main id="main">
+<div class="hero" id="top">
+  <div class="ghost" aria-hidden="true">Wreath</div>
+  <div class="hero-img" id="heroImg"><img src="https://images.unsplash.com/photo-1771400284343-9ed58477317f?w=1200&q=80&auto=format&fit=crop" alt="パンパスグラスを束ねたドライフラワーのフープリース"></div>
+  <h1>時を重ねる花を、<br>壁にひとつ。</h1>
+  <div class="hero-meta mono">N°04 — Winter 2026<br>Dry flower wreath &amp; swag</div>
+  <div class="hero-copy">
+    <p>水やりのいらない、ドライフラワーのリースとスワッグ。オフィスにも、自宅にも。その壁の色と光にあわせて、一点ずつ束ねます。</p>
+    <div class="row">
+      <a class="btn light" href="#collection">リースを見る</a>
+      <a class="btn ghostL" href="#fit">自分の壁で試す</a>
     </div>
-    <div class="hero-art"><img src="https://images.unsplash.com/photo-1771400284343-9ed58477317f?w=1000&q=78&auto=format&fit=crop" alt="パンパスグラスのリース"></div>
   </div>
+  <div class="hero-scroll mono" aria-hidden="true">Scroll</div>
 </div>
 
-<div class="news">
-  <div class="wrap">
-    <span class="lbl">Next release</span>
-    <b>Winter Collection　11月28日（土）21:00 販売開始</b>
-    <a href="#">LINEで販売開始のお知らせを受け取る</a>
-    <a href="#">Instagram</a>
-  </div>
+<div class="mq" aria-hidden="true"><div>
+  Next release<b>Winter Collection</b>11.28 sat 21:00<i>✳</i>Next release<b>Winter Collection</b>11.28 sat 21:00<i>✳</i>Next release<b>Winter Collection</b>11.28 sat 21:00<i>✳</i>Next release<b>Winter Collection</b>11.28 sat 21:00<i>✳</i>
+</div></div>
+<div class="release">
+  <div><span class="mono" style="color:var(--rust)">Next release</span><br><strong>Winter Collection　11月28日（土）21:00 販売開始</strong></div>
+  <a class="btn" href="#">LINEで販売開始のお知らせを受け取る</a>
 </div>
 
-<section style="padding:0">
+<section>
   <div class="wrap">
-    <div class="doors">
-      <a class="door" href="#collection"><div class="n">01 — Ready made</div><h3>すぐ届く、既製品</h3><p>アトリエで仕上げた一点もの。写真の現品をそのままお届けします。</p><span class="more">Collection</span></a>
-      <a class="door" href="#order"><div class="n">02 — Order made</div><h3>空間にあわせて、オーダー</h3><p>飾る場所の写真を送るだけ。壁・家具・光にあわせた色とサイズをご提案します。</p><span class="more">Order made</span></a>
-      <a class="door" href="#subscription"><div class="n">03 — Subscription</div><h3>季節ごとに、年4回</h3><p>春・夏・秋・冬。1年間、季節の変わり目に新しいリースが届きます。</p><span class="more">Subscription</span></a>
+    <div class="ways">
+      <a href="#collection" class="rv"><span class="n">i.</span><div><h3>すぐ届く、既製品</h3><p>アトリエで仕上げた一点もの。写真の現品をそのままお届けします。</p></div><span class="ar" aria-hidden="true">→</span></a>
+      <a href="#order" class="rv"><span class="n">ii.</span><div><h3>空間にあわせて、オーダー</h3><p>飾る場所の写真を送るだけ。壁・家具・光にあわせた色とサイズをご提案します。</p></div><span class="ar" aria-hidden="true">→</span></a>
+      <a href="#subscription" class="rv"><span class="n">iii.</span><div><h3>季節ごとに、年4回</h3><p>春・夏・秋・冬。1年間、季節の変わり目に新しいリースが届きます。</p></div><span class="ar" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
 
-<section id="collection">
+<section id="collection" style="padding-top:0">
+  <span class="side mono" aria-hidden="true">Ready made — one of a kind</span>
   <div class="wrap">
-    <div class="head"><div class="en">Collection</div><p>既製品</p>
-      <div class="desc">すべて一点ずつの手仕事です。売り切れた作品も、近い雰囲気でお作りできます。</div></div>
-    <div class="filter" id="filters">
-      <button class="chip on" data-cat="">すべて</button>
-      <button class="chip" data-cat="リース">リース</button>
-      <button class="chip" data-cat="ハーフリース">ハーフリース</button>
-      <button class="chip" data-cat="フライングリース">フライングリース</button>
-      <button class="chip" data-cat="スワッグ">スワッグ</button>
+    <header class="sh rv"><span class="num" aria-hidden="true">01</span><h2>Collection</h2><p class="mono">既製品 — すべて一点ずつの手仕事</p></header>
+    <div class="filter" id="filters" role="group" aria-label="形で絞り込む">
+      <button class="chip" aria-pressed="true" data-cat="">すべて</button>
+      <button class="chip" aria-pressed="false" data-cat="リース">リース</button>
+      <button class="chip" aria-pressed="false" data-cat="ハーフリース">ハーフリース</button>
+      <button class="chip" aria-pressed="false" data-cat="フライングリース">フライングリース</button>
+      <button class="chip" aria-pressed="false" data-cat="スワッグ">スワッグ</button>
     </div>
     <div class="grid" id="grid"></div>
-    <div class="center"><a class="btn dark" href="#">すべての作品を見る</a></div>
+    <p class="hint" style="margin-top:40px">売り切れた作品も、近い雰囲気でお作りできます。</p>
   </div>
 </section>
 
 <section class="fit" id="fit">
   <div class="wrap">
-    <div class="head"><div class="en">Styling</div><p>空間にあわせて選ぶ</p>
-      <div class="desc">壁の色と、飾る場所を選んでみてください。合う色味とサイズをご提案します。</div></div>
+    <header class="sh rv"><span class="num" aria-hidden="true">02</span><h2>Styling</h2><p class="mono">空間にあわせる — 壁の上で試す</p></header>
+    <p class="lede">場所・壁・光を選ぶと、その空間に掛けたときの大きさと色の見え方を確かめられます。ご自分の壁の写真を使うこともできます。リースは指でつまんで動かせます。</p>
     <div class="sim">
-      <div class="stage concrete" id="stage">
-        <svg class="w" id="simw" data-tone="pampas" data-seed="5" data-fl="2"></svg>
-        <div class="shelf"></div>
+      <div class="stage-w">
+        <div class="stage">
+          <svg id="scene" viewBox="0 0 800 600" role="img" aria-label="リースを飾った部屋のイメージ">
+            <defs>
+              <filter id="noise" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0"/></filter>
+              <filter id="cloud" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".008" numOctaves="3" seed="9"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 -.25"/></filter>
+              <pattern id="pWood" width="46" height="600" patternUnits="userSpaceOnUse"><rect width="46" height="600" fill="none"/><line x1="45.5" y1="0" x2="45.5" y2="600" stroke="rgba(0,0,0,.22)"/><line x1="18" y1="0" x2="18" y2="600" stroke="rgba(255,255,255,.06)"/></pattern>
+              <linearGradient id="gDay" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".26"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <radialGradient id="gEve" cx=".9" cy=".85" r=".95"><stop offset="0" stop-color="#ff9a4a" stop-opacity=".55"/><stop offset="1" stop-color="#ff9a4a" stop-opacity="0"/></radialGradient>
+              <radialGradient id="gLamp" cx=".82" cy=".42" r=".5"><stop offset="0" stop-color="#ffc57a" stop-opacity=".6"/><stop offset="1" stop-color="#ffc57a" stop-opacity="0"/></radialGradient>
+              <filter id="ws" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="7" dy="12" stdDeviation="7" flood-color="#000" flood-opacity=".38"/></filter>
+            </defs>
+            <rect id="wall" width="800" height="600" fill="#7d8789"/>
+            <rect id="texNoise" width="800" height="600" filter="url(#noise)" opacity=".16"/>
+            <rect id="texCloud" width="800" height="600" filter="url(#cloud)" opacity=".2"/>
+            <rect id="texWood" width="800" height="600" fill="url(#pWood)" opacity="0"/>
+            <image id="photo" width="800" height="600" preserveAspectRatio="xMidYMid slice" style="display:none"/>
+            <g id="room"><rect id="base" y="512" width="800" height="8" fill="rgba(255,255,255,.3)"/><rect id="floor" y="520" width="800" height="80" fill="#585b5c"/><g id="furn"></g></g>
+            <g id="wg" tabindex="0" role="button" aria-label="リース。ドラッグ、または矢印キーで位置を動かせます" filter="url(#ws)"><svg id="simw" x="300" y="80" width="200" height="200"></svg></g>
+            <g id="dim" font-family="DM Mono,monospace" font-size="13" text-anchor="middle"><line id="dimL" y1="0" y2="0" stroke-width="1"/><line id="dimA" stroke-width="1"/><line id="dimB" stroke-width="1"/><text id="dimT" y="18"></text></g>
+            <g id="lights" pointer-events="none">
+              <rect id="lDay" width="800" height="600" fill="url(#gDay)"/>
+              <g id="lEve" style="display:none"><rect width="800" height="600" fill="#3a2414" opacity=".16"/><rect width="800" height="600" fill="url(#gEve)"/></g>
+              <g id="lNight" style="display:none"><rect width="800" height="600" fill="#0b0e16" opacity=".52"/><rect width="800" height="600" fill="url(#gLamp)"/></g>
+            </g>
+          </svg>
+        </div>
+        <div class="stage-bar">
+          <span class="mono" id="stageCap">受付・エントランス ／ 幅 約3m の壁</span>
+          <button class="link" id="resetPos" type="button">位置を戻す</button>
+        </div>
       </div>
-      <div class="opt">
-        <h5>壁の色</h5>
-        <div class="chips" id="walls">
-          <button class="chip on" data-wall="#7c807f" data-key="concrete"><i style="background:#7c807f"></i>コンクリート</button>
-          <button class="chip" data-wall="#ebe6dd" data-key="white"><i style="background:#ebe6dd"></i>白い壁</button>
-          <button class="chip" data-wall="#b59a7c" data-key="wood"><i style="background:#b59a7c"></i>木の壁</button>
-          <button class="chip" data-wall="#333d4a" data-key="dark"><i style="background:#333d4a"></i>濃い色の壁</button>
+
+      <div class="ctl">
+        <fieldset><legend class="mono"><span>1 — 飾る場所</span></legend>
+          <div class="chips" id="cPlace">
+            <button class="chip" aria-pressed="true" data-v="reception">受付・エントランス</button>
+            <button class="chip" aria-pressed="false" data-v="meeting">会議室・応接室</button>
+            <button class="chip" aria-pressed="false" data-v="living">リビング</button>
+            <button class="chip" aria-pressed="false" data-v="entrance">玄関</button>
+          </div>
+        </fieldset>
+        <fieldset><legend class="mono"><span>2 — 壁</span></legend>
+          <div class="chips" id="cWall">
+            <button class="chip" aria-pressed="true" data-v="concrete" data-c="#7d8789"><i style="background:#7d8789"></i>コンクリート</button>
+            <button class="chip" aria-pressed="false" data-v="white" data-c="#ece8e0"><i style="background:#ece8e0"></i>白い壁</button>
+            <button class="chip" aria-pressed="false" data-v="wood" data-c="#b0946f"><i style="background:#b0946f"></i>木の壁</button>
+            <button class="chip" aria-pressed="false" data-v="dark" data-c="#2f3944"><i style="background:#2f3944"></i>濃い色の壁</button>
+            <label class="chip" style="cursor:pointer;padding-left:6px"><input type="color" id="wallPick" value="#7d8789" class="swatch" style="width:30px;height:30px;min-height:0" aria-label="壁の色を自由に選ぶ">色を選ぶ</label>
+          </div>
+          <div style="margin-top:10px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+            <label class="link" style="cursor:pointer;display:inline-flex;align-items:center">自分の壁の写真を使う<input type="file" id="wallPhoto" accept="image/*" class="sr"></label>
+            <button class="link" id="photoOff" type="button" hidden>写真を外す</button>
+          </div>
+          <p class="hint">写真はこの画面の中だけで使われ、どこにも送信されません。</p>
+        </fieldset>
+        <fieldset><legend class="mono"><span>3 — 光</span></legend>
+          <div class="chips" id="cLight">
+            <button class="chip" aria-pressed="true" data-v="day">昼の自然光</button>
+            <button class="chip" aria-pressed="false" data-v="eve">夕方</button>
+            <button class="chip" aria-pressed="false" data-v="night">夜の照明</button>
+          </div>
+        </fieldset>
+        <fieldset><legend class="mono"><span>4 — かたち</span></legend>
+          <div class="chips" id="cShape">
+            <button class="chip" aria-pressed="true" data-v="ring">リース</button>
+            <button class="chip" aria-pressed="false" data-v="crescent">ハーフリース</button>
+            <button class="chip" aria-pressed="false" data-v="swag">スワッグ</button>
+          </div>
+        </fieldset>
+        <fieldset><legend class="mono"><span>5 — 色味</span></legend>
+          <div class="chips" id="cTone">
+            <button class="chip" aria-pressed="true" data-v="pampas"><i style="background:#d8c4a2"></i>生成り</button>
+            <button class="chip" aria-pressed="false" data-v="smoke"><i style="background:#5f6b7a"></i>スモーキーブルー</button>
+            <button class="chip" aria-pressed="false" data-v="green"><i style="background:#6f7d63"></i>グリーン</button>
+            <button class="chip" aria-pressed="false" data-v="brown"><i style="background:#7a563d"></i>ブラウン</button>
+          </div>
+        </fieldset>
+        <fieldset><legend class="mono"><span>6 — サイズ</span><span id="sizeRec"></span></legend>
+          <div class="seg" id="cSize">
+            <button aria-pressed="false" data-v="S"><b>S</b><span></span></button>
+            <button aria-pressed="false" data-v="M"><b>M</b><span></span></button>
+            <button aria-pressed="true" data-v="L"><b>L</b><span></span></button>
+          </div>
+        </fieldset>
+        <div class="res" aria-live="polite">
+          <span class="mono" style="opacity:.7">Our suggestion</span>
+          <h3 id="rT"></h3>
+          <div class="dots" id="rD"></div>
+          <ul id="rL"></ul>
+          <div class="est"><span class="mono">目安の価格（税込）</span><b id="rP"></b></div>
+          <div class="row">
+            <button class="btn light" id="toOrder" type="button">この内容で相談する</button>
+            <button class="btn ghostL" id="toSimilar" type="button">近い作品を見る</button>
+          </div>
         </div>
-        <h5>飾る場所</h5>
-        <div class="chips" id="places">
-          <button class="chip on" data-place="受付・エントランス">受付・エントランス</button>
-          <button class="chip" data-place="会議室・応接室">会議室・応接室</button>
-          <button class="chip" data-place="リビング">リビング</button>
-          <button class="chip" data-place="玄関">玄関</button>
-        </div>
-        <h5>色味</h5>
-        <div class="chips" id="tones">
-          <button class="chip on" data-tone="pampas"><i style="background:#d8c4a2"></i>生成り</button>
-          <button class="chip" data-tone="smoke"><i style="background:#5f6b7a"></i>スモーキーブルー</button>
-          <button class="chip" data-tone="green"><i style="background:#6f7d63"></i>グリーン</button>
-          <button class="chip" data-tone="brown"><i style="background:#7a563d"></i>ブラウン</button>
-        </div>
-        <div class="reco"><b id="rt"></b><p id="rp"></p></div>
-        <div class="btns" style="margin-top:22px"><a class="btn dark" href="#order">この組み合わせで相談する</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="subsc concrete" id="subscription" style="background-color:#5d6161">
+<section class="subsc" id="subscription">
   <div class="wrap">
-    <div class="head"><div class="en">Subscription</div><p>1年間・4回お届け</p>
-      <div class="desc">季節の変わり目に、新しいリースが届きます。掛け替えるだけで、部屋の空気が変わります。</div></div>
+    <header class="sh rv"><span class="num" aria-hidden="true">03</span><h2>Subscription</h2><p class="mono">1年間 — 4回お届け</p></header>
+    <p class="lede">季節の変わり目に、新しいリースが届きます。掛け替えるだけで、部屋の空気が変わります。</p>
     <div class="seasons">
-      <div class="season"><img src="https://images.unsplash.com/photo-1610467619538-487a3df36961?w=600&q=75&auto=format&fit=crop" alt="春のリース"><div class="m">March</div><h4>春</h4><p>ミモザ色とやわらかな白</p></div>
-      <div class="season"><img src="https://images.unsplash.com/photo-1557674538-bd2a3adf4bcb?w=600&q=75&auto=format&fit=crop" alt="夏のリース"><div class="m">June</div><h4>夏</h4><p>ユーカリと涼しい青</p></div>
-      <div class="season"><img src="https://images.unsplash.com/photo-1731412895339-d7e1fd044eef?w=600&q=75&auto=format&fit=crop" alt="秋のリース"><div class="m">September</div><h4>秋</h4><p>実ものと深いブラウン</p></div>
-      <div class="season"><img src="https://images.unsplash.com/photo-1707537051618-aa812c8747c7?w=600&q=75&auto=format&fit=crop" alt="冬のリース"><div class="m">December</div><h4>冬</h4><p>クリスマスからお正月まで</p></div>
+      <div class="season rv"><div class="k" aria-hidden="true">春</div><span class="mono">March</span><img loading="lazy" src="https://images.unsplash.com/photo-1610467619538-487a3df36961?w=600&q=75&auto=format&fit=crop" alt="春のリースのイメージ"><p>春 — ミモザ色とやわらかな白</p></div>
+      <div class="season rv"><div class="k" aria-hidden="true">夏</div><span class="mono">June</span><img loading="lazy" src="https://images.unsplash.com/photo-1557674538-bd2a3adf4bcb?w=600&q=75&auto=format&fit=crop" alt="夏のリースのイメージ"><p>夏 — ユーカリと涼しい青</p></div>
+      <div class="season rv"><div class="k" aria-hidden="true">秋</div><span class="mono">September</span><img loading="lazy" src="https://images.unsplash.com/photo-1731412895339-d7e1fd044eef?w=600&q=75&auto=format&fit=crop" alt="秋のリースのイメージ"><p>秋 — 実ものと深いブラウン</p></div>
+      <div class="season rv"><div class="k" aria-hidden="true">冬</div><span class="mono">December</span><img loading="lazy" src="https://images.unsplash.com/photo-1707537051618-aa812c8747c7?w=600&q=75&auto=format&fit=crop" alt="冬のリースのイメージ"><p>冬 — クリスマスからお正月まで</p></div>
     </div>
-    <div class="plans">
-      <div class="plan"><div class="s">S</div><div class="d">直径 約25cm ｜ 玄関・デスクまわり</div><div class="y">¥26,400<small> / 年</small></div><div class="per">1回あたり 6,600円（税込・送料込）</div><a class="btn dark" href="#">申し込む</a></div>
-      <div class="plan"><div class="s">M</div><div class="d">直径 約35cm ｜ リビング・応接室</div><div class="y">¥39,600<small> / 年</small></div><div class="per">1回あたり 9,900円（税込・送料込）</div><a class="btn dark" href="#">申し込む</a></div>
-      <div class="plan"><div class="s">L</div><div class="d">直径 約45cm ｜ 受付・エントランス</div><div class="y">¥66,000<small> / 年</small></div><div class="per">1回あたり 16,500円（税込・送料込）</div><a class="btn dark" href="#">申し込む</a></div>
+    <div class="plans" role="radiogroup" aria-label="定期便のサイズ">
+      <label class="plan"><input type="radio" name="plan" value="S"><div class="s">S</div><div class="d">直径 約25cm ｜ 玄関・デスクまわり</div><div class="y">¥26,400</div><div class="per">1回あたり 6,600円</div></label>
+      <label class="plan"><input type="radio" name="plan" value="M" checked><div class="s">M</div><div class="d">直径 約35cm ｜ リビング・応接室</div><div class="y">¥39,600</div><div class="per">1回あたり 9,900円</div></label>
+      <label class="plan"><input type="radio" name="plan" value="L"><div class="s">L</div><div class="d">直径 約45cm ｜ 受付・エントランス</div><div class="y">¥66,000</div><div class="per">1回あたり 16,500円</div></label>
     </div>
-    <p class="terms">お届けは3月・6月・9月・12月の計4回。お支払い総額・回数・解約条件は、お申し込みの最終確認画面でご確認いただけます。</p>
+    <div class="aroma" id="scent">
+      <svg viewBox="0 0 360 250" role="img" aria-label="リースの裏に香りスティックを差し込む図">
+        <g fill="none" stroke="#ebe5d9" stroke-linecap="round">
+          <circle cx="130" cy="135" r="78" stroke-width="10" opacity=".28"/>
+          <circle cx="130" cy="135" r="78" stroke-width="1" stroke-dasharray="3 5" opacity=".8"/>
+          <rect x="112" y="46" width="36" height="26" rx="3" stroke-width="1.2" fill="#191817"/>
+          <path d="M122 46V14M130 46V8M138 46V16" stroke="#b8602c" stroke-width="2.4"/>
+          <path d="M283 120h34v70a6 6 0 0 1-6 6h-22a6 6 0 0 1-6-6z" stroke-width="1.2"/>
+          <path d="M292 120v-14h16v14M296 106V94h8v12" stroke-width="1.2"/>
+          <path d="M284 150h32" stroke-width="1" opacity=".6"/>
+          <path d="M160 40C210 20 270 40 296 88" stroke-width="1" stroke-dasharray="2 5" opacity=".7"/>
+        </g>
+        <g font-family="DM Mono,monospace" font-size="10.5" fill="#ebe5d9" letter-spacing="1">
+          <text x="130" y="232" text-anchor="middle">リースの裏側</text>
+          <text x="156" y="14">香りスティック</text>
+          <text x="300" y="214" text-anchor="middle">オイル 約3か月分</text>
+        </g>
+      </svg>
+      <div>
+        <span class="mono" style="color:var(--rust)">Option — Scent</span>
+        <h3>香りを、リースの裏に。</h3>
+        <p>リースの裏に小さなホルダーを付け、香りを含ませた木のスティックを差し込みます。花や壁にオイルが触れないので、色移りの心配がありません。</p>
+        <ul>
+          <li>お届けのたびに、スティック3本と季節のオイル（約3か月分）が一緒に届きます。</li>
+          <li>香りが弱くなったら、スティックにオイルを数滴足すだけです。</li>
+          <li>香りはリースの外からは見えません。外したいときは、スティックを抜くだけです。</li>
+        </ul>
+        <label class="tog"><input type="checkbox" id="aroma"><span><b>香りのオプションをつける</b>　+¥1,100 / 回（年 +¥4,400）</span></label>
+        <div class="chips" id="cScent" hidden style="margin-top:12px">
+          <button class="chip" aria-pressed="true" data-v="季節におまかせ">季節におまかせ</button>
+          <button class="chip" aria-pressed="false" data-v="シトラス">シトラス</button>
+          <button class="chip" aria-pressed="false" data-v="ウッド">ウッド</button>
+          <button class="chip" aria-pressed="false" data-v="ハーブ">ハーブ</button>
+        </div>
+      </div>
+    </div>
+    <div class="sum">
+      <p id="planSum" aria-live="polite"></p>
+      <button class="btn light" id="planAdd" type="button">定期便をカートに入れる</button>
+    </div>
+    <p class="terms">税込・送料込。お届けは3月・6月・9月・12月の計4回です。お支払い総額・回数・解約条件は、お申し込みの最終確認画面でご確認いただけます。</p>
   </div>
 </section>
 
 <section id="order">
   <div class="wrap">
-    <div class="head"><div class="en">Order made</div><p>オーダーメイド</p>
-      <div class="desc">「この壁に合うものを」だけで大丈夫です。お部屋やオフィスの写真から、色・形・大きさをご提案します。</div></div>
-    <div class="flow">
-      <div class="step"><div class="n">1</div><h4>写真を送る</h4><p>飾りたい場所の写真と、ご予算をフォームかLINEで。</p></div>
-      <div class="step"><div class="n">2</div><h4>ご提案</h4><p>色味・花材・サイズの案と、お見積りをお返しします。</p></div>
-      <div class="step"><div class="n">3</div><h4>制作</h4><p>内容が決まってから、一点ずつ束ねます。</p></div>
-      <div class="step"><div class="n">4</div><h4>お届け</h4><p>専用の箱に固定して発送。届いたらそのまま壁へ。</p></div>
+    <header class="sh rv"><span class="num" aria-hidden="true">04</span><h2>Order made</h2><p class="mono">オーダーメイド — 写真を送るだけ</p></header>
+    <div class="order">
+      <ol class="steps">
+        <li class="rv"><h3>写真を送る</h3><p>飾りたい場所の写真と、ご予算をお知らせください。</p></li>
+        <li class="rv"><h3>ご提案</h3><p>色味・花材・サイズの案と、お見積りをお返しします。</p></li>
+        <li class="rv"><h3>制作</h3><p>内容が決まってから、一点ずつ束ねます。</p></li>
+        <li class="rv"><h3>お届け</h3><p>専用の箱に固定して発送。届いたらそのまま壁へ。</p></li>
+      </ol>
+      <form id="orderForm" novalidate>
+        <div class="two">
+          <div class="f"><label class="mono" for="fName">お名前</label><input id="fName" name="name" autocomplete="name" required></div>
+          <div class="f"><label class="mono" for="fMail">メールアドレス</label><input id="fMail" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        </div>
+        <div class="two">
+          <div class="f"><label class="mono" for="fUse">ご用途</label><select id="fUse" name="use"><option>自宅に飾る</option><option>オフィス・店舗に飾る</option><option>贈りもの</option></select></div>
+          <div class="f"><label class="mono" for="fBudget">ご予算</label><select id="fBudget" name="budget"><option>〜8,000円</option><option selected>8,000〜15,000円</option><option>15,000〜30,000円</option><option>相談して決めたい</option></select></div>
+        </div>
+        <div class="f"><label class="mono" for="fScent">香りのオプション</label><select id="fScent" name="scent"><option>つけない</option><option>つける（季節におまかせ）</option><option>つける（香りを相談したい）</option></select></div>
+        <div class="f"><label class="mono" for="fMsg">ご希望の内容</label><textarea id="fMsg" name="msg" placeholder="飾る場所、壁の色、好きな色味など"></textarea></div>
+        <button class="btn solid" type="submit">相談を送る</button>
+        <p class="hint">Styling で選んだ内容は、「この内容で相談する」を押すとここに入ります。</p>
+      </form>
     </div>
-    <div class="center"><a class="btn dark" href="#">オーダーの相談をする</a></div>
   </div>
 </section>
 
-<section class="office" id="office">
-  <div class="wrap two">
-    <div>
-      <div class="en" style="color:var(--ink2)">For Office</div>
-      <h2 class="t">受付の壁が、<br>会社の第一印象になる。</h2>
-      <ul>
-        <li><b>水やり不要</b>生花や観葉植物のような手入れがいりません。</li>
-        <li><b>季節で掛け替え</b>年4回の定期便で、来客のたびに新しい表情に。</li>
-        <li><b>請求書払い</b>法人のお客さまは請求書でのお支払いに対応します。</li>
-        <li><b>開店・移転祝いにも</b>長く飾れる贈りものとしてお届けします。</li>
-      </ul>
-      <div class="btns"><a class="btn dark" href="#">法人のご相談</a></div>
+<section class="office" id="office" style="padding-top:0">
+  <div class="wrap">
+    <header class="sh rv"><span class="num" aria-hidden="true">05</span><h2>For Office</h2><p class="mono">法人のお客さま</p></header>
+    <div class="split">
+      <div>
+        <p class="big rv">受付の壁が、<br>会社の第一印象になる。</p>
+        <dl class="defs">
+          <div><dt>水やり不要</dt><dd>生花や観葉植物のような手入れがいりません。</dd></div>
+          <div><dt>季節で掛け替え</dt><dd>年4回の定期便で、来客のたびに新しい表情に。</dd></div>
+          <div><dt>請求書払い</dt><dd>法人のお客さまは請求書でのお支払いに対応します。</dd></div>
+          <div><dt>開店・移転祝い</dt><dd>長く飾れる贈りものとしてお届けします。</dd></div>
+        </dl>
+        <a class="btn solid" href="#order" style="margin-top:26px">法人のご相談</a>
+      </div>
+      <div class="pic rv"><img loading="lazy" src="https://images.unsplash.com/photo-1610790746879-bd22e89d9715?w=1000&q=75&auto=format&fit=crop" alt="暗い壁を背景にしたドライフラワーの装飾"></div>
     </div>
-    <div class="ph concrete"><img src="https://images.unsplash.com/photo-1610790746879-bd22e89d9715?w=1000&q=75&auto=format&fit=crop" alt="ドライフラワーの装飾"></div>
   </div>
 </section>
 
 <section class="about" id="about">
-  <div class="wrap two">
-    <div>
-      <div class="en" style="color:var(--ink2)">About</div>
-      <h2 class="t">笑う門には、<br>花がある。</h2>
-      <p>EMIGATE は「EMI（笑み）」と「GATE（門）」。玄関や受付、人を迎える場所に花があると、入ってくる人の顔が少しゆるみます。</p>
-      <p>ひとつずつ手で束ねているので、同じものは二つとありません。気に入った作品が売り切れていたら、近い雰囲気でお作りします。</p>
-      <p class="sign">— なっちゃん</p>
-    </div>
-    <div class="ph concrete" style="aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#f2ede4;font-size:13px;letter-spacing:.2em">制作風景の写真</div>
-  </div>
-</section>
-
-<section class="before" id="before">
   <div class="wrap">
-    <div class="head"><div class="en">Before you order</div><p>ご購入の前に</p></div>
-    <div class="notes">
-      <div><h4>色は少しずつ変わります</h4><p>時間とともにアンティークな色合いへ変化します。ドライフラワーならではの表情としてお楽しみください。</p></div>
-      <div><h4>サイズは一番長いところ</h4><p>立体的な作品のため、記載のサイズはいちばん長い部分の長さです。写真では大きく見えることがあります。</p></div>
-      <div><h4>飾る場所</h4><p>直射日光・湿気・エアコンの風を避けてください。湿度の高い季節は、風通しのよい場所がおすすめです。</p></div>
-      <div><h4>お届け</h4><p>ご注文から7日以内に発送します。日時のご指定は、ご注文時の備考欄にお書きください。</p></div>
-      <div><h4>配送中の花落ち</h4><p>専用の箱に固定してお送りしますが、自然素材のため、細かな葉や実が落ちることがあります。</p></div>
-      <div><h4>ギフト包装</h4><p>簡易ラッピングとメッセージカードを承ります。お届け先を別に指定できます。</p></div>
+    <header class="sh rv"><span class="num" aria-hidden="true">06</span><h2>About</h2><p class="mono">作り手のこと</p></header>
+    <div class="split">
+      <div>
+        <p class="big rv">笑う門には、<br>花がある。</p>
+        <p>EMIGATE は「EMI（笑み）」と「GATE（門）」。玄関や受付、人を迎える場所に花があると、入ってくる人の顔が少しゆるみます。</p>
+        <p>ひとつずつ手で束ねているので、同じものは二つとありません。気に入った作品が売り切れていたら、近い雰囲気でお作りします。</p>
+        <p class="sign">— なっちゃん</p>
+      </div>
+      <div class="holder mono rv">制作風景の写真</div>
     </div>
   </div>
 </section>
 
-<section>
+<section id="guide">
   <div class="wrap">
-    <div class="head"><div class="en">Q &amp; A</div><p>よくあるご質問</p></div>
-    <div class="faq">
-      <details><summary>どのくらい飾れますか？</summary><p>飾る環境によりますが、数か月から1年ほどが目安です。少しずつ色があせていく変化もお楽しみください。</p></details>
-      <details><summary>飾る場所で気をつけることは？</summary><p>直射日光と湿気を避けてください。浴室や窓辺、エアコンの風が直接当たる場所は向きません。</p></details>
-      <details><summary>定期便は途中でサイズを変えられますか？</summary><p>次回お届けの前までにご連絡いただければ変更できます。</p></details>
-      <details><summary>贈りものにできますか？</summary><p>ギフト包装とメッセージカードをご用意しています。お届け先を別に指定できます。</p></details>
+    <header class="sh rv"><span class="num" aria-hidden="true">07</span><h2>Guide</h2><p class="mono">ご購入の前に</p></header>
+    <div class="nf">
+      <div>
+        <h3>Before you order</h3>
+        <details open><summary>色は少しずつ変わります</summary><p>時間とともにアンティークな色合いへ変化します。ドライフラワーならではの表情としてお楽しみください。</p></details>
+        <details><summary>サイズは一番長いところ</summary><p>立体的な作品のため、記載のサイズはいちばん長い部分の長さです。写真では大きく見えることがあります。</p></details>
+        <details><summary>飾る場所</summary><p>直射日光・湿気・エアコンの風を避けてください。湿度の高い季節は、風通しのよい場所がおすすめです。</p></details>
+        <details><summary>お届けと配送中の花落ち</summary><p>ご注文から7日以内に発送します。専用の箱に固定してお送りしますが、自然素材のため、細かな葉や実が落ちることがあります。</p></details>
+      </div>
+      <div>
+        <h3>Q &amp; A</h3>
+        <details><summary>どのくらい飾れますか？</summary><p>飾る環境によりますが、数か月から1年ほどが目安です。</p></details>
+        <details><summary>定期便は途中でサイズを変えられますか？</summary><p>次回お届けの前までにご連絡いただければ変更できます。</p></details>
+        <details><summary>贈りものにできますか？</summary><p>簡易ラッピングとメッセージカードを承ります。お届け先を別に指定できます。</p></details>
+        <details><summary>香りはどのくらい続きますか？</summary><p>オイルを足しながら使って、1回のお届け分で約3か月が目安です。広い空間では、近くを通るとふわりと香る程度です。</p></details>
+        <details><summary>香りが苦手な人やペットがいる場合は？</summary><p>香りはオプションで、つけずにお使いいただけます。猫など精油が体に合わない動物がいるお部屋では、香りなしをおすすめします。</p></details>
+        <details><summary>日時の指定はできますか？</summary><p>ご注文時の備考欄にご希望の日時をお書きください。</p></details>
+      </div>
     </div>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
-    <div class="cols">
-      <div><div class="logo">EMIGATE</div><div style="margin-top:8px">株式会社EMIGATE</div></div>
-      <div class="links"><a href="#">ご利用ガイド</a><a href="#">送料・お届け</a><a href="#">特定商取引法に基づく表記</a><a href="#">プライバシーポリシー</a><a href="#">お問い合わせ</a></div>
-    </div>
-    <div class="c">© EMIGATE Inc.</div>
+    <div class="fl"><a href="#">ご利用ガイド</a><a href="#">送料・お届け</a><a href="#">特定商取引法に基づく表記</a><a href="#">プライバシーポリシー</a><a href="#order">お問い合わせ</a></div>
+    <div class="fbig" aria-hidden="true">EMIGATE</div>
+    <div class="mono" style="opacity:.6">© 株式会社EMIGATE</div>
   </div>
 </footer>
 
+<div class="bd" id="bd" hidden></div>
+<aside class="drawer" id="cart" role="dialog" aria-modal="true" aria-label="カート" aria-hidden="true">
+  <div class="dr-h"><h2>Cart</h2><button class="hd-b mono" id="cartClose">Close ✕</button></div>
+  <ul class="dr-b" id="cartList"></ul>
+  <div class="dr-f">
+    <label class="tog"><input type="checkbox" id="cartAroma"><span><b>香りセットを追加</b>　+¥1,650<br>スティック3本とオイル約3か月分</span></label>
+    <div class="t"><span class="mono">小計（税込）</span><b id="cartTotal">¥0</b></div>
+    <button class="btn solid" id="checkout" type="button">ご購入手続きへ</button>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="draft" id="draft"><span>案 v4：店名・価格・販売日・作品名は仮。写真はフリー素材のイメージです</span><button aria-label="この表示を閉じる" onclick="this.parentNode.remove()">✕</button></div>
+
 <script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const yen=n=>'¥'+n.toLocaleString('ja-JP');
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ---------- wreath drawing ---------- */
 const P={
   pampas:['#e9dcc3','#d8c4a2','#c9ad86','#f3ead8','#b89a74'],
   smoke:['#5f6b7a','#8792a0','#3f4a57','#c9cfd4','#e9e4d8'],
   green:['#5c6b55','#7d8b70','#a9b39a','#e9e2cf','#b0703c'],
-  brown:['#6b4a35','#8f6a4c','#b89373','#e5d6bf','#3e2c22'],
-  spring:['#e6cf7a','#f1e6c2','#cdb45a','#a9b39a','#f6f0e2']
+  brown:['#6b4a35','#8f6a4c','#b89373','#e5d6bf','#3e2c22']
 };
 function rnd(s){return()=>(s=s*16807%2147483647)/2147483647}
-function draw(svg){
-  const d=svg.dataset,r=rnd((+d.seed||7)*7919),pal=P[d.tone||'pampas'],shape=d.shape||'ring';
-  const pick=()=>pal[Math.floor(r()*pal.length)],f=n=>n.toFixed(1);
+function draw(svg,tone,shape,seed,fl){
+  const r=rnd(seed*7919),pal=P[tone],f=n=>n.toFixed(1),pick=()=>pal[Math.floor(r()*pal.length)];
   let h='';
   const stroke=(x0,y0,a,len,bend)=>{
-    const x1=x0+Math.cos(a)*len,y1=y0+Math.sin(a)*len;
-    const cx=(x0+x1)/2+Math.cos(a+1.57)*bend,cy=(y0+y1)/2+Math.sin(a+1.57)*bend;
-    h+=`<path d="M${f(x0)} ${f(y0)}Q${f(cx)} ${f(cy)} ${f(x1)} ${f(y1)}" stroke="${pick()}" stroke-width="${f(.4+r()*1.3)}" opacity="${f(.5+r()*.45)}"/>`;
+    const x1=x0+Math.cos(a)*len,y1=y0+Math.sin(a)*len,cx=(x0+x1)/2+Math.cos(a+1.57)*bend,cy=(y0+y1)/2+Math.sin(a+1.57)*bend;
+    h+=`<path d="M${f(x0)} ${f(y0)}Q${f(cx)} ${f(cy)} ${f(x1)} ${f(y1)}" stroke="${pick()}" stroke-width="${f(.4+r()*1.3)}" opacity="${f(.55+r()*.4)}"/>`;
   };
+  const leaf=(x,y,a,s)=>{h+=`<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(s)}" ry="${f(s*.32)}" fill="${pal[0]}" opacity=".85" transform="rotate(${f(a*57.3)} ${f(x)} ${f(y)})"/>`};
   const flower=(x,y,s)=>{
-    const c=pal[3];
-    for(let k=0;k<16;k++)h+=`<ellipse cx="${f(x)}" cy="${f(y-s*.55)}" rx="${f(s*.2)}" ry="${f(s*.55)}" fill="${c}" opacity=".92" transform="rotate(${k*22.5} ${f(x)} ${f(y)})"/>`;
+    for(let k=0;k<16;k++)h+=`<ellipse cx="${f(x)}" cy="${f(y-s*.55)}" rx="${f(s*.2)}" ry="${f(s*.55)}" fill="${pal[3]}" opacity=".93" transform="rotate(${k*22.5} ${f(x)} ${f(y)})"/>`;
     for(let k=0;k<12;k++)h+=`<ellipse cx="${f(x)}" cy="${f(y-s*.3)}" rx="${f(s*.14)}" ry="${f(s*.3)}" fill="#fbf7ee" opacity=".9" transform="rotate(${k*30+15} ${f(x)} ${f(y)})"/>`;
-    h+=`<circle cx="${f(x)}" cy="${f(y)}" r="${f(s*.16)}" fill="${pal[2]}"/>`;
+    h+=`<circle cx="${f(x)}" cy="${f(y)}" r="${f(s*.17)}" fill="${pal[2]}"/>`;
   };
   if(shape==='swag'){
     svg.setAttribute('viewBox','-110 -100 220 220');
     for(let i=0;i<34;i++)stroke((r()-.5)*8,-62,-1.57+(r()-.5)*.7,14+r()*22,(r()-.5)*4);
-    for(let i=0;i<420;i++)stroke((r()-.5)*14,-66+r()*14,1.57+(r()-.5)*1.05,45+r()*120,(r()-.5)*26);
+    for(let i=0;i<460;i++)stroke((r()-.5)*14,-66+r()*14,1.57+(r()-.5)*1.05,45+r()*120,(r()-.5)*26);
+    for(let i=0;i<10;i++){const a=1.57+(r()-.5)*.9,l=40+r()*80;leaf(Math.cos(a)*l,-60+Math.sin(a)*l,a,9+r()*6)}
     flower(-10,-28,15);flower(12,-18,13);flower(-2,-4,11);
     h+=`<path d="M-9 -62Q0 -56 9 -62L8 -54Q0 -49 -8 -54Z" fill="#f2ede4"/><path d="M6 -58Q26 -50 22 -22" stroke="#f2ede4" stroke-width="4" opacity=".9"/>`;
   }else{
     svg.setAttribute('viewBox','-110 -110 220 220');
-    const a0=shape==='crescent'?1.0:0,span=shape==='crescent'?4.4:6.283,n=Math.round((+d.n||440)*span/6.283);
-    for(let i=0;i<n;i++){
-      const a=a0+r()*span,rb=54+(r()-.5)*18;
-      stroke(Math.cos(a)*rb,Math.sin(a)*rb,a+1.57+(r()-.5)*1.9,12+r()*32,(r()-.5)*10);
-    }
-    const fl=d.fl===undefined?3:+d.fl;
-    for(let k=0;k<fl;k++){const a=a0+span*(.25+k*.14)+r()*.2;flower(Math.cos(a)*54,Math.sin(a)*54,10+r()*4);}
+    const a0=shape==='crescent'?.9:0,span=shape==='crescent'?4.1:6.283,n=Math.round(520*span/6.283);
+    for(let i=0;i<n;i++){const a=a0+r()*span,rb=54+(r()-.5)*18;stroke(Math.cos(a)*rb,Math.sin(a)*rb,a+1.57+(r()-.5)*1.9,12+r()*32,(r()-.5)*10)}
+    for(let i=0;i<14;i++){const a=a0+r()*span;leaf(Math.cos(a)*60,Math.sin(a)*60,a+1.2+r(),8+r()*6)}
+    if(shape==='crescent')h+=`<path d="M${f(Math.cos(a0)*54)} ${f(Math.sin(a0)*54)}A54 54 0 0 0 ${f(Math.cos(a0+span)*54)} ${f(Math.sin(a0+span)*54)}" stroke="#a88a5c" stroke-width="1.6" opacity=".9"/>`;
+    for(let k=0;k<fl;k++){const a=a0+span*(.28+k*.13)+r()*.2;flower(Math.cos(a)*54,Math.sin(a)*54,10+r()*4)}
   }
   svg.setAttribute('fill','none');svg.setAttribute('stroke-linecap','round');svg.innerHTML=h;
 }
 
-/* collection */
-const items=[
-  ['Autumn Hush','実ものと枯れ葉のリース','直径 約40cm','¥13,200','photo-1731412895496-3af872d3dc8c','一点もの','リース',0],
-  ['Green Air','風にゆれるグリーンの吊りリース','直径 約30cm','¥8,800','photo-1543208029-ea9db84a6e8f','新作','フライングリース',0],
-  ['Wheat Moon','ユーカリと麦のハーフリース','直径 約35cm','¥11,000','photo-1771400057423-2d21e9b5a95c','新作','ハーフリース',0],
-  ['Forest Door','木の実とグリーンのリース','直径 約30cm','¥9,900','photo-1515747027540-70ade91bab3f','','リース',1],
-  ['Eucalyptus','ユーカリだけの大きなリース','直径 約45cm','¥16,500','photo-1544376936-e15fd353d311','受注制作','リース',0],
-  ['Field Note','穂を束ねたスワッグ','長さ 約60cm','¥7,700','photo-1615482531489-4bc7bc3da63a','','スワッグ',0]
-];
-document.getElementById('grid').innerHTML=items.map(i=>`
-  <a class="card${i[7]?' sold':''}" href="#" data-cat="${i[6]}"><div class="ph concrete">${i[5]?`<span class="tag">${i[5]}</span>`:''}
-  <img loading="lazy" src="https://images.unsplash.com/${i[4]}?w=700&q=75&auto=format&fit=crop" alt="${i[1]}"></div>
-  <h4>${i[0]}</h4><div class="jp">${i[1]}</div><div class="meta">${i[6]} ｜ ${i[2]}</div>
-  <div class="price">${i[7]?'SOLD OUT':i[3]+' <small>税込</small>'}</div></a>`).join('');
-document.getElementById('filters').addEventListener('click',e=>{
-  const b=e.target.closest('.chip');if(!b)return;
-  e.currentTarget.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));
-  document.querySelectorAll('#grid .card').forEach(c=>c.style.display=(!b.dataset.cat||c.dataset.cat===b.dataset.cat)?'':'none');
-});
-document.querySelectorAll('svg.w').forEach(draw);
-
-/* simulator */
-const st={wall:'concrete',place:'受付・エントランス',tone:'pampas'};
-const toneName={pampas:'生成り',smoke:'スモーキーブルー',green:'グリーン',brown:'ブラウン'};
-const fitNote={
-  concrete:{pampas:'無機質な壁に、やわらかな穂がよく映えます。',smoke:'同系色でまとめる、静かで都会的な組み合わせ。',green:'グレーに緑が入ると、空間がやわらぎます。',brown:'深い色が壁に沈みすぎないよう、白い花を足します。'},
-  white:{pampas:'白い壁には、少し濃いめの生成りで輪郭を出します。',smoke:'白にいちばん映える色。きりっとした印象に。',green:'明るく自然な、いちばん合わせやすい組み合わせ。',brown:'コントラストがはっきり出る、主役になる一枚。'},
-  wood:{pampas:'木の色となじむ、あたたかい組み合わせ。',smoke:'木のあたたかさに、涼しい色でめりはりを。',green:'木と緑。落ち着いた自然な雰囲気に。',brown:'同系色なので、白い花材を多めに入れます。'},
-  dark:{pampas:'濃い壁に、明るい穂が浮かび上がります。',smoke:'壁になじむので、白や生成りを多めに混ぜます。',green:'落ち着いた、ホテルのような雰囲気に。',brown:'重くなりすぎないよう、明るい実ものを足します。'}
-};
-const size={'受付・エントランス':'Lサイズ（直径 約45cm）','会議室・応接室':'Mサイズ（直径 約35cm）','リビング':'Mサイズ（直径 約35cm）','玄関':'Sサイズ（直径 約25cm）'};
-function reco(){
-  document.getElementById('rt').textContent=`${st.place} × ${toneName[st.tone]} ｜ ${size[st.place]}`;
-  document.getElementById('rp').textContent=fitNote[st.wall][st.tone];
+/* ---------- toast / cart ---------- */
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2600)}
+const cart=[];let lastFocus=null;
+function updCart(){
+  $('#count').textContent=cart.length;
+  $('#cartList').innerHTML=cart.length?cart.map((c,i)=>`<li><span>${c.name}<br><span class="mono">${yen(c.price)}</span></span><button class="rm" data-i="${i}" aria-label="${c.name} を削除">削除</button></li>`).join(''):'<li style="border:0;color:var(--ink2)">カートは空です。</li>';
+  $('#cartTotal').textContent=yen(cart.reduce((a,c)=>a+c.price,0)+(cart.length&&$('#cartAroma').checked?1650:0));
 }
-function bind(id,fn){
-  const box=document.getElementById(id);
-  box.addEventListener('click',e=>{
-    const b=e.target.closest('.chip');if(!b)return;
-    box.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));
-    fn(b);reco();
+$('#cartAroma').addEventListener('change',updCart);
+function add(name,price){cart.push({name,price});updCart();toast(`「${name}」をカートに入れました`)}
+function openCart(){lastFocus=document.activeElement;$('#cart').classList.add('open');$('#cart').setAttribute('aria-hidden','false');$('#bd').hidden=false;$('#cartClose').focus()}
+function closeCart(){$('#cart').classList.remove('open');$('#cart').setAttribute('aria-hidden','true');$('#bd').hidden=true;lastFocus&&lastFocus.focus()}
+$('#cartBtn').onclick=openCart;$('#cartClose').onclick=closeCart;$('#bd').onclick=closeCart;
+$('#cartList').onclick=e=>{const b=e.target.closest('.rm');if(b){cart.splice(+b.dataset.i,1);updCart()}};
+$('#checkout').onclick=()=>toast(cart.length?'案の段階のため、購入手続きにはまだ進めません':'カートは空です');
+updCart();
+
+/* ---------- menu ---------- */
+function openMenu(){lastFocus=document.activeElement;$('#menu').hidden=false;$('#menuBtn').setAttribute('aria-expanded','true');document.body.style.overflow='hidden';$('#menuClose').focus()}
+function closeMenu(){$('#menu').hidden=true;$('#menuBtn').setAttribute('aria-expanded','false');document.body.style.overflow='';lastFocus&&lastFocus.focus()}
+$('#menuBtn').onclick=openMenu;$('#menuClose').onclick=closeMenu;
+$$('#menu nav a').forEach(a=>a.addEventListener('click',()=>{$('#menu').hidden=true;$('#menuBtn').setAttribute('aria-expanded','false');document.body.style.overflow=''}));
+addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('#menu').hidden)closeMenu();else if($('#cart').classList.contains('open'))closeCart()}});
+
+/* ---------- header / hero ---------- */
+const hd=$('#hd'),heroImg=$('#heroImg img');
+function onScroll(){hd.classList.toggle('on',scrollY>innerHeight*.72);if(!reduce&&scrollY<innerHeight*1.2)heroImg.style.transform=`rotate(${(scrollY*.018).toFixed(2)}deg) scale(${(1+scrollY*.00012).toFixed(4)})`}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- collection ---------- */
+const U=id=>`https://images.unsplash.com/${id}?w=800&q=75&auto=format&fit=crop`;
+const items=[
+  ['Autumn Hush','実ものと枯れ葉のリース','直径 約40cm',13200,'photo-1731412895496-3af872d3dc8c','一点もの','リース',0,'brown'],
+  ['Green Air','風にゆれるグリーンの吊りリース','直径 約30cm',8800,'photo-1543208029-ea9db84a6e8f','新作','フライングリース',0,'green'],
+  ['Wheat Moon','ユーカリと麦のハーフリース','直径 約35cm',11000,'photo-1771400057423-2d21e9b5a95c','新作','ハーフリース',0,'pampas'],
+  ['Forest Door','木の実とグリーンのリース','直径 約30cm',9900,'photo-1515747027540-70ade91bab3f','','リース',1,'smoke'],
+  ['Eucalyptus','ユーカリだけの大きなリース','直径 約45cm',16500,'photo-1544376936-e15fd353d311','受注制作','リース',0,'green'],
+  ['Field Note','穂を束ねたスワッグ','長さ 約60cm',7700,'photo-1615482531489-4bc7bc3da63a','','スワッグ',0,'pampas']
+];
+$('#grid').innerHTML=items.map((i,k)=>`
+  <article class="card rv${i[7]?' sold':''}" data-cat="${i[6]}" id="item${k}">
+    <div class="ph">${i[5]?`<span class="tag mono">${i[5]}</span>`:''}<img loading="lazy" src="${U(i[4])}" alt="${i[1]}"><span class="idx" aria-hidden="true">${String(k+1).padStart(2,'0')}</span></div>
+    <h3>${i[0]}</h3><div class="jp">${i[1]}</div><div class="meta mono">${i[6]} ／ ${i[2]}</div>
+    <div class="buy">${i[7]
+      ?`<span class="price">SOLD OUT</span><a class="add" href="#order" style="display:inline-flex;align-items:center">近い雰囲気で相談</a>`
+      :`<span class="price">${yen(i[3])} <small>税込</small></span><button class="add" data-k="${k}">＋ カートに入れる</button>`}</div>
+  </article>`).join('');
+$('#grid').addEventListener('click',e=>{const b=e.target.closest('button.add');if(b){const i=items[+b.dataset.k];add(i[0]+'｜'+i[1],i[3])}});
+$('#filters').addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;
+  $$('#filters .chip').forEach(c=>c.setAttribute('aria-pressed',c===b));
+  const cat=b.dataset.cat;$('#grid').classList.toggle('flat',!!cat);
+  $$('#grid .card').forEach(c=>{c.hidden=!!cat&&c.dataset.cat!==cat;c.classList.add('in')});
+});
+
+/* ---------- styling simulator ---------- */
+const CM=3.1; /* 1cm = 3.1 単位（壁の幅 約2.6m） */
+const PLACES={
+  reception:{label:'受付・エントランス',rec:'L',x:400,y:140,floor:'#585b5c',f:`<rect x="140" y="262" width="520" height="258" fill="#d5cec0"/><rect x="128" y="250" width="544" height="16" fill="#8b7257"/><rect x="140" y="266" width="520" height="10" fill="rgba(0,0,0,.12)"/><g stroke="rgba(0,0,0,.09)"><line x1="270" y1="276" x2="270" y2="520"/><line x1="400" y1="276" x2="400" y2="520"/><line x1="530" y1="276" x2="530" y2="520"/></g><text x="400" y="404" text-anchor="middle" font-family="DM Mono,monospace" font-size="13" letter-spacing="7" fill="rgba(0,0,0,.34)">RECEPTION</text>`},
+  meeting:{label:'会議室・応接室',rec:'M',x:400,y:170,floor:'#585b5c',f:`<rect x="225" y="268" width="112" height="140" rx="14" fill="#3a3531"/><rect x="463" y="268" width="112" height="140" rx="14" fill="#3a3531"/><rect x="150" y="330" width="500" height="14" fill="#8b7257"/><rect x="182" y="344" width="12" height="176" fill="#6f5a45"/><rect x="606" y="344" width="12" height="176" fill="#6f5a45"/>`},
+  living:{label:'リビング',rec:'M',x:390,y:180,floor:'#7a6652',f:`<rect x="150" y="318" width="480" height="160" rx="22" fill="#b9b0a0"/><rect x="124" y="380" width="46" height="124" rx="18" fill="#c4bcad"/><rect x="610" y="380" width="46" height="124" rx="18" fill="#c4bcad"/><rect x="146" y="410" width="488" height="84" rx="18" fill="#cfc8ba"/><rect x="170" y="494" width="10" height="26" fill="#3a3531"/><rect x="600" y="494" width="10" height="26" fill="#3a3531"/><rect x="212" y="350" width="92" height="74" rx="14" fill="#8a9496" transform="rotate(-8 258 387)"/><line x1="718" y1="520" x2="718" y2="226" stroke="#3a3531" stroke-width="4"/><path d="M688 228L748 228L734 174L702 174Z" fill="#e9dfc9"/>`},
+  entrance:{label:'玄関',rec:'S',x:370,y:190,floor:'#7a6652',f:`<rect x="600" y="40" width="200" height="480" fill="rgba(0,0,0,.2)"/><rect x="614" y="54" width="186" height="466" fill="rgba(255,255,255,.07)"/><circle cx="636" cy="300" r="7" fill="#c9a86a"/><rect x="220" y="312" width="300" height="12" fill="#8b7257"/><rect x="236" y="324" width="8" height="196" fill="#6f5a45"/><rect x="496" y="324" width="8" height="196" fill="#6f5a45"/><rect x="236" y="430" width="268" height="6" fill="#6f5a45"/><path d="M446 312q-16-32 0-56h26q16 24 0 56z" fill="#d9cdb8" stroke="rgba(0,0,0,.18)"/><g stroke="#8a7a5c" stroke-width="1.6" fill="none"><path d="M456 256q-8-40-26-58"/><path d="M460 256q2-44 16-66"/><path d="M464 256q14-30 30-36"/></g>`}
+};
+const SIZES={ring:{S:25,M:35,L:45},crescent:{S:25,M:35,L:45},swag:{S:40,M:50,L:60}};
+const PRICE={ring:{S:7700,M:11000,L:16500},crescent:{S:6600,M:9900,L:14300},swag:{S:5500,M:7700,L:9900}};
+const SHAPE={ring:'リース',crescent:'ハーフリース',swag:'スワッグ'};
+const TONE={pampas:['生成り',.78],smoke:['スモーキーブルー',.40],green:['グリーン',.44],brown:['ブラウン',.30]};
+const LIGHT={day:'昼の自然光',eve:'夕方',night:'夜の照明'};
+const S={place:'reception',wallKey:'concrete',wall:'#7d8789',photo:null,light:'day',shape:'ring',tone:'pampas',size:'L',x:400,y:140};
+const lum=h=>{const n=parseInt(h.slice(1),16),a=[n>>16&255,n>>8&255,n&255].map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return Math.sqrt(.2126*a[0]+.7152*a[1]+.0722*a[2])};
+let drawn='';
+function render(full){
+  const pl=PLACES[S.place],cm=SIZES[S.shape][S.size],D=cm*CM;
+  const box=S.shape==='swag'?D*220/195:D*1.375;
+  /* wall */
+  $('#wall').setAttribute('fill',S.wall);
+  $('#texNoise').setAttribute('opacity',S.photo?0:(S.wallKey==='white'?.07:S.wallKey==='dark'?.1:.16));
+  $('#texCloud').setAttribute('opacity',S.photo?0:(S.wallKey==='concrete'||S.wallKey==='custom'?.22:S.wallKey==='white'?.06:.1));
+  $('#texWood').setAttribute('opacity',!S.photo&&S.wallKey==='wood'?1:0);
+  $('#photo').style.display=S.photo?'':'none';
+  $('#room').style.display=S.photo?'none':'';
+  if(full){$('#furn').innerHTML=pl.f;$('#floor').setAttribute('fill',pl.floor)}
+  /* light */
+  $('#lDay').style.display=S.light==='day'?'':'none';$('#lEve').style.display=S.light==='eve'?'':'none';$('#lNight').style.display=S.light==='night'?'':'none';
+  /* wreath */
+  const w=$('#simw'),key=S.tone+S.shape;
+  if(key!==drawn){draw(w,S.tone,S.shape,5,2);drawn=key}
+  w.setAttribute('width',box);w.setAttribute('height',box);w.setAttribute('x',S.x-box/2);w.setAttribute('y',S.y-box/2);
+  /* dimension */
+  const dark=S.photo?true:lum(S.wall)<.55,col=dark?'rgba(255,255,255,.85)':'rgba(25,24,23,.7)';
+  const dy=S.y+(S.shape==='swag'?box*.5:D*.5+box*.14)+10;
+  const g=$('#dim');g.setAttribute('transform',`translate(${S.x} ${dy})`);
+  $('#dimL').setAttribute('x1',-D/2);$('#dimL').setAttribute('x2',D/2);
+  $('#dimA').setAttribute('x1',-D/2);$('#dimA').setAttribute('x2',-D/2);$('#dimA').setAttribute('y1',-4);$('#dimA').setAttribute('y2',4);
+  $('#dimB').setAttribute('x1',D/2);$('#dimB').setAttribute('x2',D/2);$('#dimB').setAttribute('y1',-4);$('#dimB').setAttribute('y2',4);
+  if(S.shape==='swag'){$('#dimL').setAttribute('x1',-30);$('#dimL').setAttribute('x2',30);$('#dimA').setAttribute('x1',-30);$('#dimA').setAttribute('x2',-30);$('#dimB').setAttribute('x1',30);$('#dimB').setAttribute('x2',30)}
+  ['dimL','dimA','dimB'].forEach(i=>$('#'+i).setAttribute('stroke',col));
+  $('#dimT').setAttribute('fill',col);$('#dimT').textContent=(S.shape==='swag'?'長さ 約':'直径 約')+cm+'cm';
+  $('#stageCap').textContent=S.photo?'お客さまの壁の写真':pl.label+' ／ 幅 約2.6m の壁';
+  /* size buttons */
+  $$('#cSize button').forEach(b=>{b.querySelector('span').textContent=(S.shape==='swag'?'長さ ':'直径 ')+SIZES[S.shape][b.dataset.v]+'cm'});
+  $('#sizeRec').textContent='おすすめ：'+pl.rec;
+  /* suggestion */
+  const tl=TONE[S.tone][1],c=S.photo?.25:Math.abs(lum(S.wall)-tl),order='SML',d=order.indexOf(S.size)-order.indexOf(pl.rec);
+  let score=3;const notes=[];
+  if(S.photo){notes.push('お写真の壁に合わせて、色味を細かく調整してご提案します。')}
+  else if(c>.33){score++;notes.push('壁とのコントラストがはっきり出ます。少し離れても輪郭が見える組み合わせです。')}
+  else if(c<.13){score--;notes.push('壁の色に近い色味です。白い花材を多めに入れて、輪郭を出すことをおすすめします。')}
+  else notes.push('壁になじみつつ、ほどよく目に入る組み合わせです。');
+  if(d===0){score++;notes.push(`${pl.label}には ${S.size} サイズがちょうどよい大きさです。`)}
+  else if(d<0){if(d<-1)score--;notes.push(`${pl.label}には少し小さめです。${pl.rec} サイズにすると、離れた位置からも目に入ります。`)}
+  else notes.push(`${pl.label}には大きめです。壁の主役にしたいときに向きます。`);
+  if(S.light==='night'&&tl<.5){score--;notes.push('夜の照明では暗い色味が沈みやすいので、明るい花材を足します。')}
+  else if(S.light==='eve'&&(S.tone==='pampas'||S.tone==='brown'))notes.push('夕方の光では、この色味がいっそうあたたかく見えます。');
+  score=Math.max(1,Math.min(5,score));
+  $('#rT').textContent=`${pl.label} × ${TONE[S.tone][0]}の${SHAPE[S.shape]} ${S.size}`;
+  $('#rD').innerHTML=[1,2,3,4,5].map(i=>`<i class="${i<=score?'f':''}"></i>`).join('')+`<span class="mono">相性 ${score} / 5</span>`;
+  $('#rL').innerHTML=notes.map(n=>`<li>${n}</li>`).join('');
+  $('#rP').textContent=yen(PRICE[S.shape][S.size])+'〜';
+}
+function bind(id,key,full){
+  $(id).addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    $$(id+' button').forEach(c=>c.setAttribute('aria-pressed',c===b));
+    S[key]=b.dataset.v;
+    if(key==='place'){S.x=PLACES[S.place].x;S.y=PLACES[S.place].y;S.size=PLACES[S.place].rec;$$('#cSize button').forEach(c=>c.setAttribute('aria-pressed',c.dataset.v===S.size))}
+    if(key==='wallKey'){S.wall=b.dataset.c;$('#wallPick').value=S.wall}
+    render(full);
   });
 }
-bind('walls',b=>{st.wall=b.dataset.key;document.getElementById('stage').style.backgroundColor=b.dataset.wall;});
-bind('places',b=>{st.place=b.dataset.place;});
-bind('tones',b=>{st.tone=b.dataset.tone;const s=document.getElementById('simw');s.dataset.tone=st.tone;draw(s);});
-reco();
+bind('#cPlace','place',true);bind('#cWall','wallKey');bind('#cLight','light');bind('#cShape','shape');bind('#cTone','tone');bind('#cSize','size');
+$('#wallPick').addEventListener('input',e=>{S.wall=e.target.value;S.wallKey='custom';$$('#cWall button').forEach(c=>c.setAttribute('aria-pressed','false'));render()});
+$('#wallPhoto').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const rd=new FileReader();rd.onload=()=>{S.photo=rd.result;$('#photo').setAttribute('href',S.photo);$('#photoOff').hidden=false;S.x=400;S.y=230;render();toast('写真を読み込みました。リースを動かして位置を合わせてください')};rd.readAsDataURL(f);
+});
+$('#photoOff').onclick=()=>{S.photo=null;$('#photoOff').hidden=true;$('#wallPhoto').value='';S.x=PLACES[S.place].x;S.y=PLACES[S.place].y;render()};
+$('#resetPos').onclick=()=>{S.x=S.photo?400:PLACES[S.place].x;S.y=S.photo?230:PLACES[S.place].y;render()};
+/* drag + keyboard */
+const scene=$('#scene'),wg=$('#wg');let drag=null;
+const pt=e=>{const p=scene.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(scene.getScreenCTM().inverse())};
+const clamp=()=>{S.x=Math.max(70,Math.min(730,S.x));S.y=Math.max(70,Math.min(S.photo?530:440,S.y))};
+wg.addEventListener('pointerdown',e=>{const p=pt(e);drag={x:p.x-S.x,y:p.y-S.y};wg.setPointerCapture(e.pointerId);e.preventDefault()});
+wg.addEventListener('pointermove',e=>{if(!drag)return;const p=pt(e);S.x=p.x-drag.x;S.y=p.y-drag.y;clamp();render()});
+['pointerup','pointercancel'].forEach(t=>wg.addEventListener(t,()=>drag=null));
+wg.addEventListener('keydown',e=>{const m={ArrowLeft:[-10,0],ArrowRight:[10,0],ArrowUp:[0,-10],ArrowDown:[0,10]}[e.key];if(!m)return;e.preventDefault();S.x+=m[0];S.y+=m[1];clamp();render()});
+render(true);
+/* suggestion → order / similar */
+$('#toOrder').onclick=()=>{
+  const pl=PLACES[S.place];
+  $('#fMsg').value=`【Styling で選んだ内容】\n場所：${S.photo?'写真の壁（別途お送りします）':pl.label}\n壁：${S.photo?'写真のとおり':({concrete:'コンクリート',white:'白い壁',wood:'木の壁',dark:'濃い色の壁',custom:'その他の色 '+S.wall})[S.wallKey]}\n光：${LIGHT[S.light]}\nかたち：${SHAPE[S.shape]}\n色味：${TONE[S.tone][0]}\nサイズ：${S.size}（約${SIZES[S.shape][S.size]}cm）\n`;
+  $('#fUse').value=(S.place==='reception'||S.place==='meeting')?'オフィス・店舗に飾る':'自宅に飾る';
+  $('#order').scrollIntoView();setTimeout(()=>$('#fName').focus({preventScroll:true}),reduce?0:700);toast('選んだ内容をフォームに入れました');
+};
+$('#toSimilar').onclick=()=>{
+  const want=SHAPE[S.shape],k=items.findIndex(i=>!i[7]&&i[8]===S.tone&&i[6]===want);
+  const j=k>=0?k:items.findIndex(i=>!i[7]&&i[8]===S.tone);const el=$('#item'+(j>=0?j:0));
+  $$('#filters .chip').forEach((c,n)=>c.setAttribute('aria-pressed',n===0));$('#grid').classList.remove('flat');$$('#grid .card').forEach(c=>c.hidden=false);
+  el.scrollIntoView({block:'center'});el.style.outline='2px solid var(--rust)';el.style.outlineOffset='10px';setTimeout(()=>el.style.outline='',2600);
+};
+
+/* ---------- subscription ---------- */
+const PLAN={S:26400,M:39600,L:66000};
+const AROMA=1100;let scent='季節におまかせ';
+function planSum(){const v=$('input[name=plan]:checked').value,a=$('#aroma').checked,t=PLAN[v]+(a?AROMA*4:0);$('#planSum').innerHTML=`<b style="font-family:var(--en);font-size:26px;font-weight:400">${v}</b>　年 ${yen(t)}（1回あたり ${yen(t/4)}）${a?'／ 香りつき：'+scent:''} ／ 初回のお届け：12月`}
+$$('input[name=plan]').forEach(r=>r.addEventListener('change',planSum));
+$('#aroma').addEventListener('change',e=>{$('#cScent').hidden=!e.target.checked;planSum()});
+$('#cScent').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('#cScent button').forEach(c=>c.setAttribute('aria-pressed',c===b));scent=b.dataset.v;planSum()});
+planSum();
+$('#planAdd').onclick=()=>{const v=$('input[name=plan]:checked').value,a=$('#aroma').checked;add('季節の定期便 '+v+'（年4回）'+(a?'＋香り（'+scent+'）':''),PLAN[v]+(a?AROMA*4:0))};
+
+/* ---------- form ---------- */
+$('#orderForm').addEventListener('submit',e=>{
+  e.preventDefault();const f=e.target;
+  if(!f.name.value.trim()){f.name.focus();return toast('お名前を入力してください')}
+  if(!/^\S+@\S+\.\S+$/.test(f.email.value)){f.email.focus();return toast('メールアドレスを確認してください')}
+  toast('案の段階のため、まだ送信はされません');
+});
+
+/* ---------- reveal ---------- */
+if('IntersectionObserver' in window&&!reduce){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  $$('.rv').forEach(el=>io.observe(el));
+}else $$('.rv').forEach(el=>el.classList.add('in'));
 </script>
 </body>
 </html>
