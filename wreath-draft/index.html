@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EMIGATE — Dry Flower Wreath（案 v8）</title>
+<title>EMIGATE — Dry Flower Wreath（案 v9）</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400&family=Pinyon+Script&family=Shippori+Mincho:wght@400;500;600&family=Yuji+Syuku&family=Zen+Old+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
@@ -436,6 +436,42 @@ footer{background:#2f2d2e}
 .hero-img:before{border-color:rgba(47,45,46,.42)}
 .hero .hana{color:#a8605f}
 form input,form select,form textarea,.ctl select{background:rgba(255,255,255,.45)}
+
+/* ===== v9：深いコンクリートグレーを地の色に（文字は生成り） ===== */
+:root{--bone:#5d6264;--paper:#52575a;--ink:#f0ebe3;--ink2:#cdc8c0;--rust:#e0aaa5;--line:rgba(240,235,227,.22);--lineL:rgba(240,235,227,.24);--dk:#2c2f31;--iv:#f0ebe3}
+body{background-color:var(--bone)}
+.hero{background:radial-gradient(115% 95% at 70% 36%,#73797b 0%,#5c6163 50%,#44484a 100%)}
+.hd.on{background:rgba(74,79,82,.93)}
+.ghost{-webkit-text-stroke:1px rgba(240,235,227,.13)}
+.hero-img:before{border-color:rgba(240,235,227,.5)}
+.hero .hana,.hana{color:#ecb7b1}
+footer .hana{color:#ecb7b1}
+/* 濃い欄 */
+.subsc,.mq{background:#3a3d40;color:var(--iv)}
+footer{background:var(--dk);color:var(--iv)}
+.ov{background:var(--dk);color:var(--iv)}
+.res{background:var(--dk);color:var(--iv)}
+/* 明るいボタン・選択中の表示は生成り地に濃い文字 */
+.btn.light,.hero .btn.light{background:var(--iv);color:var(--dk);border-color:var(--iv)}
+.btn.light:hover,.hero .btn.light:hover,.btn.solid:hover{background:var(--rust);border-color:var(--rust);color:var(--dk)}
+.btn.solid,.chip[aria-pressed=true],.seg button[aria-pressed=true],.add:hover,.btn:hover{color:var(--dk)}
+.seg button[aria-pressed=true] span{color:#5d6264}
+.plan:has(input:checked),.subsc .chip[aria-pressed=true]{background:var(--iv);color:var(--dk);border-color:var(--iv)}
+.btn.ghostL:hover,.hero .btn.ghostL:hover{background:var(--iv);color:var(--dk);border-color:var(--iv)}
+.count,.draft,.th[aria-pressed=true] span{color:var(--dk)}
+.toast{color:var(--dk)}
+.tag,.th span{background:var(--dk);color:var(--iv)}
+.th[aria-pressed=true] span{background:var(--rust)}
+.idx{color:#fff;mix-blend-mode:normal;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+/* 入力欄 */
+form input,form select,form textarea,.ctl select{background:rgba(0,0,0,.16);color:var(--iv);border-color:var(--line)}
+::placeholder{color:rgba(240,235,227,.5)}
+option{color:#2c2f31;background:#fff}
+.tog input{accent-color:var(--rust)}
+.ph{background:#4a4e51}
+/* 差し色：パンパスの金茶 */
+:root{--rust:#d8ba8a}
+.hero .hana,.hana,footer .hana{color:#e3c896}
 </style>
 </head>
 <body>
@@ -471,7 +507,7 @@ form input,form select,form textarea,.ctl select{background:rgba(255,255,255,.45
   <div class="ghost" aria-hidden="true">Wreath</div>
   <div class="hero-img" id="heroImg"><div class="in"><img src="https://images.unsplash.com/photo-1771400284343-9ed58477317f?w=1200&q=80&auto=format&fit=crop" alt="パンパスグラスを束ねたドライフラワーのフープリース"></div><svg class="badge" viewBox="0 0 132 132" aria-hidden="true"><defs><path id="bp" d="M66 66m-52 0a52 52 0 1 1 104 0a52 52 0 1 1-104 0"/></defs><text><textPath href="#bp">Dry flower wreath ✳ handmade by Nacchan ✳ </textPath></text></svg></div>
   <h1><span>笑う門には福来る</span><span>その門には<em class="hana">花</em>がある</span></h1>
-  <div class="hero-meta mono">N°08 — Winter 2026<br>Dry flower wreath &amp; swag</div>
+  <div class="hero-meta mono">N°09 — Winter 2026<br>Dry flower wreath &amp; swag</div>
   <div class="hero-copy">
     <p>玄関に、受付に。人を迎える場所へ、ドライフラワーのリースをひとつ。その壁の色と光にあわせて、一点ずつ束ねます。</p>
     <div class="row">
@@ -747,7 +783,7 @@ form input,form select,form textarea,.ctl select{background:rgba(255,255,255,.45
   </div>
 </aside>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<div class="draft" id="draft"><span>案 v8：店名・価格・販売日・作品名は仮。写真はフリー素材のイメージです</span><button aria-label="この表示を閉じる" onclick="this.parentNode.remove()">✕</button></div>
+<div class="draft" id="draft"><span>案 v9：店名・価格・販売日・作品名は仮。写真はフリー素材のイメージです</span><button aria-label="この表示を閉じる" onclick="this.parentNode.remove()">✕</button></div>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
