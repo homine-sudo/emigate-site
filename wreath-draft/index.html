@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EMIGATE — Dry Flower Wreath（案 v4）</title>
+<title>EMIGATE — Dry Flower Wreath（案 v8）</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400&family=Pinyon+Script&family=Shippori+Mincho:wght@400;500;600&family=Yuji+Syuku&family=Zen+Old+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js')</script>
 <style>
 :root{
@@ -313,6 +313,129 @@ footer{background:var(--ink);color:var(--bone);padding:70px 0 26px;overflow:hidd
   *{animation:none!important;scroll-behavior:auto!important}
   .js .rv{opacity:1;transform:none;transition:none}
 }
+
+/* ===== v6：静かで洒落た雰囲気（グレージュ・墨・くすんだテラコッタ） ===== */
+:root{--ink:#1c1b1a;--ink2:#625d55;--bone:#eeeae3;--paper:#e1dbd0;--rust:#a8623f;--line:rgba(28,27,26,.16)}
+body{font-weight:400}
+.sh .num{-webkit-text-stroke-color:var(--ink);opacity:.45}
+.subsc .sh .num{-webkit-text-stroke-color:var(--bone)}
+.sh{border-bottom-width:1px}
+.sh h2{font-weight:400;letter-spacing:-.01em}
+
+/* hero：細い枠に写真を掛ける */
+.hero{background:radial-gradient(120% 90% at 72% 40%,#3a3c3d 0%,#232425 55%,#161717 100%);--h1:clamp(25px,min(4vw,5.2svh),56px)}
+.hero-img{right:11vw;top:50%;width:min(60svh,33vw);aspect-ratio:3/4;transform:translateY(-47%)}
+.hero-img:before{content:"";position:absolute;inset:0;border:1px solid rgba(238,234,227,.55);transform:translate(16px,16px);pointer-events:none}
+.hero-img .in{width:100%;height:100%;overflow:hidden}
+.hero-img img{-webkit-mask-image:none;mask-image:none;filter:contrast(1.04) saturate(.9)}
+.badge{position:absolute;right:-54px;top:-54px;width:132px;height:132px;animation:spin 36s linear infinite}
+.badge text{font-family:var(--mono);font-size:9.6px;letter-spacing:2.6px;fill:#eeeae3;text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero h1{font-weight:500;top:15svh;letter-spacing:.3em;line-height:1.9}
+.hero h1 span{display:block}
+.ghost{font-size:27vw;bottom:-6vw;-webkit-text-stroke:1px rgba(238,234,227,.16)}
+.hero-copy{left:calc(var(--pad) + var(--h1)*4.4);bottom:8svh}
+.hero-meta{top:auto;bottom:30px;right:calc(var(--pad) + 44px)}
+@media(max-width:760px){
+  .hero{--h1:min(6.8vw,4.3svh)}
+  .hero-img{right:9vw;top:14svh;width:54vw;transform:none}
+  .hero-img:before{transform:translate(10px,10px)}
+  .badge{width:92px;height:92px;right:-26px;top:-40px}
+  .hero h1{top:14svh}
+  .hero-copy{left:var(--pad)}
+  .ghost{font-size:52vw;bottom:25svh}
+}
+.script{font-family:"Pinyon Script","Snell Roundhand",cursive;font-size:60px;line-height:1.1;font-style:normal;letter-spacing:0;color:var(--ink)}
+.sign{margin-bottom:0!important}
+.season img{filter:saturate(.95);transition:transform .8s}
+.season:hover img{filter:saturate(.95);transform:scale(1.03)}
+.hero h1,.big,.fcopy{font-family:"Zen Old Mincho",var(--jp);font-weight:400}
+.hana{font-style:normal;color:var(--rust);font-family:"Yuji Syuku","Zen Old Mincho",serif;font-size:1.32em;line-height:1;letter-spacing:.08em}
+.hero h1 .hana{display:inline-block;margin:.08em 0 .02em}
+.hero .hana,footer .hana{color:#d98c5f}
+.pic2{aspect-ratio:4/5;overflow:hidden}
+.pic2 img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.03)}
+.fcopy{font-size:clamp(15px,1.9vw,22px);letter-spacing:.34em;margin-top:34px;opacity:.9}
+/* しつらえ：実写の合成 */
+.stage{aspect-ratio:3/2;background:#2a2c2e;user-select:none}
+#bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .6s}
+.lt{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .6s}
+.stage[data-light=eve] #bg{filter:sepia(.42) saturate(1.25) brightness(.9)}
+.stage[data-light=eve] #ltE{opacity:1}
+.stage[data-light=night] #bg{filter:brightness(.4) saturate(.8)}
+.stage[data-light=night] #ltN{opacity:1}
+#ltE{background:radial-gradient(110% 90% at 96% 92%,rgba(255,160,80,.5),rgba(255,160,80,0) 62%);mix-blend-mode:soft-light}
+#ltN{background:radial-gradient(60% 70% at 84% 46%,rgba(255,196,120,.42),rgba(255,196,120,0) 70%);mix-blend-mode:screen}
+#wg{position:absolute;transform:translate(-50%,-50%);cursor:grab;touch-action:none;line-height:0}
+#wg:active{cursor:grabbing}
+#wimg{width:100%;display:block;pointer-events:none;filter:var(--wf,brightness(1)) drop-shadow(.35em .6em .5em rgba(0,0,0,.45));transition:filter .6s}
+#wimg.raw{border-radius:50%}
+.stage[data-light=eve]{--wf:sepia(.3) brightness(.94)}
+.stage[data-light=night]{--wf:brightness(.52) saturate(.85)}
+.dimx{position:absolute;left:50%;top:100%;transform:translateX(-50%);border-top:1px solid rgba(255,255,255,.95);color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.9);font-family:var(--mono);font-size:10.5px;line-height:1.6;letter-spacing:.06em;text-align:center;white-space:nowrap;padding-top:2px;pointer-events:none}
+.dimx:before,.dimx:after{content:"";position:absolute;top:-4px;width:1px;height:7px;background:rgba(255,255,255,.95)}
+.dimx:before{left:0}.dimx:after{right:0}
+.ld{position:absolute;left:12px;top:10px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.thumbs.sq{grid-template-columns:repeat(4,1fr)}
+.th{position:relative;padding:0;border:1px solid var(--line);aspect-ratio:3/2;overflow:hidden;background:var(--bone);min-height:56px}
+.thumbs.sq .th{aspect-ratio:1}
+.th img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.th:hover img{transform:scale(1.06)}
+.th span{position:absolute;left:0;bottom:0;background:var(--bone);font-size:11px;line-height:1.5;padding:2px 8px;letter-spacing:.04em}
+.th[aria-pressed=true]{outline:3px solid var(--rust);outline-offset:-3px}
+.th[aria-pressed=true] span{background:var(--rust);color:#fff}
+.uprow{margin-top:10px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.ctl select{width:100%;min-height:48px;padding:8px 12px;border:1px solid var(--line);background:rgba(255,255,255,.35);border-radius:0}
+.ctl .lab{display:block;margin:10px 0 5px;color:var(--ink2)}
+
+/* ===== v7：やわらかく、女性的に（アイボリー・ブラウン・くすんだローズ） ===== */
+:root{--ink:#3b3230;--ink2:#7d706b;--bone:#f7f2ed;--paper:#f0e4dd;--rust:#b57f7d;--line:rgba(59,50,48,.14);--lineL:rgba(247,242,237,.26)}
+.btn,.chip,.add,.hd-b{border-radius:999px}
+.btn{padding:0 30px}
+.link{border-bottom:0;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+.seg{border-radius:14px;overflow:hidden}
+form input,form select,form textarea,.ctl select{border-radius:12px}
+.stage{border-radius:18px}
+.th{border-radius:10px}
+.ph{border-radius:8px}
+.res{border-radius:18px}
+.plan,.sum,.tog{border-radius:16px}
+.toast,.draft{border-radius:999px}
+.draft{left:12px;bottom:12px;padding-left:16px}
+.tag{border-radius:0 999px 999px 0}
+/* 最初の画面は明るく */
+.hd{color:var(--ink)}
+.hero{background:radial-gradient(110% 90% at 72% 38%,#f5e9e3 0%,#ecdcd4 50%,#e1ccc4 100%);color:var(--ink)}
+.hero h1{text-shadow:none}
+.hero-copy p{text-shadow:none}
+.hero-img .in{border-radius:999px 999px 0 0}
+.hero-img:before{border-color:rgba(59,50,48,.38);border-radius:999px 999px 0 0;transform:translate(14px,14px)}
+.badge text{fill:var(--ink)}
+.ghost{-webkit-text-stroke:1px rgba(59,50,48,.13)}
+.hero .hana{color:#b06c6b}
+footer .hana{color:#e3aaa6}
+.hero .btn.light{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.hero .btn.light:hover{background:var(--rust);border-color:var(--rust)}
+.hero .btn.ghostL:hover{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+/* 濃い色の欄は、黒ではなくあたたかい茶に */
+.subsc,.mq{background:#4b3b3a}
+footer{background:#3b3230}
+.pic2,.office .pic{border-radius:999px 999px 0 0}
+.script{color:var(--rust)}
+.ways .n,.steps li:before{color:var(--rust)}
+@media(min-width:761px){.hero-copy{max-width:min(24em,calc(100vw - var(--pad) - var(--h1)*4.4 - 11vw - min(60svh,33vw) - 28px))}}
+
+/* ===== v8：背景をグレーに（グレー・チャコール・くすんだローズ） ===== */
+:root{--ink:#2f2d2e;--ink2:#6c696a;--bone:#e6e4e1;--paper:#d7d5d2;--line:rgba(47,45,46,.16);--lineL:rgba(230,228,225,.26)}
+.hero{background:radial-gradient(110% 90% at 72% 38%,#dddbd8 0%,#c9c7c4 52%,#b5b3b0 100%)}
+.hd.on{background:rgba(230,228,225,.92)}
+.subsc,.mq{background:#434244}
+footer{background:#2f2d2e}
+.ghost{-webkit-text-stroke:1px rgba(47,45,46,.14)}
+.hero-img:before{border-color:rgba(47,45,46,.42)}
+.hero .hana{color:#a8605f}
+form input,form select,form textarea,.ctl select{background:rgba(255,255,255,.45)}
 </style>
 </head>
 <body>
@@ -346,11 +469,11 @@ footer{background:var(--ink);color:var(--bone);padding:70px 0 26px;overflow:hidd
 <main id="main">
 <div class="hero" id="top">
   <div class="ghost" aria-hidden="true">Wreath</div>
-  <div class="hero-img" id="heroImg"><img src="https://images.unsplash.com/photo-1771400284343-9ed58477317f?w=1200&q=80&auto=format&fit=crop" alt="パンパスグラスを束ねたドライフラワーのフープリース"></div>
-  <h1>時を重ねる花を、<br>壁にひとつ。</h1>
-  <div class="hero-meta mono">N°04 — Winter 2026<br>Dry flower wreath &amp; swag</div>
+  <div class="hero-img" id="heroImg"><div class="in"><img src="https://images.unsplash.com/photo-1771400284343-9ed58477317f?w=1200&q=80&auto=format&fit=crop" alt="パンパスグラスを束ねたドライフラワーのフープリース"></div><svg class="badge" viewBox="0 0 132 132" aria-hidden="true"><defs><path id="bp" d="M66 66m-52 0a52 52 0 1 1 104 0a52 52 0 1 1-104 0"/></defs><text><textPath href="#bp">Dry flower wreath ✳ handmade by Nacchan ✳ </textPath></text></svg></div>
+  <h1><span>笑う門には福来る</span><span>その門には<em class="hana">花</em>がある</span></h1>
+  <div class="hero-meta mono">N°08 — Winter 2026<br>Dry flower wreath &amp; swag</div>
   <div class="hero-copy">
-    <p>水やりのいらない、ドライフラワーのリースとスワッグ。オフィスにも、自宅にも。その壁の色と光にあわせて、一点ずつ束ねます。</p>
+    <p>玄関に、受付に。人を迎える場所へ、ドライフラワーのリースをひとつ。その壁の色と光にあわせて、一点ずつ束ねます。</p>
     <div class="row">
       <a class="btn light" href="#collection">リースを見る</a>
       <a class="btn ghostL" href="#fit">自分の壁で試す</a>
@@ -396,63 +519,36 @@ footer{background:var(--ink);color:var(--bone);padding:70px 0 26px;overflow:hidd
 <section class="fit" id="fit">
   <div class="wrap">
     <header class="sh rv"><span class="num" aria-hidden="true">02</span><h2>Styling</h2><p class="mono">空間にあわせる — 壁の上で試す</p></header>
-    <p class="lede">場所・壁・光を選ぶと、その空間に掛けたときの大きさと色の見え方を確かめられます。ご自分の壁の写真を使うこともできます。リースは指でつまんで動かせます。</p>
+    <p class="lede">実際の部屋の写真にリースを掛けて、大きさと色の見え方を確かめられます。ご自分の壁の写真でも試せます。リースは指でつまんで動かせます。</p>
     <div class="sim">
       <div class="stage-w">
-        <div class="stage">
-          <svg id="scene" viewBox="0 0 800 600" role="img" aria-label="リースを飾った部屋のイメージ">
-            <defs>
-              <filter id="noise" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0"/></filter>
-              <filter id="cloud" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".008" numOctaves="3" seed="9"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 -.25"/></filter>
-              <pattern id="pWood" width="46" height="600" patternUnits="userSpaceOnUse"><rect width="46" height="600" fill="none"/><line x1="45.5" y1="0" x2="45.5" y2="600" stroke="rgba(0,0,0,.22)"/><line x1="18" y1="0" x2="18" y2="600" stroke="rgba(255,255,255,.06)"/></pattern>
-              <linearGradient id="gDay" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".26"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
-              <radialGradient id="gEve" cx=".9" cy=".85" r=".95"><stop offset="0" stop-color="#ff9a4a" stop-opacity=".55"/><stop offset="1" stop-color="#ff9a4a" stop-opacity="0"/></radialGradient>
-              <radialGradient id="gLamp" cx=".82" cy=".42" r=".5"><stop offset="0" stop-color="#ffc57a" stop-opacity=".6"/><stop offset="1" stop-color="#ffc57a" stop-opacity="0"/></radialGradient>
-              <filter id="ws" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="7" dy="12" stdDeviation="7" flood-color="#000" flood-opacity=".38"/></filter>
-            </defs>
-            <rect id="wall" width="800" height="600" fill="#7d8789"/>
-            <rect id="texNoise" width="800" height="600" filter="url(#noise)" opacity=".16"/>
-            <rect id="texCloud" width="800" height="600" filter="url(#cloud)" opacity=".2"/>
-            <rect id="texWood" width="800" height="600" fill="url(#pWood)" opacity="0"/>
-            <image id="photo" width="800" height="600" preserveAspectRatio="xMidYMid slice" style="display:none"/>
-            <g id="room"><rect id="base" y="512" width="800" height="8" fill="rgba(255,255,255,.3)"/><rect id="floor" y="520" width="800" height="80" fill="#585b5c"/><g id="furn"></g></g>
-            <g id="wg" tabindex="0" role="button" aria-label="リース。ドラッグ、または矢印キーで位置を動かせます" filter="url(#ws)"><svg id="simw" x="300" y="80" width="200" height="200"></svg></g>
-            <g id="dim" font-family="DM Mono,monospace" font-size="13" text-anchor="middle"><line id="dimL" y1="0" y2="0" stroke-width="1"/><line id="dimA" stroke-width="1"/><line id="dimB" stroke-width="1"/><text id="dimT" y="18"></text></g>
-            <g id="lights" pointer-events="none">
-              <rect id="lDay" width="800" height="600" fill="url(#gDay)"/>
-              <g id="lEve" style="display:none"><rect width="800" height="600" fill="#3a2414" opacity=".16"/><rect width="800" height="600" fill="url(#gEve)"/></g>
-              <g id="lNight" style="display:none"><rect width="800" height="600" fill="#0b0e16" opacity=".52"/><rect width="800" height="600" fill="url(#gLamp)"/></g>
-            </g>
-          </svg>
+        <div class="stage" id="stage" data-light="day">
+          <img id="bg" alt="リースを飾る部屋の写真">
+          <div class="lt" id="ltE"></div><div class="lt" id="ltN"></div>
+          <div id="wg" tabindex="0" role="button" aria-label="リース。ドラッグ、または矢印キーで位置を動かせます"><img id="wimg" alt="" draggable="false"><span class="dimx" id="dim"></span></div>
+          <span class="ld mono" id="ld">読み込み中…</span>
         </div>
         <div class="stage-bar">
-          <span class="mono" id="stageCap">受付・エントランス ／ 幅 約3m の壁</span>
+          <span class="mono" id="stageCap"></span>
           <button class="link" id="resetPos" type="button">位置を戻す</button>
         </div>
       </div>
 
       <div class="ctl">
         <fieldset><legend class="mono"><span>1 — 飾る場所</span></legend>
-          <div class="chips" id="cPlace">
-            <button class="chip" aria-pressed="true" data-v="reception">受付・エントランス</button>
-            <button class="chip" aria-pressed="false" data-v="meeting">会議室・応接室</button>
-            <button class="chip" aria-pressed="false" data-v="living">リビング</button>
-            <button class="chip" aria-pressed="false" data-v="entrance">玄関</button>
-          </div>
-        </fieldset>
-        <fieldset><legend class="mono"><span>2 — 壁</span></legend>
-          <div class="chips" id="cWall">
-            <button class="chip" aria-pressed="true" data-v="concrete" data-c="#7d8789"><i style="background:#7d8789"></i>コンクリート</button>
-            <button class="chip" aria-pressed="false" data-v="white" data-c="#ece8e0"><i style="background:#ece8e0"></i>白い壁</button>
-            <button class="chip" aria-pressed="false" data-v="wood" data-c="#b0946f"><i style="background:#b0946f"></i>木の壁</button>
-            <button class="chip" aria-pressed="false" data-v="dark" data-c="#2f3944"><i style="background:#2f3944"></i>濃い色の壁</button>
-            <label class="chip" style="cursor:pointer;padding-left:6px"><input type="color" id="wallPick" value="#7d8789" class="swatch" style="width:30px;height:30px;min-height:0" aria-label="壁の色を自由に選ぶ">色を選ぶ</label>
-          </div>
-          <div style="margin-top:10px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+          <div class="thumbs" id="cScene"></div>
+          <div class="uprow">
             <label class="link" style="cursor:pointer;display:inline-flex;align-items:center">自分の壁の写真を使う<input type="file" id="wallPhoto" accept="image/*" class="sr"></label>
             <button class="link" id="photoOff" type="button" hidden>写真を外す</button>
           </div>
+          <div id="pwWrap" hidden>
+            <label class="lab mono" for="pw">写っている壁の幅（およそ）</label>
+            <select id="pw"><option value="150">1.5m くらい</option><option value="250" selected>2.5m くらい</option><option value="350">3.5m くらい</option><option value="500">5m くらい</option></select>
+          </div>
           <p class="hint">写真はこの画面の中だけで使われ、どこにも送信されません。</p>
+        </fieldset>
+        <fieldset><legend class="mono"><span>2 — 作品</span></legend>
+          <div class="thumbs sq" id="cWreath"></div>
         </fieldset>
         <fieldset><legend class="mono"><span>3 — 光</span></legend>
           <div class="chips" id="cLight">
@@ -461,26 +557,11 @@ footer{background:var(--ink);color:var(--bone);padding:70px 0 26px;overflow:hidd
             <button class="chip" aria-pressed="false" data-v="night">夜の照明</button>
           </div>
         </fieldset>
-        <fieldset><legend class="mono"><span>4 — かたち</span></legend>
-          <div class="chips" id="cShape">
-            <button class="chip" aria-pressed="true" data-v="ring">リース</button>
-            <button class="chip" aria-pressed="false" data-v="crescent">ハーフリース</button>
-            <button class="chip" aria-pressed="false" data-v="swag">スワッグ</button>
-          </div>
-        </fieldset>
-        <fieldset><legend class="mono"><span>5 — 色味</span></legend>
-          <div class="chips" id="cTone">
-            <button class="chip" aria-pressed="true" data-v="pampas"><i style="background:#d8c4a2"></i>生成り</button>
-            <button class="chip" aria-pressed="false" data-v="smoke"><i style="background:#5f6b7a"></i>スモーキーブルー</button>
-            <button class="chip" aria-pressed="false" data-v="green"><i style="background:#6f7d63"></i>グリーン</button>
-            <button class="chip" aria-pressed="false" data-v="brown"><i style="background:#7a563d"></i>ブラウン</button>
-          </div>
-        </fieldset>
-        <fieldset><legend class="mono"><span>6 — サイズ</span><span id="sizeRec"></span></legend>
+        <fieldset><legend class="mono"><span>4 — サイズ</span><span id="sizeRec"></span></legend>
           <div class="seg" id="cSize">
-            <button aria-pressed="false" data-v="S"><b>S</b><span></span></button>
-            <button aria-pressed="false" data-v="M"><b>M</b><span></span></button>
-            <button aria-pressed="true" data-v="L"><b>L</b><span></span></button>
+            <button aria-pressed="false" data-v="S"><b>S</b><span>直径 25cm</span></button>
+            <button aria-pressed="false" data-v="M"><b>M</b><span>直径 35cm</span></button>
+            <button aria-pressed="true" data-v="L"><b>L</b><span>直径 45cm</span></button>
           </div>
         </fieldset>
         <div class="res" aria-live="polite">
@@ -610,12 +691,13 @@ footer{background:var(--ink);color:var(--bone);padding:70px 0 26px;overflow:hidd
     <header class="sh rv"><span class="num" aria-hidden="true">06</span><h2>About</h2><p class="mono">作り手のこと</p></header>
     <div class="split">
       <div>
-        <p class="big rv">笑う門には、<br>花がある。</p>
+        <p class="big rv">笑う門には福来る。<br>その門には、<em class="hana">花</em>がある。</p>
         <p>EMIGATE は「EMI（笑み）」と「GATE（門）」。玄関や受付、人を迎える場所に花があると、入ってくる人の顔が少しゆるみます。</p>
         <p>ひとつずつ手で束ねているので、同じものは二つとありません。気に入った作品が売り切れていたら、近い雰囲気でお作りします。</p>
-        <p class="sign">— なっちゃん</p>
+        <p class="sign"><span class="script">Nacchan</span></p>
+        <p class="mono" style="margin-top:2px">Maker — なっちゃん</p>
       </div>
-      <div class="holder mono rv">制作風景の写真</div>
+      <div class="pic2 rv"><img loading="lazy" src="https://images.unsplash.com/photo-1771402182341-851a4d5b8338?w=1000&q=78&auto=format&fit=crop" alt="ドライフラワーを束ねる手元"></div>
     </div>
   </div>
 </section>
@@ -648,6 +730,7 @@ footer{background:var(--ink);color:var(--bone);padding:70px 0 26px;overflow:hidd
 <footer>
   <div class="wrap">
     <div class="fl"><a href="#">ご利用ガイド</a><a href="#">送料・お届け</a><a href="#">特定商取引法に基づく表記</a><a href="#">プライバシーポリシー</a><a href="#order">お問い合わせ</a></div>
+    <p class="fcopy">笑う門には福来る　その門には<em class="hana">花</em>がある</p>
     <div class="fbig" aria-hidden="true">EMIGATE</div>
     <div class="mono" style="opacity:.6">© 株式会社EMIGATE</div>
   </div>
@@ -664,7 +747,7 @@ footer{background:var(--ink);color:var(--bone);padding:70px 0 26px;overflow:hidd
   </div>
 </aside>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<div class="draft" id="draft"><span>案 v4：店名・価格・販売日・作品名は仮。写真はフリー素材のイメージです</span><button aria-label="この表示を閉じる" onclick="this.parentNode.remove()">✕</button></div>
+<div class="draft" id="draft"><span>案 v8：店名・価格・販売日・作品名は仮。写真はフリー素材のイメージです</span><button aria-label="この表示を閉じる" onclick="this.parentNode.remove()">✕</button></div>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -736,7 +819,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('#menu').hidden)closeM
 
 /* ---------- header / hero ---------- */
 const hd=$('#hd'),heroImg=$('#heroImg img');
-function onScroll(){hd.classList.toggle('on',scrollY>innerHeight*.72);if(!reduce&&scrollY<innerHeight*1.2)heroImg.style.transform=`rotate(${(scrollY*.018).toFixed(2)}deg) scale(${(1+scrollY*.00012).toFixed(4)})`}
+function onScroll(){hd.classList.toggle('on',scrollY>innerHeight*.72);if(!reduce&&scrollY<innerHeight*1.2)heroImg.style.transform=`scale(${(1+scrollY*.00028).toFixed(4)})`}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 
 /* ---------- collection ---------- */
@@ -765,108 +848,122 @@ $('#filters').addEventListener('click',e=>{
   $$('#grid .card').forEach(c=>{c.hidden=!!cat&&c.dataset.cat!==cat;c.classList.add('in')});
 });
 
-/* ---------- styling simulator ---------- */
-const CM=3.1; /* 1cm = 3.1 単位（壁の幅 約2.6m） */
-const PLACES={
-  reception:{label:'受付・エントランス',rec:'L',x:400,y:140,floor:'#585b5c',f:`<rect x="140" y="262" width="520" height="258" fill="#d5cec0"/><rect x="128" y="250" width="544" height="16" fill="#8b7257"/><rect x="140" y="266" width="520" height="10" fill="rgba(0,0,0,.12)"/><g stroke="rgba(0,0,0,.09)"><line x1="270" y1="276" x2="270" y2="520"/><line x1="400" y1="276" x2="400" y2="520"/><line x1="530" y1="276" x2="530" y2="520"/></g><text x="400" y="404" text-anchor="middle" font-family="DM Mono,monospace" font-size="13" letter-spacing="7" fill="rgba(0,0,0,.34)">RECEPTION</text>`},
-  meeting:{label:'会議室・応接室',rec:'M',x:400,y:170,floor:'#585b5c',f:`<rect x="225" y="268" width="112" height="140" rx="14" fill="#3a3531"/><rect x="463" y="268" width="112" height="140" rx="14" fill="#3a3531"/><rect x="150" y="330" width="500" height="14" fill="#8b7257"/><rect x="182" y="344" width="12" height="176" fill="#6f5a45"/><rect x="606" y="344" width="12" height="176" fill="#6f5a45"/>`},
-  living:{label:'リビング',rec:'M',x:390,y:180,floor:'#7a6652',f:`<rect x="150" y="318" width="480" height="160" rx="22" fill="#b9b0a0"/><rect x="124" y="380" width="46" height="124" rx="18" fill="#c4bcad"/><rect x="610" y="380" width="46" height="124" rx="18" fill="#c4bcad"/><rect x="146" y="410" width="488" height="84" rx="18" fill="#cfc8ba"/><rect x="170" y="494" width="10" height="26" fill="#3a3531"/><rect x="600" y="494" width="10" height="26" fill="#3a3531"/><rect x="212" y="350" width="92" height="74" rx="14" fill="#8a9496" transform="rotate(-8 258 387)"/><line x1="718" y1="520" x2="718" y2="226" stroke="#3a3531" stroke-width="4"/><path d="M688 228L748 228L734 174L702 174Z" fill="#e9dfc9"/>`},
-  entrance:{label:'玄関',rec:'S',x:370,y:190,floor:'#7a6652',f:`<rect x="600" y="40" width="200" height="480" fill="rgba(0,0,0,.2)"/><rect x="614" y="54" width="186" height="466" fill="rgba(255,255,255,.07)"/><circle cx="636" cy="300" r="7" fill="#c9a86a"/><rect x="220" y="312" width="300" height="12" fill="#8b7257"/><rect x="236" y="324" width="8" height="196" fill="#6f5a45"/><rect x="496" y="324" width="8" height="196" fill="#6f5a45"/><rect x="236" y="430" width="268" height="6" fill="#6f5a45"/><path d="M446 312q-16-32 0-56h26q16 24 0 56z" fill="#d9cdb8" stroke="rgba(0,0,0,.18)"/><g stroke="#8a7a5c" stroke-width="1.6" fill="none"><path d="M456 256q-8-40-26-58"/><path d="M460 256q2-44 16-66"/><path d="M464 256q14-30 30-36"/></g>`}
-};
-const SIZES={ring:{S:25,M:35,L:45},crescent:{S:25,M:35,L:45},swag:{S:40,M:50,L:60}};
-const PRICE={ring:{S:7700,M:11000,L:16500},crescent:{S:6600,M:9900,L:14300},swag:{S:5500,M:7700,L:9900}};
-const SHAPE={ring:'リース',crescent:'ハーフリース',swag:'スワッグ'};
-const TONE={pampas:['生成り',.78],smoke:['スモーキーブルー',.40],green:['グリーン',.44],brown:['ブラウン',.30]};
-const LIGHT={day:'昼の自然光',eve:'夕方',night:'夜の照明'};
-const S={place:'reception',wallKey:'concrete',wall:'#7d8789',photo:null,light:'day',shape:'ring',tone:'pampas',size:'L',x:400,y:140};
-const lum=h=>{const n=parseInt(h.slice(1),16),a=[n>>16&255,n>>8&255,n&255].map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return Math.sqrt(.2126*a[0]+.7152*a[1]+.0722*a[2])};
-let drawn='';
-function render(full){
-  const pl=PLACES[S.place],cm=SIZES[S.shape][S.size],D=cm*CM;
-  const box=S.shape==='swag'?D*220/195:D*1.375;
-  /* wall */
-  $('#wall').setAttribute('fill',S.wall);
-  $('#texNoise').setAttribute('opacity',S.photo?0:(S.wallKey==='white'?.07:S.wallKey==='dark'?.1:.16));
-  $('#texCloud').setAttribute('opacity',S.photo?0:(S.wallKey==='concrete'||S.wallKey==='custom'?.22:S.wallKey==='white'?.06:.1));
-  $('#texWood').setAttribute('opacity',!S.photo&&S.wallKey==='wood'?1:0);
-  $('#photo').style.display=S.photo?'':'none';
-  $('#room').style.display=S.photo?'none':'';
-  if(full){$('#furn').innerHTML=pl.f;$('#floor').setAttribute('fill',pl.floor)}
-  /* light */
-  $('#lDay').style.display=S.light==='day'?'':'none';$('#lEve').style.display=S.light==='eve'?'':'none';$('#lNight').style.display=S.light==='night'?'':'none';
-  /* wreath */
-  const w=$('#simw'),key=S.tone+S.shape;
-  if(key!==drawn){draw(w,S.tone,S.shape,5,2);drawn=key}
-  w.setAttribute('width',box);w.setAttribute('height',box);w.setAttribute('x',S.x-box/2);w.setAttribute('y',S.y-box/2);
-  /* dimension */
-  const dark=S.photo?true:lum(S.wall)<.55,col=dark?'rgba(255,255,255,.85)':'rgba(25,24,23,.7)';
-  const dy=S.y+(S.shape==='swag'?box*.5:D*.5+box*.14)+10;
-  const g=$('#dim');g.setAttribute('transform',`translate(${S.x} ${dy})`);
-  $('#dimL').setAttribute('x1',-D/2);$('#dimL').setAttribute('x2',D/2);
-  $('#dimA').setAttribute('x1',-D/2);$('#dimA').setAttribute('x2',-D/2);$('#dimA').setAttribute('y1',-4);$('#dimA').setAttribute('y2',4);
-  $('#dimB').setAttribute('x1',D/2);$('#dimB').setAttribute('x2',D/2);$('#dimB').setAttribute('y1',-4);$('#dimB').setAttribute('y2',4);
-  if(S.shape==='swag'){$('#dimL').setAttribute('x1',-30);$('#dimL').setAttribute('x2',30);$('#dimA').setAttribute('x1',-30);$('#dimA').setAttribute('x2',-30);$('#dimB').setAttribute('x1',30);$('#dimB').setAttribute('x2',30)}
-  ['dimL','dimA','dimB'].forEach(i=>$('#'+i).setAttribute('stroke',col));
-  $('#dimT').setAttribute('fill',col);$('#dimT').textContent=(S.shape==='swag'?'長さ 約':'直径 約')+cm+'cm';
-  $('#stageCap').textContent=S.photo?'お客さまの壁の写真':pl.label+' ／ 幅 約2.6m の壁';
-  /* size buttons */
-  $$('#cSize button').forEach(b=>{b.querySelector('span').textContent=(S.shape==='swag'?'長さ ':'直径 ')+SIZES[S.shape][b.dataset.v]+'cm'});
-  $('#sizeRec').textContent='おすすめ：'+pl.rec;
-  /* suggestion */
-  const tl=TONE[S.tone][1],c=S.photo?.25:Math.abs(lum(S.wall)-tl),order='SML',d=order.indexOf(S.size)-order.indexOf(pl.rec);
+/* ---------- styling simulator（実写の合成） ---------- */
+/* 背景が単色の写真からリースを切り抜く */
+function cut(img,o){
+  const N=440,c=document.createElement('canvas');c.width=c.height=N;const x=c.getContext('2d',{willReadFrequently:true});
+  const iw=img.naturalWidth,ih=img.naturalHeight,s=Math.min(iw,ih)/(o.z||1),sx=(o.cx??.5)*iw-s/2,sy=(o.cy??.5)*ih-s/2;
+  x.drawImage(img,sx,sy,s,s,0,0,N,N);
+  const d=x.getImageData(0,0,N,N),p=d.data,B=[0,0,0],Q=[[],[],[]];
+  for(let k=4;k<N-4;k+=3)for(const i of [4*N+k,(N-5)*N+k,k*N+4,k*N+N-5])for(let q=0;q<3;q++)Q[q].push(p[i*4+q]);
+  for(let q=0;q<3;q++){Q[q].sort((a,b)=>a-b);B[q]=Q[q][Q[q].length>>1]}
+  const A=new Float32Array(N*N);
+  for(let i=0;i<N*N;i++){let a=0;for(let k=0;k<3;k++){const v=p[i*4+k],b=B[k],t=v<b?(b-v)/Math.max(b,1):(v-b)/Math.max(255-b,1);if(t>a)a=t}A[i]=a}
+  const T=o.T||.3,M=new Uint8Array(N*N),st=[];
+  const push=i=>{if(!M[i]&&A[i]<T){M[i]=1;st.push(i)}};
+  for(let k=0;k<N;k++){push(k);push((N-1)*N+k);push(k*N);push(k*N+N-1)}
+  for(const dx of [-.07,0,.07])for(const dy of [-.07,0,.07])push(Math.round(N*(.5+dy))*N+Math.round(N*(.5+dx)));
+  while(st.length){const i=st.pop(),px=i%N,py=(i-px)/N;if(px>0)push(i-1);if(px<N-1)push(i+1);if(py>0)push(i-N);if(py<N-1)push(i+N)}
+  const R=(o.r||.5)*N,sh=o.sh??.55;
+  for(let i=0;i<N*N;i++){
+    const px=i%N,py=(i-px)/N,dist=Math.hypot(px-N/2,py-N/2);let al=1;
+    if(M[i]){const a=A[i];al=Math.max(0,Math.min(1,(a-.07)/(T-.07)))*sh;
+      if(al>0){const aa=Math.max(a,.02);for(let k=0;k<3;k++)p[i*4+k]=Math.max(0,Math.min(255,(p[i*4+k]-(1-aa)*B[k])/aa))}}
+    if(dist>R-8)al*=Math.max(0,(R-dist)/8);
+    p[i*4+3]=Math.round(al*255);
+  }
+  x.putImageData(d,0,0);return c.toDataURL('image/png');
+}
+const UP=(id,w)=>`https://images.unsplash.com/${id}?w=${w}&q=72&auto=format&fit=crop`;
+/* w=写っている壁の幅(cm)の目安、x,y=リースの初期位置(%)、lum=壁の明るさ */
+const SC=[
+  {label:'受付',id:'photo-1784012980517-005c26585344',w:400,x:37,y:50,pos:'50% 50%',lum:.74,rec:'L',office:1},
+  {label:'リビング',id:'photo-1513694203232-719a280e022f',w:460,x:42,y:33,pos:'50% 50%',lum:.84,rec:'M'},
+  {label:'ソファの上',id:'photo-1626095889160-c06e827e3cf3',w:270,x:56,y:36,pos:'50% 84%',lum:.9,rec:'M'},
+  {label:'コンクリート',id:'photo-1729073375374-e666fcf02e03',w:560,x:71,y:40,pos:'50% 40%',lum:.45,rec:'L'},
+  {label:'玄関・廊下',id:'photo-1663296766506-f95f7d8c87af',w:165,x:42,y:32,pos:'50% 70%',lum:.86,rec:'S'},
+  {label:'味のある古い壁',id:'photo-1610749396754-d1a480e39ef9',w:250,x:34,y:30,pos:'50% 50%',lum:.74,rec:'M'}
+];
+const WR=[
+  {label:'生成り',name:'生成りのフープリース',id:'photo-1771400284343-9ed58477317f',o:{T:.34,sh:0},frac:.86,lum:.72,item:2},
+  {label:'ユーカリ',name:'ユーカリのリース',id:'photo-1544376936-e15fd353d311',o:{z:1.12,cx:.52,cy:.47,T:.3,r:.46},frac:.84,lum:.46,item:4},
+  {label:'枯れ葉',name:'枯れ葉と実もののリース',id:'photo-1731413072274-ebb46c66416e',o:{T:.34,cy:.42},frac:.9,lum:.34,item:0},
+  {label:'小花',name:'リボンと小花のリース',id:'photo-1675867857417-487dda487cd4',o:{z:1.25,cy:.44,T:.32,r:.47},frac:.88,lum:.5,item:1}
+];
+const CMS={S:25,M:35,L:45},PRICE={S:7700,M:11000,L:16500},LIGHT={day:'昼の自然光',eve:'夕方',night:'夜の照明'};
+const S={scene:0,wr:0,light:'day',size:'L',x:SC[0].x,y:SC[0].y,photo:null,pw:250};
+const stage=$('#stage'),bg=$('#bg'),wg=$('#wg'),wimg=$('#wimg'),cache={};
+function loadWreath(i){
+  if(cache[i])return Promise.resolve(cache[i]);
+  return new Promise(res=>{const im=new Image();im.crossOrigin='anonymous';
+    im.onload=()=>{try{cache[i]={u:cut(im,WR[i].o),raw:false}}catch(e){cache[i]={u:im.src,raw:true}}res(cache[i])};
+    im.onerror=()=>res({u:UP(WR[i].id,600),raw:true});im.src=UP(WR[i].id,600)});
+}
+$('#cScene').innerHTML=SC.map((s,i)=>`<button class="th" type="button" aria-pressed="${i===0}" data-i="${i}"><img loading="lazy" src="${UP(s.id,260)}" alt=""><span>${s.label}</span></button>`).join('');
+$('#cWreath').innerHTML=WR.map((w,i)=>`<button class="th" type="button" aria-pressed="${i===0}" data-i="${i}" aria-label="${w.name}"><img loading="lazy" src="${UP(w.id,220)}" alt=""><span>${w.label}</span></button>`).join('');
+const recSize=()=>S.photo?(S.pw<200?'S':S.pw<320?'M':'L'):SC[S.scene].rec;
+let bgNow='';
+function render(){
+  const sc=SC[S.scene],W=S.photo?S.pw:sc.w,cm=CMS[S.size],wr=WR[S.wr],rec=recSize();
+  const src=S.photo||UP(sc.id,1400);
+  if(src!==bgNow){bgNow=src;$('#ld').hidden=false;bg.onload=()=>$('#ld').hidden=true;bg.src=src;bg.style.objectPosition=S.photo?'50% 50%':sc.pos}
+  stage.dataset.light=S.light;
+  wg.style.left=S.x+'%';wg.style.top=S.y+'%';wg.style.width=(cm/W/wr.frac*100)+'%';
+  $('#dim').style.width=(wr.frac*100)+'%';$('#dim').textContent='約'+cm+'cm';
+  const want=S.wr;loadWreath(want).then(r=>{if(S.wr!==want)return;wimg.src=r.u;wimg.classList.toggle('raw',r.raw)});
+  $('#stageCap').textContent=S.photo?'お客さまの壁の写真':sc.label+' ／ 写っている壁の幅 約'+(W/100)+'m';
+  $('#sizeRec').textContent='おすすめ：'+rec;
+  /* ご提案 */
+  const place=S.photo?'お写真の壁':sc.label,order='SML',d=order.indexOf(S.size)-order.indexOf(rec);
   let score=3;const notes=[];
-  if(S.photo){notes.push('お写真の壁に合わせて、色味を細かく調整してご提案します。')}
-  else if(c>.33){score++;notes.push('壁とのコントラストがはっきり出ます。少し離れても輪郭が見える組み合わせです。')}
-  else if(c<.13){score--;notes.push('壁の色に近い色味です。白い花材を多めに入れて、輪郭を出すことをおすすめします。')}
-  else notes.push('壁になじみつつ、ほどよく目に入る組み合わせです。');
-  if(d===0){score++;notes.push(`${pl.label}には ${S.size} サイズがちょうどよい大きさです。`)}
-  else if(d<0){if(d<-1)score--;notes.push(`${pl.label}には少し小さめです。${pl.rec} サイズにすると、離れた位置からも目に入ります。`)}
-  else notes.push(`${pl.label}には大きめです。壁の主役にしたいときに向きます。`);
-  if(S.light==='night'&&tl<.5){score--;notes.push('夜の照明では暗い色味が沈みやすいので、明るい花材を足します。')}
-  else if(S.light==='eve'&&(S.tone==='pampas'||S.tone==='brown'))notes.push('夕方の光では、この色味がいっそうあたたかく見えます。');
+  if(S.photo)notes.push('お写真の壁に合わせて、色味を細かく調整してご提案します。');
+  else{const c=Math.abs(sc.lum-wr.lum);
+    if(c>.3){score++;notes.push('壁とのコントラストがはっきり出ます。少し離れても輪郭が見える組み合わせです。')}
+    else if(c<.12){score--;notes.push('壁の色に近い色味です。白い花材を多めに入れて、輪郭を出すことをおすすめします。')}
+    else notes.push('壁になじみつつ、ほどよく目に入る組み合わせです。')}
+  if(d===0){score++;notes.push(`${place}には ${S.size} サイズがちょうどよい大きさです。`)}
+  else if(d<0){if(d<-1)score--;notes.push(`${place}には少し小さめです。${rec} サイズにすると、離れた位置からも目に入ります。`)}
+  else notes.push(`${place}には大きめです。壁の主役にしたいときに向きます。`);
+  if(S.light==='night'&&wr.lum<.5){score--;notes.push('夜の照明では暗い色味が沈みやすいので、明るい花材を足します。')}
+  else if(S.light==='eve'&&wr.lum>.6)notes.push('夕方の光では、生成りがいっそうあたたかく見えます。');
   score=Math.max(1,Math.min(5,score));
-  $('#rT').textContent=`${pl.label} × ${TONE[S.tone][0]}の${SHAPE[S.shape]} ${S.size}`;
+  $('#rT').textContent=`${place} × ${wr.name} ${S.size}`;
   $('#rD').innerHTML=[1,2,3,4,5].map(i=>`<i class="${i<=score?'f':''}"></i>`).join('')+`<span class="mono">相性 ${score} / 5</span>`;
   $('#rL').innerHTML=notes.map(n=>`<li>${n}</li>`).join('');
-  $('#rP').textContent=yen(PRICE[S.shape][S.size])+'〜';
+  $('#rP').textContent=yen(PRICE[S.size])+'〜';
 }
-function bind(id,key,full){
-  $(id).addEventListener('click',e=>{
-    const b=e.target.closest('button');if(!b)return;
-    $$(id+' button').forEach(c=>c.setAttribute('aria-pressed',c===b));
-    S[key]=b.dataset.v;
-    if(key==='place'){S.x=PLACES[S.place].x;S.y=PLACES[S.place].y;S.size=PLACES[S.place].rec;$$('#cSize button').forEach(c=>c.setAttribute('aria-pressed',c.dataset.v===S.size))}
-    if(key==='wallKey'){S.wall=b.dataset.c;$('#wallPick').value=S.wall}
-    render(full);
-  });
-}
-bind('#cPlace','place',true);bind('#cWall','wallKey');bind('#cLight','light');bind('#cShape','shape');bind('#cTone','tone');bind('#cSize','size');
-$('#wallPick').addEventListener('input',e=>{S.wall=e.target.value;S.wallKey='custom';$$('#cWall button').forEach(c=>c.setAttribute('aria-pressed','false'));render()});
+const press=(sel,el)=>$$(sel).forEach(c=>c.setAttribute('aria-pressed',c===el));
+const setSize=v=>{S.size=v;$$('#cSize button').forEach(c=>c.setAttribute('aria-pressed',c.dataset.v===v))};
+$('#cScene').addEventListener('click',e=>{const b=e.target.closest('.th');if(!b)return;press('#cScene .th',b);S.scene=+b.dataset.i;S.photo=null;$('#photoOff').hidden=true;$('#pwWrap').hidden=true;$('#wallPhoto').value='';S.x=SC[S.scene].x;S.y=SC[S.scene].y;setSize(SC[S.scene].rec);render()});
+$('#cWreath').addEventListener('click',e=>{const b=e.target.closest('.th');if(!b)return;press('#cWreath .th',b);S.wr=+b.dataset.i;render()});
+$('#cLight').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;press('#cLight button',b);S.light=b.dataset.v;render()});
+$('#cSize').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;setSize(b.dataset.v);render()});
 $('#wallPhoto').addEventListener('change',e=>{
   const f=e.target.files[0];if(!f)return;
-  const rd=new FileReader();rd.onload=()=>{S.photo=rd.result;$('#photo').setAttribute('href',S.photo);$('#photoOff').hidden=false;S.x=400;S.y=230;render();toast('写真を読み込みました。リースを動かして位置を合わせてください')};rd.readAsDataURL(f);
+  const rd=new FileReader();rd.onload=()=>{S.photo=rd.result;$('#photoOff').hidden=false;$('#pwWrap').hidden=false;press('#cScene .th',null);S.x=50;S.y=38;setSize(recSize());render();toast('写真を読み込みました。リースを動かして位置を合わせてください')};rd.readAsDataURL(f);
 });
-$('#photoOff').onclick=()=>{S.photo=null;$('#photoOff').hidden=true;$('#wallPhoto').value='';S.x=PLACES[S.place].x;S.y=PLACES[S.place].y;render()};
-$('#resetPos').onclick=()=>{S.x=S.photo?400:PLACES[S.place].x;S.y=S.photo?230:PLACES[S.place].y;render()};
+$('#pw').addEventListener('change',e=>{S.pw=+e.target.value;render()});
+const backToScene=()=>{S.photo=null;$('#photoOff').hidden=true;$('#pwWrap').hidden=true;$('#wallPhoto').value='';press('#cScene .th',$$('#cScene .th')[S.scene]);S.x=SC[S.scene].x;S.y=SC[S.scene].y;render()};
+$('#photoOff').onclick=backToScene;
+$('#resetPos').onclick=()=>{S.x=S.photo?50:SC[S.scene].x;S.y=S.photo?38:SC[S.scene].y;render()};
 /* drag + keyboard */
-const scene=$('#scene'),wg=$('#wg');let drag=null;
-const pt=e=>{const p=scene.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(scene.getScreenCTM().inverse())};
-const clamp=()=>{S.x=Math.max(70,Math.min(730,S.x));S.y=Math.max(70,Math.min(S.photo?530:440,S.y))};
-wg.addEventListener('pointerdown',e=>{const p=pt(e);drag={x:p.x-S.x,y:p.y-S.y};wg.setPointerCapture(e.pointerId);e.preventDefault()});
-wg.addEventListener('pointermove',e=>{if(!drag)return;const p=pt(e);S.x=p.x-drag.x;S.y=p.y-drag.y;clamp();render()});
+let drag=null;
+const pos=e=>{const r=stage.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*100,y:(e.clientY-r.top)/r.height*100}};
+const clamp=()=>{S.x=Math.max(6,Math.min(94,S.x));S.y=Math.max(8,Math.min(92,S.y))};
+wg.addEventListener('pointerdown',e=>{const p=pos(e);drag={x:p.x-S.x,y:p.y-S.y};wg.setPointerCapture(e.pointerId);e.preventDefault()});
+wg.addEventListener('pointermove',e=>{if(!drag)return;const p=pos(e);S.x=p.x-drag.x;S.y=p.y-drag.y;clamp();wg.style.left=S.x+'%';wg.style.top=S.y+'%'});
 ['pointerup','pointercancel'].forEach(t=>wg.addEventListener(t,()=>drag=null));
-wg.addEventListener('keydown',e=>{const m={ArrowLeft:[-10,0],ArrowRight:[10,0],ArrowUp:[0,-10],ArrowDown:[0,10]}[e.key];if(!m)return;e.preventDefault();S.x+=m[0];S.y+=m[1];clamp();render()});
-render(true);
-/* suggestion → order / similar */
+wg.addEventListener('keydown',e=>{const m={ArrowLeft:[-1.5,0],ArrowRight:[1.5,0],ArrowUp:[0,-2],ArrowDown:[0,2]}[e.key];if(!m)return;e.preventDefault();S.x+=m[0];S.y+=m[1];clamp();render()});
+render();
+/* ご提案 → 相談 / 近い作品 */
 $('#toOrder').onclick=()=>{
-  const pl=PLACES[S.place];
-  $('#fMsg').value=`【Styling で選んだ内容】\n場所：${S.photo?'写真の壁（別途お送りします）':pl.label}\n壁：${S.photo?'写真のとおり':({concrete:'コンクリート',white:'白い壁',wood:'木の壁',dark:'濃い色の壁',custom:'その他の色 '+S.wall})[S.wallKey]}\n光：${LIGHT[S.light]}\nかたち：${SHAPE[S.shape]}\n色味：${TONE[S.tone][0]}\nサイズ：${S.size}（約${SIZES[S.shape][S.size]}cm）\n`;
-  $('#fUse').value=(S.place==='reception'||S.place==='meeting')?'オフィス・店舗に飾る':'自宅に飾る';
+  const sc=SC[S.scene];
+  $('#fMsg').value=`【Styling で選んだ内容】\n場所：${S.photo?'自分の壁の写真（別途お送りします）':sc.label}\n作品の雰囲気：${WR[S.wr].name}\n光：${LIGHT[S.light]}\nサイズ：${S.size}（直径 約${CMS[S.size]}cm）\n`;
+  $('#fUse').value=(!S.photo&&sc.office)?'オフィス・店舗に飾る':'自宅に飾る';
   $('#order').scrollIntoView();setTimeout(()=>$('#fName').focus({preventScroll:true}),reduce?0:700);toast('選んだ内容をフォームに入れました');
 };
 $('#toSimilar').onclick=()=>{
-  const want=SHAPE[S.shape],k=items.findIndex(i=>!i[7]&&i[8]===S.tone&&i[6]===want);
-  const j=k>=0?k:items.findIndex(i=>!i[7]&&i[8]===S.tone);const el=$('#item'+(j>=0?j:0));
+  const el=$('#item'+WR[S.wr].item);
   $$('#filters .chip').forEach((c,n)=>c.setAttribute('aria-pressed',n===0));$('#grid').classList.remove('flat');$$('#grid .card').forEach(c=>c.hidden=false);
   el.scrollIntoView({block:'center'});el.style.outline='2px solid var(--rust)';el.style.outlineOffset='10px';setTimeout(()=>el.style.outline='',2600);
 };
