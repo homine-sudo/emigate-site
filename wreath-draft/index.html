@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>リース販売サイト案（下書き）</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2b2a28; --ink2:#5d5a55; --ivory:#f2ede4; --paper:#e8e1d5; --sand:#cdbb9f;
+  --wall:#7c807f; --wall-d:#565a5a; --smoke:#56606b; --line:rgba(43,42,40,.16);
+  --en:"Cormorant Garamond","Times New Roman",serif;
+  --jp:"Shippori Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--jp);color:var(--ink);background:var(--ivory);line-height:1.9;font-size:15px;letter-spacing:.04em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.en{font-family:var(--en);letter-spacing:.14em}
+.concrete{
+  background-color:var(--wall);
+  background-image:
+    radial-gradient(ellipse at 18% 22%,rgba(255,255,255,.13),transparent 46%),
+    radial-gradient(ellipse at 82% 68%,rgba(0,0,0,.20),transparent 52%),
+    radial-gradient(ellipse at 60% 10%,rgba(0,0,0,.10),transparent 40%),
+    radial-gradient(ellipse at 30% 90%,rgba(255,255,255,.07),transparent 40%);
+}
+.note-bar{background:#2b2a28;color:#e8e1d5;font-size:12px;text-align:center;padding:6px 12px;letter-spacing:.08em}
+
+/* header */
+header{position:absolute;left:0;right:0;z-index:5;color:#f2ede4}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:22px;padding-bottom:22px}
+.logo{font-family:var(--en);font-size:22px;letter-spacing:.3em}
+.logo small{display:block;font-family:var(--jp);font-size:10px;letter-spacing:.3em;opacity:.75;margin-top:-4px}
+nav{display:flex;gap:28px;font-size:13px}
+nav a{opacity:.85}
+nav a:hover{opacity:1;border-bottom:1px solid currentColor}
+@media(max-width:760px){nav{display:none}}
+
+/* hero */
+.hero{color:#f2ede4;min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:center;width:100%;padding-top:96px;padding-bottom:56px}
+.hero h1{font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.5;letter-spacing:.12em}
+.hero .lead{margin-top:22px;max-width:26em;opacity:.9}
+.hero .sub{font-family:var(--en);font-style:italic;font-size:19px;opacity:.8;margin-bottom:14px;letter-spacing:.08em}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.btn{display:inline-block;padding:13px 28px;border:1px solid currentColor;font-size:13px;letter-spacing:.16em;transition:.25s;cursor:pointer;background:none;color:inherit;font-family:inherit}
+.btn.fill{background:#f2ede4;color:#2b2a28;border-color:#f2ede4}
+.btn:hover{opacity:.75}
+.btn.dark{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.hero-art svg{width:100%;max-width:560px;display:block;margin:0 auto}
+svg.w{filter:drop-shadow(8px 14px 10px rgba(0,0,0,.35))}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero-art{order:-1}.hero-art svg{max-width:340px}}
+
+/* sections */
+section{padding:96px 0}
+.head{text-align:center;margin-bottom:52px}
+.head .en{font-size:34px;font-weight:400}
+.head p{color:var(--ink2);font-size:13px;letter-spacing:.2em;margin-top:2px}
+.head .desc{max-width:36em;margin:18px auto 0;letter-spacing:.04em;font-size:14.5px}
+
+/* three doors */
+.doors{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.door{padding:44px 30px;border-right:1px solid var(--line);transition:.25s}
+.door:last-child{border-right:0}
+.door:hover{background:var(--paper)}
+.door .n{font-family:var(--en);font-style:italic;color:var(--ink2);font-size:15px}
+.door h3{font-weight:500;font-size:21px;margin:6px 0 10px;letter-spacing:.1em}
+.door p{font-size:14px;color:var(--ink2)}
+.door .more{display:inline-block;margin-top:16px;font-family:var(--en);font-size:15px;border-bottom:1px solid currentColor}
+@media(max-width:760px){.doors{grid-template-columns:1fr}.door{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* collection */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 28px}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+.card .ph{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.card .ph svg{width:82%;transition:transform .6s}
+.card:hover .ph svg{transform:scale(1.04)}
+.tag{position:absolute;top:12px;left:12px;background:rgba(242,237,228,.92);font-size:11px;padding:2px 10px;letter-spacing:.14em}
+.card h4{font-weight:500;font-size:16px;margin-top:14px;letter-spacing:.08em}
+.card .meta{font-size:12.5px;color:var(--ink2)}
+.card .price{font-family:var(--en);font-size:19px;letter-spacing:.06em;margin-top:2px}
+.card .price small{font-family:var(--jp);font-size:11px;color:var(--ink2)}
+
+/* fit / simulator */
+.fit{background:var(--paper)}
+.sim{display:grid;grid-template-columns:1.15fr 1fr;gap:44px;align-items:center}
+@media(max-width:860px){.sim{grid-template-columns:1fr}}
+.stage{aspect-ratio:5/4;position:relative;display:flex;align-items:flex-start;justify-content:center;transition:background-color .5s;overflow:hidden}
+.stage svg{width:46%;margin-top:7%}
+.stage .shelf{position:absolute;left:14%;right:14%;bottom:0;height:17%;background:linear-gradient(#8b7257,#6f5a45);box-shadow:0 -6px 18px rgba(0,0,0,.22)}
+.stage .shelf:before{content:"";position:absolute;left:-3%;right:-3%;top:-9px;height:9px;background:#a08566}
+.opt h5{font-weight:500;font-size:13px;letter-spacing:.2em;color:var(--ink2);margin:22px 0 10px}
+.opt h5:first-child{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:inherit;font-size:13px;padding:7px 16px;border:1px solid var(--line);background:transparent;cursor:pointer;color:var(--ink);display:flex;align-items:center;gap:8px;letter-spacing:.06em}
+.chip i{width:14px;height:14px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.15)}
+.chip.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.reco{margin-top:26px;padding:20px 22px;background:var(--ivory);border-left:2px solid var(--ink)}
+.reco b{font-weight:600;display:block;margin-bottom:4px;letter-spacing:.1em}
+.reco p{font-size:14px;color:var(--ink2)}
+
+/* subscription */
+.subsc{color:#f2ede4}
+.subsc .head p,.subsc .desc{color:rgba(242,237,228,.8)}
+.seasons{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:860px){.seasons{grid-template-columns:repeat(2,1fr)}}
+.season{text-align:center}
+.season svg{width:78%}
+.season .m{font-family:var(--en);font-style:italic;font-size:15px;opacity:.75;margin-top:6px}
+.season h4{font-weight:500;font-size:19px;letter-spacing:.3em}
+.season p{font-size:13px;opacity:.85}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px}
+@media(max-width:760px){.plans{grid-template-columns:1fr}}
+.plan{background:rgba(242,237,228,.95);color:var(--ink);padding:30px 26px;text-align:center}
+.plan .s{font-family:var(--en);font-size:26px;letter-spacing:.2em}
+.plan .d{font-size:12.5px;color:var(--ink2)}
+.plan .y{font-family:var(--en);font-size:30px;margin-top:12px}
+.plan .y small{font-family:var(--jp);font-size:12px}
+.plan .per{font-size:12px;color:var(--ink2);margin-bottom:16px}
+.terms{margin-top:26px;font-size:12.5px;opacity:.85;text-align:center}
+
+/* order flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+@media(max-width:860px){.flow{grid-template-columns:repeat(2,1fr)}}
+.step{padding:30px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.step:last-child{border-right:0}
+.step .n{font-family:var(--en);font-size:34px;color:var(--sand);line-height:1}
+.step h4{font-weight:500;font-size:16px;margin:8px 0 6px;letter-spacing:.1em}
+.step p{font-size:13.5px;color:var(--ink2)}
+.center{text-align:center;margin-top:40px}
+
+/* office */
+.office{background:var(--paper)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+.office ul{list-style:none;margin-top:18px}
+.office li{padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.office li b{font-weight:600;margin-right:10px;letter-spacing:.08em}
+.office .ph{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+.office .ph svg{width:58%}
+h2.t{font-weight:500;font-size:26px;letter-spacing:.14em;line-height:1.7}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:18px 4px}
+summary{cursor:pointer;font-size:15.5px;letter-spacing:.06em;list-style:none}
+summary:before{content:"Q.";font-family:var(--en);margin-right:12px;color:var(--ink2)}
+details p{margin-top:10px;font-size:14px;color:var(--ink2);padding-left:30px}
+.faq{max-width:760px;margin:0 auto}
+
+footer{background:#2b2a28;color:#cfc8bb;padding:56px 0 34px;font-size:13px}
+footer .cols{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+footer .links{display:flex;gap:22px;flex-wrap:wrap}
+footer .c{margin-top:34px;opacity:.6;font-size:11.5px}
+/* 写真 */
+.hero-art img{display:block;width:100%;max-width:500px;aspect-ratio:4/5;object-fit:cover;margin:0 auto;box-shadow:14px 22px 40px rgba(0,0,0,.4)}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover .ph img{transform:scale(1.04)}
+.season img{width:82%;aspect-ratio:1;object-fit:cover;box-shadow:8px 12px 24px rgba(0,0,0,.35)}
+.office .ph img{width:100%;height:100%;object-fit:cover}
+/* v3 追加 */
+.news{background:var(--ink);color:var(--ivory);padding:18px 0}
+.news .wrap{display:flex;align-items:center;justify-content:center;gap:10px 28px;flex-wrap:wrap;font-size:13.5px}
+.news .lbl{font-family:var(--en);font-style:italic;font-size:16px;color:var(--sand)}
+.news b{font-weight:500;letter-spacing:.12em}
+.news a{border-bottom:1px solid currentColor;font-size:12.5px}
+.filter{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:-22px 0 40px}
+.card h4{font-family:var(--en);font-size:21px;font-weight:500;letter-spacing:.06em;line-height:1.3}
+.card .jp{font-size:13.5px}
+.card.sold .ph img{opacity:.5;filter:grayscale(.5)}
+.card.sold .price{color:var(--ink2);font-size:15px;letter-spacing:.2em}
+.about .two p{margin-top:16px;font-size:14.5px;color:var(--ink2)}
+.sign{font-family:var(--en);font-style:italic;font-size:18px;margin-top:22px!important;color:var(--ink)!important}
+.before{background:var(--paper)}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:860px){.notes{grid-template-columns:1fr}}
+.notes div{background:var(--ivory);padding:26px 24px}
+.notes h4{font-weight:500;font-size:15px;letter-spacing:.1em;margin-bottom:6px}
+.notes p{font-size:13.5px;color:var(--ink2)}
+/* スマホ：メニューを横スクロールで出す */
+@media(max-width:760px){
+  header .wrap{flex-direction:column;align-items:flex-start;gap:12px;padding-top:16px;padding-bottom:0}
+  nav{display:flex;gap:20px;width:100%;overflow-x:auto;white-space:nowrap;font-size:14px;padding-bottom:8px;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  .hero .wrap{padding-top:128px}
+  .door{padding:34px 8px}
+  .door h3{font-size:19px;letter-spacing:.06em}
+  section{padding:72px 0}
+}
+.credit{font-size:11px;opacity:.6;margin-top:10px}
+@media(max-width:760px){.hero-art img{max-width:320px}}
+</style>
+</head>
+<body>
+<div class="note-bar">案 v3 ｜ 販売日・作品名も仮です ｜ 写真はフリー素材（Unsplash）のイメージで、実際の商品ではありません。店名・価格・サイズも仮置きです</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">EMIGATE<small>DRY FLOWER WREATH（仮称）</small></a>
+    <nav class="en">
+      <a href="#collection">Collection</a>
+      <a href="#fit">Styling</a>
+      <a href="#subscription">Subscription</a>
+      <a href="#order">Order made</a>
+      <a href="#office">For Office</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero concrete">
+  <div class="wrap">
+    <div>
+      <div class="sub">Dried flowers for your wall</div>
+      <h1>時を重ねる花を、<br>壁にひとつ。</h1>
+      <p class="lead">水やりのいらないドライフラワーのリースとスワッグ。<br>オフィスにも、自宅にも。その壁の色と光にあわせて、一点ずつ束ねます。</p>
+      <div class="btns">
+        <a class="btn fill" href="#collection">リースを見る</a>
+        <a class="btn" href="#subscription">年4回の定期便</a>
+      </div>
+    </div>
+    <div class="hero-art"><img src="https://images.unsplash.com/photo-1771400284343-9ed58477317f?w=1000&q=78&auto=format&fit=crop" alt="パンパスグラスのリース"></div>
+  </div>
+</div>
+
+<div class="news">
+  <div class="wrap">
+    <span class="lbl">Next release</span>
+    <b>Winter Collection　11月28日（土）21:00 販売開始</b>
+    <a href="#">LINEで販売開始のお知らせを受け取る</a>
+    <a href="#">Instagram</a>
+  </div>
+</div>
+
+<section style="padding:0">
+  <div class="wrap">
+    <div class="doors">
+      <a class="door" href="#collection"><div class="n">01 — Ready made</div><h3>すぐ届く、既製品</h3><p>アトリエで仕上げた一点もの。写真の現品をそのままお届けします。</p><span class="more">Collection</span></a>
+      <a class="door" href="#order"><div class="n">02 — Order made</div><h3>空間にあわせて、オーダー</h3><p>飾る場所の写真を送るだけ。壁・家具・光にあわせた色とサイズをご提案します。</p><span class="more">Order made</span></a>
+      <a class="door" href="#subscription"><div class="n">03 — Subscription</div><h3>季節ごとに、年4回</h3><p>春・夏・秋・冬。1年間、季節の変わり目に新しいリースが届きます。</p><span class="more">Subscription</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="collection">
+  <div class="wrap">
+    <div class="head"><div class="en">Collection</div><p>既製品</p>
+      <div class="desc">すべて一点ずつの手仕事です。売り切れた作品も、近い雰囲気でお作りできます。</div></div>
+    <div class="filter" id="filters">
+      <button class="chip on" data-cat="">すべて</button>
+      <button class="chip" data-cat="リース">リース</button>
+      <button class="chip" data-cat="ハーフリース">ハーフリース</button>
+      <button class="chip" data-cat="フライングリース">フライングリース</button>
+      <button class="chip" data-cat="スワッグ">スワッグ</button>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="center"><a class="btn dark" href="#">すべての作品を見る</a></div>
+  </div>
+</section>
+
+<section class="fit" id="fit">
+  <div class="wrap">
+    <div class="head"><div class="en">Styling</div><p>空間にあわせて選ぶ</p>
+      <div class="desc">壁の色と、飾る場所を選んでみてください。合う色味とサイズをご提案します。</div></div>
+    <div class="sim">
+      <div class="stage concrete" id="stage">
+        <svg class="w" id="simw" data-tone="pampas" data-seed="5" data-fl="2"></svg>
+        <div class="shelf"></div>
+      </div>
+      <div class="opt">
+        <h5>壁の色</h5>
+        <div class="chips" id="walls">
+          <button class="chip on" data-wall="#7c807f" data-key="concrete"><i style="background:#7c807f"></i>コンクリート</button>
+          <button class="chip" data-wall="#ebe6dd" data-key="white"><i style="background:#ebe6dd"></i>白い壁</button>
+          <button class="chip" data-wall="#b59a7c" data-key="wood"><i style="background:#b59a7c"></i>木の壁</button>
+          <button class="chip" data-wall="#333d4a" data-key="dark"><i style="background:#333d4a"></i>濃い色の壁</button>
+        </div>
+        <h5>飾る場所</h5>
+        <div class="chips" id="places">
+          <button class="chip on" data-place="受付・エントランス">受付・エントランス</button>
+          <button class="chip" data-place="会議室・応接室">会議室・応接室</button>
+          <button class="chip" data-place="リビング">リビング</button>
+          <button class="chip" data-place="玄関">玄関</button>
+        </div>
+        <h5>色味</h5>
+        <div class="chips" id="tones">
+          <button class="chip on" data-tone="pampas"><i style="background:#d8c4a2"></i>生成り</button>
+          <button class="chip" data-tone="smoke"><i style="background:#5f6b7a"></i>スモーキーブルー</button>
+          <button class="chip" data-tone="green"><i style="background:#6f7d63"></i>グリーン</button>
+          <button class="chip" data-tone="brown"><i style="background:#7a563d"></i>ブラウン</button>
+        </div>
+        <div class="reco"><b id="rt"></b><p id="rp"></p></div>
+        <div class="btns" style="margin-top:22px"><a class="btn dark" href="#order">この組み合わせで相談する</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="subsc concrete" id="subscription" style="background-color:#5d6161">
+  <div class="wrap">
+    <div class="head"><div class="en">Subscription</div><p>1年間・4回お届け</p>
+      <div class="desc">季節の変わり目に、新しいリースが届きます。掛け替えるだけで、部屋の空気が変わります。</div></div>
+    <div class="seasons">
+      <div class="season"><img src="https://images.unsplash.com/photo-1610467619538-487a3df36961?w=600&q=75&auto=format&fit=crop" alt="春のリース"><div class="m">March</div><h4>春</h4><p>ミモザ色とやわらかな白</p></div>
+      <div class="season"><img src="https://images.unsplash.com/photo-1557674538-bd2a3adf4bcb?w=600&q=75&auto=format&fit=crop" alt="夏のリース"><div class="m">June</div><h4>夏</h4><p>ユーカリと涼しい青</p></div>
+      <div class="season"><img src="https://images.unsplash.com/photo-1731412895339-d7e1fd044eef?w=600&q=75&auto=format&fit=crop" alt="秋のリース"><div class="m">September</div><h4>秋</h4><p>実ものと深いブラウン</p></div>
+      <div class="season"><img src="https://images.unsplash.com/photo-1707537051618-aa812c8747c7?w=600&q=75&auto=format&fit=crop" alt="冬のリース"><div class="m">December</div><h4>冬</h4><p>クリスマスからお正月まで</p></div>
+    </div>
+    <div class="plans">
+      <div class="plan"><div class="s">S</div><div class="d">直径 約25cm ｜ 玄関・デスクまわり</div><div class="y">¥26,400<small> / 年</small></div><div class="per">1回あたり 6,600円（税込・送料込）</div><a class="btn dark" href="#">申し込む</a></div>
+      <div class="plan"><div class="s">M</div><div class="d">直径 約35cm ｜ リビング・応接室</div><div class="y">¥39,600<small> / 年</small></div><div class="per">1回あたり 9,900円（税込・送料込）</div><a class="btn dark" href="#">申し込む</a></div>
+      <div class="plan"><div class="s">L</div><div class="d">直径 約45cm ｜ 受付・エントランス</div><div class="y">¥66,000<small> / 年</small></div><div class="per">1回あたり 16,500円（税込・送料込）</div><a class="btn dark" href="#">申し込む</a></div>
+    </div>
+    <p class="terms">お届けは3月・6月・9月・12月の計4回。お支払い総額・回数・解約条件は、お申し込みの最終確認画面でご確認いただけます。</p>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <div class="head"><div class="en">Order made</div><p>オーダーメイド</p>
+      <div class="desc">「この壁に合うものを」だけで大丈夫です。お部屋やオフィスの写真から、色・形・大きさをご提案します。</div></div>
+    <div class="flow">
+      <div class="step"><div class="n">1</div><h4>写真を送る</h4><p>飾りたい場所の写真と、ご予算をフォームかLINEで。</p></div>
+      <div class="step"><div class="n">2</div><h4>ご提案</h4><p>色味・花材・サイズの案と、お見積りをお返しします。</p></div>
+      <div class="step"><div class="n">3</div><h4>制作</h4><p>内容が決まってから、一点ずつ束ねます。</p></div>
+      <div class="step"><div class="n">4</div><h4>お届け</h4><p>専用の箱に固定して発送。届いたらそのまま壁へ。</p></div>
+    </div>
+    <div class="center"><a class="btn dark" href="#">オーダーの相談をする</a></div>
+  </div>
+</section>
+
+<section class="office" id="office">
+  <div class="wrap two">
+    <div>
+      <div class="en" style="color:var(--ink2)">For Office</div>
+      <h2 class="t">受付の壁が、<br>会社の第一印象になる。</h2>
+      <ul>
+        <li><b>水やり不要</b>生花や観葉植物のような手入れがいりません。</li>
+        <li><b>季節で掛け替え</b>年4回の定期便で、来客のたびに新しい表情に。</li>
+        <li><b>請求書払い</b>法人のお客さまは請求書でのお支払いに対応します。</li>
+        <li><b>開店・移転祝いにも</b>長く飾れる贈りものとしてお届けします。</li>
+      </ul>
+      <div class="btns"><a class="btn dark" href="#">法人のご相談</a></div>
+    </div>
+    <div class="ph concrete"><img src="https://images.unsplash.com/photo-1610790746879-bd22e89d9715?w=1000&q=75&auto=format&fit=crop" alt="ドライフラワーの装飾"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap two">
+    <div>
+      <div class="en" style="color:var(--ink2)">About</div>
+      <h2 class="t">笑う門には、<br>花がある。</h2>
+      <p>EMIGATE は「EMI（笑み）」と「GATE（門）」。玄関や受付、人を迎える場所に花があると、入ってくる人の顔が少しゆるみます。</p>
+      <p>ひとつずつ手で束ねているので、同じものは二つとありません。気に入った作品が売り切れていたら、近い雰囲気でお作りします。</p>
+      <p class="sign">— 作り手の名前（仮）</p>
+    </div>
+    <div class="ph concrete" style="aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#f2ede4;font-size:13px;letter-spacing:.2em">制作風景の写真</div>
+  </div>
+</section>
+
+<section class="before" id="before">
+  <div class="wrap">
+    <div class="head"><div class="en">Before you order</div><p>ご購入の前に</p></div>
+    <div class="notes">
+      <div><h4>色は少しずつ変わります</h4><p>時間とともにアンティークな色合いへ変化します。ドライフラワーならではの表情としてお楽しみください。</p></div>
+      <div><h4>サイズは一番長いところ</h4><p>立体的な作品のため、記載のサイズはいちばん長い部分の長さです。写真では大きく見えることがあります。</p></div>
+      <div><h4>飾る場所</h4><p>直射日光・湿気・エアコンの風を避けてください。湿度の高い季節は、風通しのよい場所がおすすめです。</p></div>
+      <div><h4>お届け</h4><p>ご注文から7日以内に発送します。日時のご指定は、ご注文時の備考欄にお書きください。</p></div>
+      <div><h4>配送中の花落ち</h4><p>専用の箱に固定してお送りしますが、自然素材のため、細かな葉や実が落ちることがあります。</p></div>
+      <div><h4>ギフト包装</h4><p>簡易ラッピングとメッセージカードを承ります。お届け先を別に指定できます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><div class="en">Q &amp; A</div><p>よくあるご質問</p></div>
+    <div class="faq">
+      <details><summary>どのくらい飾れますか？</summary><p>飾る環境によりますが、数か月から1年ほどが目安です。少しずつ色があせていく変化もお楽しみください。</p></details>
+      <details><summary>飾る場所で気をつけることは？</summary><p>直射日光と湿気を避けてください。浴室や窓辺、エアコンの風が直接当たる場所は向きません。</p></details>
+      <details><summary>定期便は途中でサイズを変えられますか？</summary><p>次回お届けの前までにご連絡いただければ変更できます。</p></details>
+      <details><summary>贈りものにできますか？</summary><p>ギフト包装とメッセージカードをご用意しています。お届け先を別に指定できます。</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><div class="logo">EMIGATE</div><div style="margin-top:8px">株式会社EMIGATE</div></div>
+      <div class="links"><a href="#">ご利用ガイド</a><a href="#">送料・お届け</a><a href="#">特定商取引法に基づく表記</a><a href="#">プライバシーポリシー</a><a href="#">お問い合わせ</a></div>
+    </div>
+    <div class="c">© EMIGATE Inc.</div>
+  </div>
+</footer>
+
+<script>
+const P={
+  pampas:['#e9dcc3','#d8c4a2','#c9ad86','#f3ead8','#b89a74'],
+  smoke:['#5f6b7a','#8792a0','#3f4a57','#c9cfd4','#e9e4d8'],
+  green:['#5c6b55','#7d8b70','#a9b39a','#e9e2cf','#b0703c'],
+  brown:['#6b4a35','#8f6a4c','#b89373','#e5d6bf','#3e2c22'],
+  spring:['#e6cf7a','#f1e6c2','#cdb45a','#a9b39a','#f6f0e2']
+};
+function rnd(s){return()=>(s=s*16807%2147483647)/2147483647}
+function draw(svg){
+  const d=svg.dataset,r=rnd((+d.seed||7)*7919),pal=P[d.tone||'pampas'],shape=d.shape||'ring';
+  const pick=()=>pal[Math.floor(r()*pal.length)],f=n=>n.toFixed(1);
+  let h='';
+  const stroke=(x0,y0,a,len,bend)=>{
+    const x1=x0+Math.cos(a)*len,y1=y0+Math.sin(a)*len;
+    const cx=(x0+x1)/2+Math.cos(a+1.57)*bend,cy=(y0+y1)/2+Math.sin(a+1.57)*bend;
+    h+=`<path d="M${f(x0)} ${f(y0)}Q${f(cx)} ${f(cy)} ${f(x1)} ${f(y1)}" stroke="${pick()}" stroke-width="${f(.4+r()*1.3)}" opacity="${f(.5+r()*.45)}"/>`;
+  };
+  const flower=(x,y,s)=>{
+    const c=pal[3];
+    for(let k=0;k<16;k++)h+=`<ellipse cx="${f(x)}" cy="${f(y-s*.55)}" rx="${f(s*.2)}" ry="${f(s*.55)}" fill="${c}" opacity=".92" transform="rotate(${k*22.5} ${f(x)} ${f(y)})"/>`;
+    for(let k=0;k<12;k++)h+=`<ellipse cx="${f(x)}" cy="${f(y-s*.3)}" rx="${f(s*.14)}" ry="${f(s*.3)}" fill="#fbf7ee" opacity=".9" transform="rotate(${k*30+15} ${f(x)} ${f(y)})"/>`;
+    h+=`<circle cx="${f(x)}" cy="${f(y)}" r="${f(s*.16)}" fill="${pal[2]}"/>`;
+  };
+  if(shape==='swag'){
+    svg.setAttribute('viewBox','-110 -100 220 220');
+    for(let i=0;i<34;i++)stroke((r()-.5)*8,-62,-1.57+(r()-.5)*.7,14+r()*22,(r()-.5)*4);
+    for(let i=0;i<420;i++)stroke((r()-.5)*14,-66+r()*14,1.57+(r()-.5)*1.05,45+r()*120,(r()-.5)*26);
+    flower(-10,-28,15);flower(12,-18,13);flower(-2,-4,11);
+    h+=`<path d="M-9 -62Q0 -56 9 -62L8 -54Q0 -49 -8 -54Z" fill="#f2ede4"/><path d="M6 -58Q26 -50 22 -22" stroke="#f2ede4" stroke-width="4" opacity=".9"/>`;
+  }else{
+    svg.setAttribute('viewBox','-110 -110 220 220');
+    const a0=shape==='crescent'?1.0:0,span=shape==='crescent'?4.4:6.283,n=Math.round((+d.n||440)*span/6.283);
+    for(let i=0;i<n;i++){
+      const a=a0+r()*span,rb=54+(r()-.5)*18;
+      stroke(Math.cos(a)*rb,Math.sin(a)*rb,a+1.57+(r()-.5)*1.9,12+r()*32,(r()-.5)*10);
+    }
+    const fl=d.fl===undefined?3:+d.fl;
+    for(let k=0;k<fl;k++){const a=a0+span*(.25+k*.14)+r()*.2;flower(Math.cos(a)*54,Math.sin(a)*54,10+r()*4);}
+  }
+  svg.setAttribute('fill','none');svg.setAttribute('stroke-linecap','round');svg.innerHTML=h;
+}
+
+/* collection */
+const items=[
+  ['Autumn Hush','実ものと枯れ葉のリース','直径 約40cm','¥13,200','photo-1731412895496-3af872d3dc8c','一点もの','リース',0],
+  ['Green Air','風にゆれるグリーンの吊りリース','直径 約30cm','¥8,800','photo-1543208029-ea9db84a6e8f','新作','フライングリース',0],
+  ['Wheat Moon','ユーカリと麦のハーフリース','直径 約35cm','¥11,000','photo-1771400057423-2d21e9b5a95c','新作','ハーフリース',0],
+  ['Forest Door','木の実とグリーンのリース','直径 約30cm','¥9,900','photo-1515747027540-70ade91bab3f','','リース',1],
+  ['Eucalyptus','ユーカリだけの大きなリース','直径 約45cm','¥16,500','photo-1544376936-e15fd353d311','受注制作','リース',0],
+  ['Field Note','穂を束ねたスワッグ','長さ 約60cm','¥7,700','photo-1615482531489-4bc7bc3da63a','','スワッグ',0]
+];
+document.getElementById('grid').innerHTML=items.map(i=>`
+  <a class="card${i[7]?' sold':''}" href="#" data-cat="${i[6]}"><div class="ph concrete">${i[5]?`<span class="tag">${i[5]}</span>`:''}
+  <img loading="lazy" src="https://images.unsplash.com/${i[4]}?w=700&q=75&auto=format&fit=crop" alt="${i[1]}"></div>
+  <h4>${i[0]}</h4><div class="jp">${i[1]}</div><div class="meta">${i[6]} ｜ ${i[2]}</div>
+  <div class="price">${i[7]?'SOLD OUT':i[3]+' <small>税込</small>'}</div></a>`).join('');
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;
+  e.currentTarget.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));
+  document.querySelectorAll('#grid .card').forEach(c=>c.style.display=(!b.dataset.cat||c.dataset.cat===b.dataset.cat)?'':'none');
+});
+document.querySelectorAll('svg.w').forEach(draw);
+
+/* simulator */
+const st={wall:'concrete',place:'受付・エントランス',tone:'pampas'};
+const toneName={pampas:'生成り',smoke:'スモーキーブルー',green:'グリーン',brown:'ブラウン'};
+const fitNote={
+  concrete:{pampas:'無機質な壁に、やわらかな穂がよく映えます。',smoke:'同系色でまとめる、静かで都会的な組み合わせ。',green:'グレーに緑が入ると、空間がやわらぎます。',brown:'深い色が壁に沈みすぎないよう、白い花を足します。'},
+  white:{pampas:'白い壁には、少し濃いめの生成りで輪郭を出します。',smoke:'白にいちばん映える色。きりっとした印象に。',green:'明るく自然な、いちばん合わせやすい組み合わせ。',brown:'コントラストがはっきり出る、主役になる一枚。'},
+  wood:{pampas:'木の色となじむ、あたたかい組み合わせ。',smoke:'木のあたたかさに、涼しい色でめりはりを。',green:'木と緑。落ち着いた自然な雰囲気に。',brown:'同系色なので、白い花材を多めに入れます。'},
+  dark:{pampas:'濃い壁に、明るい穂が浮かび上がります。',smoke:'壁になじむので、白や生成りを多めに混ぜます。',green:'落ち着いた、ホテルのような雰囲気に。',brown:'重くなりすぎないよう、明るい実ものを足します。'}
+};
+const size={'受付・エントランス':'Lサイズ（直径 約45cm）','会議室・応接室':'Mサイズ（直径 約35cm）','リビング':'Mサイズ（直径 約35cm）','玄関':'Sサイズ（直径 約25cm）'};
+function reco(){
+  document.getElementById('rt').textContent=`${st.place} × ${toneName[st.tone]} ｜ ${size[st.place]}`;
+  document.getElementById('rp').textContent=fitNote[st.wall][st.tone];
+}
+function bind(id,fn){
+  const box=document.getElementById(id);
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.chip');if(!b)return;
+    box.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));
+    fn(b);reco();
+  });
+}
+bind('walls',b=>{st.wall=b.dataset.key;document.getElementById('stage').style.backgroundColor=b.dataset.wall;});
+bind('places',b=>{st.place=b.dataset.place;});
+bind('tones',b=>{st.tone=b.dataset.tone;const s=document.getElementById('simw');s.dataset.tone=st.tone;draw(s);});
+reco();
+</script>
+</body>
+</html>
